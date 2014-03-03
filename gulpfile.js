@@ -7,13 +7,13 @@ require('gulp-grunt')(gulp);
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src('app/styles/main.scss')
+  return gulp.src('./app/styles/main.scss')
     .pipe($.rubySass({
       style: 'expanded',
-      loadPath: ['app/bower_components']
+      loadPath: ['./app/bower_components']
     }))
     .pipe($.autoprefixer('last 1 version', 'ie >= 10'))
-    .pipe(gulp.dest('app/styles'))
+    .pipe(gulp.dest('./app/styles'))
     .pipe($.size());
 });
 
@@ -23,6 +23,9 @@ gulp.task('scripts', function () {
     .pipe($.jscs())
     .pipe($.jshint('.jshintrc'))
     .pipe($.jshint.reporter('default'))
+    /*.pipe($.uglify({
+      outSourceMap: true
+    }))*/
     .pipe($.size());
 });
 
@@ -95,6 +98,6 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch('app/images/**/*', ['images']);
 });
 
-gulp.task('gulp-bower-install', function () {
-  return gulp.run('grunt-bower-install');
+gulp.task('grunt-serve', function () {
+  return gulp.run('grunt-serve');
 });

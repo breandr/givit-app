@@ -56,12 +56,29 @@
     "gulp-bundle": "~0.2.0",
     "gulp-jscs": "~0.3.1",
     "gulp-bower-files": "~0.1.11",
-    "gulp-grunt": "~0.4.1"
+    "gulp-grunt": "~0.4.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-notify": "~1.0.0-beta"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "jscsConfig": {
+    "requireCurlyBraces": [
+      "if",
+      "else",
+      "for",
+      "while",
+      "do",
+      "try",
+      "catch",
+      "case",
+      "default"
+    ]
   }
 }
