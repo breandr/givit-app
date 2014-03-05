@@ -352,10 +352,10 @@ module.exports = function (grunt) {
     },
     phonegap: {
       config: {
-        root: 'app',
-        config: 'phonegap/config.xml',
-        cordova: 'phonegap/.cordova',
-        path: 'phonegap-build',
+        root: './app',
+        config: './phonegap/config.xml',
+        cordova: './phonegap/.cordova',
+        path: './phonegap-build/',
         platforms: ['android'],
         maxBuffer: 200, // You may need to raise this for iOS.
         verbose: true,
@@ -394,7 +394,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-phonegap');
 
   grunt.registerTask('build-phonegap', function () {
-    grunt.task.run('phonegap:login');
     grunt.task.run('phonegap:build');
   });
 

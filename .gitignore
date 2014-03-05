@@ -3,5 +3,5 @@
 app/bower_components
 dist
 node_modules
-phonegap/www/*
-phonegap-build/*
+phonegap/www/**
+phonegap-build/**
