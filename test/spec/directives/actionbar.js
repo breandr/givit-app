@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Directive: MainNav', function () {
+describe('Directive: actionBar', function () {
 
   // load the directive's module
-  beforeEach(module('givitAppApp'));
+  beforeEach(module('givitApp'));
 
   var element,
     scope;
@@ -13,8 +13,8 @@ describe('Directive: MainNav', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<-main-nav></-main-nav>');
+    element = angular.element('<action-bar></action-bar>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the MainNav directive');
+    expect(element.text()).toBe('this is the ActionBar directive');
   }));
 });

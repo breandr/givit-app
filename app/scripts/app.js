@@ -12,6 +12,10 @@ angular.module('givitApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/givitList', {
+        templateUrl: 'views/givitlist.html',
+        controller: 'GivitlistCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

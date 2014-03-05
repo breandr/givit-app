@@ -18,9 +18,9 @@
         <!-- endbuild -->
     </head>
     <body ng-app="givitApp">
-            <mainnav></mainnav>
+            <action-bar></action-bar>
             <!-- Add your site or application content here -->
-            <div class="container" ng-view=""></div>
+            <div class="container content-area" ng-view=""></div>
             <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
             <script>
                                                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -46,7 +46,8 @@
             <!-- build:js({.tmp,app}) scripts/scripts.js -->
             <script src="scripts/app.js"></script>
             <script src="scripts/controllers/main.js"></script>
-            <script src="scripts/directives/MainNav.js"></script>
+            <script src="scripts/directives/ActionBar.js"></script>
+            <script src="scripts/controllers/givitList.js"></script>
             <!-- endbuild -->
         </body>
     </html>
