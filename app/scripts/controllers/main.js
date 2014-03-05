@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('givitAppApp')
+angular.module('givitApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('givitAppApp', [
+angular.module('givitApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
