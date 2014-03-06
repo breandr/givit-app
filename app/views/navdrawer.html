@@ -1,12 +1,10 @@
 <div class="navbar-collapse collapse nav-drawer width" ng-controller="NavDrawerCtrl">
     <ul class="nav navbar-nav">
         <li ng-class="{ active: isActive('/user-details')}" class="banner user-details">
-            <a href="/user-details">
+            <a href="/user-details" class="clearfix">
             <img ng-src="images/users/{{user.guid}}/user-avatar.png" class="pull-left" />
-            <div>
-                <div>{{user.name}}</div>
-                <div>{{user.email}}</div>
-            </div>
+            <span>{{user.name}}</span>
+            <span>{{user.email}}</span>
             </a>
         </li>
         <li ng-class="{ active: isActive('/') || isActive('/givit-list')}"><a href="/givit-list">Givit List</a></li>
