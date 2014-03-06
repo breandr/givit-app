@@ -1,0 +1,99 @@
+// // Core variables and mixins
+// @import 'sass-bootstrap/lib/variables';
+// @import 'sass-bootstrap/lib/mixins';
+
+// // Navbar collapse (body)
+// //
+// // Group your navbar content into this for easy collapsing and expanding across
+// // various device sizes. By default, this content is collapsed when <768px, but
+// // will expand past that for a horizontal display.
+// //
+// // To start (on mobile devices) the navbar links, forms, and buttons are stacked
+// // vertically and include a `max-height` to overflow in case you have too much
+// // content for the user's viewport.
+.action-bar{
+  min-height: inherit;
+
+  .navbar-toggle{
+    border-color: transparent;
+    margin: 0 5px 0 0;
+
+    &:hover, &:focus{
+      background-color: inherit;
+      outline: none;
+    }
+
+    &:active{
+      // box-shadow: none;
+    }
+
+    .btn{
+    position:relative;
+      left: -15px;
+      margin-right: -10px;
+      padding: 0;
+      padding-top: 10px;
+      transition: left 0.35s ease;
+    }
+
+    .logo{
+      width:32px;
+      height:32px;
+      margin-right:5px;
+      border:1px solid #DDD;
+      background-url: img("givit-logo.png");
+    }
+
+    .navbar-brand{
+      padding: 0;
+      padding-top: 7px;
+    }
+  }
+}
+
+.nav-drawer {
+  white-space: nowrap;
+  position:absolute;
+  max-height: none;
+  height: auto;
+  transition: width 0.35s ease;
+  overflow-x: hidden;
+  height: 1000px;//need to find out how to set this to the screen height
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  padding: 0;
+
+  &.collapsing{
+    overflow-y: auto;
+  }
+
+  .navbar-nav{
+    background: white;
+    width: 400px;//need to find out how to set this to the screen width
+    height: 100%;
+    margin: 0 0 0 -15px;
+    padding-left: 15px;
+
+    > li {
+      &.user-details{
+        img{
+          margin-right: 15px;
+          border-radius: 50%;
+        }
+      }
+
+      &.active > a {
+        &, &:hover, &:focus{
+          font-weight: bold;
+          background-color: inherit;
+          color: inherit;
+        }
+      }
+
+      > a {
+        border-bottom: 1px solid #eee;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}

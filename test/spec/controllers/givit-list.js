@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: GivitlistCtrl', function () {
+describe('Controller: GivitListCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('givitAppApp'));
+  beforeEach(module('givitApp'));
 
-  var GivitlistCtrl,
+  var GivitListCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GivitlistCtrl = $controller('GivitlistCtrl', {
+    GivitListCtrl = $controller('GivitListCtrl', {
       $scope: scope
     });
   }));

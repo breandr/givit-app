@@ -6,17 +6,52 @@ angular.module('givitApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/givitList', {
-        templateUrl: 'views/givitlist.html',
-        controller: 'GivitlistCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(['$routeProvider', '$locationProvider',
+    function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: 'views/main.html',
+          controller: 'MainCtrl'
+        })
+        .when('/givit-list', {
+          templateUrl: 'views/givit-list.html',
+          controller: 'GivitListCtrl'
+        })
+        .when('/donate-item', {
+          templateUrl: 'views/donate-item.html',
+          controller: 'DonateItemCtrl'
+        })
+        .when('/user-details', {
+          templateUrl: 'views/user-details.html',
+          controller: 'UserDetailsCtrl'
+        })
+        .when('/about', {
+          templateUrl: 'views/about.html',
+          controller: 'AboutCtrl'
+        })
+        .when('/terms-of-participation', {
+          templateUrl: 'views/terms-of-participation.html',
+          controller: 'TermsOfParticipationCtrl'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+
+      $locationProvider.html5Mode(true);
+    }
+  ])
+  .run(function ($rootScope) {
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+      $('.nav-drawer').collapse('hide');
+    });
+
+    $(document).on('show.bs.collapse', '.nav-drawer', function () {
+      var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
+
+      toggleButton.css('left', '-25px');
+    }).on('hide.bs.collapse', '.nav-drawer', function (event) {
+      var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
+      
+      toggleButton.css('left', '-15px');
+    });
   });
