@@ -41,7 +41,7 @@ angular.module('givitApp', [
     }
   ])
   .run(function ($rootScope) {
-    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+    $rootScope.$on('$locationChangeStart', function () {
       $('.nav-drawer').collapse('hide');
     });
 

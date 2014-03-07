@@ -1,20 +1,20 @@
 <div class="user-details">
-    <form role="form">
+    <form role="form" id="user-details-form">
         <div class="form-group">
-            <label for="given-names">Given Name(s)</label>
-            <input type="text" class="form-control" id="given-names" placeholder="Joe" required>
+            <label for="user-details-field-given-names">Given Name(s)</label>
+            <input type="text" class="form-control" id="user-details-field-given-names" name="GivenNames" placeholder="Joe" required ng-value="givenNames">
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Family Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Bloggs" required>
+            <label for="user-details-field-family-name">Family Name</label>
+            <input type="text" class="form-control" id="user-details-field-family-name" name="FamilyName" placeholder="Bloggs" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Phone (Landline or Mobile)</label>
-            <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="(+61) 0400 420 007 or 37 236 198" required>
+            <label for="user-details-field-phone">Phone (Landline or Mobile)</label>
+            <input type="tel" class="form-control" id="user-details-field-phone" name="Phone" placeholder="(+61) 0400 420 007 or 37 236 198" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">State</label>
-            <select class="form-control" required>
+            <label for="user-details-field-state">State</label>
+            <select class="form-control" id="user-details-field-state" name="State" required>
                 <option value="">Please select the state in which you reside</option>
                 <option value="QLD">QLD</option>
                 <option value="ACT">ACT</option>
@@ -27,20 +27,20 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Postcode</label>
-            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="4258" required>
+            <label for="user-details-field-postcode">Postcode</label>
+            <input type="text" class="form-control" id="user-details-field-postcode" name="Postcode" placeholder="4258" pattern="[0-9]4" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Suburb</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Yelpsville">
+            <label for="user-details-field-suburb">Suburb</label>
+            <input type="text" class="form-control" id="user-details-field-suburb" name="Suburb" placeholder="Yelpsville">
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="joe.bloggs@gmail.com" required>
+            <label for="user-details-field-email">Email address</label>
+            <input type="email" class="form-control" id="user-details-field-email" name="Email" placeholder="joe.bloggs@gmail.com" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Confirm Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="joe.bloggs@gmail.com" required>
+            <label for="user-details-field-confirm-email">Confirm Email</label>
+            <input type="email" class="form-control" id="user-details-field-confirm-email" name="ConfirmEmail" placeholder="joe.bloggs@gmail.com" required>
         </div>
         <div class="form-group pull-right">
             <div class="checkbox pull-left">
