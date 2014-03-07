@@ -1,5 +1,15 @@
+@import 'sass-bootstrap/lib/variables';
+
 .user-details{
-	input[type="checkbox"][name="TermsOfParticipation"]{
-		padding-right: 15px;
-	}
+
+	.checkbox {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #22FF22;
+		margin-left: 0px;
+
+  		@media (min-width: $grid-float-breakpoint) {
+  			// padding-top: 20px;
+		}
+  	}
 }

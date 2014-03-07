@@ -1,54 +1,58 @@
 <div class="user-details">
-    <form role="form" id="user-details-form">
-        <div class="form-group">
-            <label for="user-details-field-given-names">Given Name(s)</label>
-            <input type="text" class="form-control" id="user-details-field-given-names" name="GivenNames" placeholder="Joe" required ng-value="givenNames">
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-family-name">Family Name</label>
-            <input type="text" class="form-control" id="user-details-field-family-name" name="FamilyName" placeholder="Bloggs" required>
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-phone">Phone (Landline or Mobile)</label>
-            <input type="tel" class="form-control" id="user-details-field-phone" name="Phone" placeholder="(+61) 0400 420 007 or 37 236 198" required>
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-state">State</label>
-            <select class="form-control" id="user-details-field-state" name="State" required>
-                <option value="">Please select the state in which you reside</option>
-                <option value="QLD">QLD</option>
-                <option value="ACT">ACT</option>
-                <option value="NSW">NSW</option>
-                <option value="VIC">VIC</option>
-                <option value="TAS">TAS</option>
-                <option value="WA">WA</option>
-                <option value="SA">SA</option>
-                <option value="NT">NT</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-postcode">Postcode</label>
-            <input type="text" class="form-control" id="user-details-field-postcode" name="Postcode" placeholder="4258" pattern="[0-9]4" required>
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-suburb">Suburb</label>
-            <input type="text" class="form-control" id="user-details-field-suburb" name="Suburb" placeholder="Yelpsville">
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-email">Email address</label>
-            <input type="email" class="form-control" id="user-details-field-email" name="Email" placeholder="joe.bloggs@gmail.com" required>
-        </div>
-        <div class="form-group">
-            <label for="user-details-field-confirm-email">Confirm Email</label>
-            <input type="email" class="form-control" id="user-details-field-confirm-email" name="ConfirmEmail" placeholder="joe.bloggs@gmail.com" required>
-        </div>
-        <div class="form-group pull-right">
-            <div class="checkbox pull-left">
-                <label>
-                    <input type="checkbox" name="TermsOfParticipation" required> I agree to all <a href="/terms-of-participation">Terms of Participation*</a>
-                </label>
+    <form role="form" id="user-details-form" ng-controller="UserDetailsCtrl">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="user-details-field-given-names">Given Name(s)</label>
+                <input type="text" class="form-control" id="user-details-field-given-names" name="GivenNames" placeholder="Joe" required ng-model="user.givenNames">
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Save</button>
+            <div class="form-group col-sm-6">
+                <label for="user-details-field-family-name">Family Name</label>
+                <input type="text" class="form-control" id="user-details-field-family-name" name="FamilyName" placeholder="Bloggs" required ng-model="user.familyName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="user-details-field-phone">Phone (Landline or Mobile)</label>
+                <input type="tel" class="form-control" id="user-details-field-phone" name="Phone" placeholder="(+61) 0400 420 007 or 37 236 198" required ng-model="user.phone">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="user-details-field-email">Email address</label>
+                <input type="email" class="form-control" id="user-details-field-email" name="Email" placeholder="joe.bloggs@gmail.com" required ng-model="user.email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="user-details-field-state">State</label>
+                <select class="form-control" id="user-details-field-state" name="State" required ng-model="user.state">
+                    <option value="">Please select the state in which you reside</option>
+                    <option value="QLD">QLD</option>
+                    <option value="ACT">ACT</option>
+                    <option value="NSW">NSW</option>
+                    <option value="VIC">VIC</option>
+                    <option value="TAS">TAS</option>
+                    <option value="WA">WA</option>
+                    <option value="SA">SA</option>
+                    <option value="NT">NT</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="user-details-field-postcode">Postcode</label>
+                <input type="text" class="form-control" id="user-details-field-postcode" name="Postcode" placeholder="4258" pattern="[0-9]4" minlength="4" maxlength="4" required ng-model="user.postcode">
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="user-details-field-suburb">Suburb</label>
+                <input type="text" class="form-control" id="user-details-field-suburb" name="Suburb" placeholder="Yelpsville" ng-model="user.suburb">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="TermsOfParticipation" required ng-model="user.termsOfParticipation"> I agree to all <a href="/terms-of-participation">Terms of Participation*</a>
+                    </label>
+                </div>
+                <!-- <button type="submit" class="btn btn-primary pull-right">Save</button> -->
+            </div>
         </div>
     </form>
 </div>

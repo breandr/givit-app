@@ -178,14 +178,16 @@ module.exports = function (grunt) {
         }
       }
     },
+
     // combines matching media queries into one media query definition
-    cmq: {
-      your_target: {
-        files: {
-          '.tmp/styles': ['.tmp/styles/*.css']
-        }
-      }
-    },
+    // cmq: {
+    //   your_target: {
+    //     files: {
+    //       '.tmp/styles': ['.tmp/styles/*.css']
+    //     }
+    //   }
+    // },
+    
     // Renames files for browser caching purposes
     rev: {
       dist: {

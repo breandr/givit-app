@@ -4,7 +4,8 @@ angular.module('givitApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngStorage'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
@@ -49,9 +50,9 @@ angular.module('givitApp', [
       var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
 
       toggleButton.css('left', '-25px');
-    }).on('hide.bs.collapse', '.nav-drawer', function (event) {
+    }).on('hide.bs.collapse', '.nav-drawer', function () {
       var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
-      
+
       toggleButton.css('left', '-15px');
     });
   });
