@@ -1,5 +1,5 @@
 // // Core variables and mixins
-// @import 'sass-bootstrap/lib/variables';
+@import 'sass-bootstrap/lib/variables';
 // @import 'sass-bootstrap/lib/mixins';
 
 // // Navbar collapse (body)
@@ -53,50 +53,81 @@
 }
 
 .nav-drawer {
-//   white-space: nowrap;
-//   position:absolute;
-//   max-height: none;
-//   height: auto;
-//   transition: width 0.35s ease;
-//   overflow-x: hidden;
-//   height: 1000px;//need to find out how to set this to the screen height
-//   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
-//   padding: 0;
+  @media (max-width: ($grid-float-breakpoint - 1)) {
+    white-space: nowrap;
+    position:absolute;
+    max-height: none;
+    height: auto;
+    transition: width 0.35s ease;
+    overflow-x: hidden;
+    height: 1000px;//need to find out how to set this to the screen height
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 0;
 
-//   &.collapsing{
-//     overflow-y: auto;
-//   }
+    &.collapsing{
+      overflow-y: auto;
+    }
+  }
+
+  @media (min-width: $grid-float-breakpoint) {
+    // !important needed to override the inline width style set by collapsing the navigation drawer
+    // without this, if the browser is resized up after collapsing, it breaks the nav
+    width: inherit !important;
+  }
 
   .navbar-nav{
-//     background: white;
-//     width: 400px;//need to find out how to set this to the screen width
-//     height: 100%;
-//     margin: 0 0 0 -15px;
-//     padding-left: 15px;
+    @media (max-width: ($grid-float-breakpoint - 1)) {
+      background: white;
+      width: 400px;//need to find out how to set this to the screen width
+      height: 100%;
+      margin: 0 0 0 -15px;
+      padding-left: 15px;
+    }
 
     > li {
       &.user-details{
+        > a{
+          @media (min-width: $grid-float-breakpoint) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            .user-email{
+              display:none;
+            }
+            
+            .user-name{
+              padding-top: 10px;
+            }
+          }
+        }
+
         img{
           margin-right: 15px;
           border-radius: 50%;
           margin-right: 5px;
-          //height: 40px; //only on collapse; parent 'a' padding top/bottom 5px also
+
+          @media (min-width: $grid-float-breakpoint) {
+            height: 40px;
+          }
         }
       }
 
-//       &.active > a {
-//         &, &:hover, &:focus{
-//           font-weight: bold;
-//           background-color: inherit;
-//           color: inherit;
-//         }
-//       }
+      &.active > a {
+        &, &:hover, &:focus{
+          font-weight: bold;
+          background-color: inherit;
+          color: inherit;
+        }
+      }
 
-//       > a {
-//         border-bottom: 1px solid #eee;
-//         padding-top: 15px;
-//         padding-bottom: 15px;
-//       }
+      > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        @media (max-width: ($grid-float-breakpoint - 1)) {
+          border-bottom: 1px solid #eee;
+        }
+      }
     }
   }
 }

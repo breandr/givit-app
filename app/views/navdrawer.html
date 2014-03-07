@@ -3,8 +3,10 @@
         <li ng-class="{ active: isActive('/user-details')}" class="banner user-details">
             <a href="/user-details" class="clearfix">
             <img ng-src="images/users/{{user.guid}}/user-avatar.png" class="pull-left" />
-            <span>{{user.name}}</span>
-            <span>{{user.email}}</span>
+            <div class="pull-left">
+                <div class="user-name">{{user.name}}</div>
+                <div class="user-email">{{user.email}}</div>
+            </div>
             </a>
         </li>
         <li ng-class="{ active: isActive('/') || isActive('/givit-list')}"><a href="/givit-list">Givit List</a></li>

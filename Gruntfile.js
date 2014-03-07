@@ -178,7 +178,14 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    // combines matching media queries into one media query definition
+    cmq: {
+      your_target: {
+        files: {
+          '.tmp/styles': ['.tmp/styles/*.css']
+        }
+      }
+    },
     // Renames files for browser caching purposes
     rev: {
       dist: {
@@ -392,6 +399,7 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-phonegap');
+  grunt.loadNpmTasks('grunt-combine-media-queries');
 
   grunt.registerTask('build-phonegap', function () {
     grunt.task.run('phonegap:build');
