@@ -1,13 +1,13 @@
 'use strict';
+
 var gulp = require('gulp'),
-  // Load all gulp plugins defined in package.json
-  $ = require('gulp-load-plugins')();
+  $ = require('gulp-load-plugins')(); // Load all gulp plugins defined in package.json
 
 require('gulp-grunt')(gulp);
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src('./app/styles/main.scss')
+  gulp.src('./app/sass/*.scss')
     .pipe($.rubySass({
       style: 'expanded',
       loadPath: ['./app/bower_components']
@@ -19,39 +19,39 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-  return gulp.src('app/scripts/**/*.js')
+  gulp.src('./app/scripts/**/*.js')
     .pipe($.jscs())
     .pipe($.jshint('.jshintrc'))
     .pipe($.jshint.reporter('default'))
-    /*.pipe($.uglify({
+  /*.pipe($.uglify({
       outSourceMap: true
     }))*/
-    .pipe($.size());
+  .pipe($.size());
 });
 
 // HTML
 gulp.task('html', function () {
-  return gulp.src('app/*.html')
+  gulp.src('./app/*.html')
     .pipe($.useref())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('./dist'))
     .pipe($.size());
 });
 
 // Images
 gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
+  gulp.src('./app/images/**/*')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('./dist/images'))
     .pipe($.size());
 });
 
 // Clean
 gulp.task('clean', function () {
-  return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], {
+  gulp.src(['./dist/styles', './dist/scripts', './dist/images'], {
     read: false
   }).pipe($.clean());
 });
@@ -62,13 +62,46 @@ gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
 // Build
 gulp.task('build', ['html', 'bundle', 'images']);
 
+// Build production
+gulp.task('build:prod', ['build'], function () {
+  // Clean dist folder
+  gulp.src('./dist')
+    .pipe($.clean());
+
+  // Copy scripts; strip debug; minify
+  gulp.src('./app/scripts/**/*.js', {
+    base: './app/scripts'
+  })
+    .pipe($.stripDebug())
+    .pipe($.uglify())
+    .pipe(gulp.dest('./dist/scripts'));
+
+  // Copy html; minify
+  gulp.src('./app/**/*.html', {
+    base: './app'
+  })
+    .pipe($.minifyHTML())
+    .pipe(gulp.dest('./dist'));
+
+  // Copy css; minify
+  gulp.src('./app/styles/**/*.css', {
+    base: './app/styles'
+  })
+    .pipe($.minifyCSS())
+    .pipe(gulp.dest('./dist/styles'));
+
+  // Copy images
+  gulp.src('./app/images')
+  .pipe(gulp.dest('./dist/images'));
+});
+
 // Default task
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
 // Connect
-gulp.task('connect', $.connect.server({
+gulp.task('connect', ['build'], $.connect.server({
   root: ['app'],
   port: 9000,
   livereload: true,
@@ -81,23 +114,23 @@ gulp.task('connect', $.connect.server({
 gulp.task('watch', ['connect'], function () {
   // Watch for changes in `app` folder
   gulp.watch([
-    'app/*.html',
-    'app/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/images/**/*'
+    './app/*.html',
+    './app/styles/**/*.css',
+    './app/scripts/**/*.js',
+    './app/images/**/*'
   ], $.connect.reload);
 
   // Watch .scss files
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('./app/sass/**/*.scss', ['styles']);
 
 
   // Watch .js files
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('./app/scripts/**/*.js', ['scripts']);
 
   // Watch image files
-  gulp.watch('app/images/**/*', ['images']);
+  gulp.watch('./app/images/**/*', ['images']);
 });
 
 gulp.task('grunt-serve', function () {
-  return gulp.run('grunt-serve');
+  gulp.run('grunt-serve');
 });

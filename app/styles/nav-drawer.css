@@ -1,0 +1,97 @@
+.action-bar {
+  min-height: inherit;
+}
+.action-bar .navbar-toggle {
+  border-color: transparent;
+  margin: 0 5px 0 0;
+}
+.action-bar .navbar-toggle:hover, .action-bar .navbar-toggle:focus {
+  background-color: inherit;
+  outline: none;
+}
+.action-bar .navbar-toggle .btn {
+  position: relative;
+  left: -15px;
+  margin-right: -10px;
+  padding: 0;
+  padding-top: 10px;
+  transition: left 0.35s ease;
+}
+.action-bar .navbar-toggle .logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+  border: 1px solid #DDD;
+  background-url: img("givit-logo.png");
+}
+.action-bar .navbar-toggle .navbar-brand {
+  padding: 0;
+  padding-top: 7px;
+}
+
+@media (max-width: 767px) {
+  .nav-drawer {
+    white-space: nowrap;
+    position: absolute;
+    max-height: none;
+    height: auto;
+    transition: width 0.35s ease;
+    overflow-x: hidden;
+    height: 1000px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 0;
+  }
+  .nav-drawer.collapsing {
+    overflow-y: auto;
+  }
+}
+@media (min-width: 768px) {
+  .nav-drawer {
+    width: inherit !important;
+  }
+}
+@media (max-width: 767px) {
+  .nav-drawer .navbar-nav {
+    background: white;
+    width: 400px;
+    height: 100%;
+    margin: 0 0 0 -15px;
+    padding-left: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .nav-drawer .navbar-nav > li.user-details > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .nav-drawer .navbar-nav > li.user-details > a .user-email {
+    display: none;
+  }
+  .nav-drawer .navbar-nav > li.user-details > a .user-name {
+    padding-top: 10px;
+  }
+}
+.nav-drawer .navbar-nav > li.user-details img {
+  margin-right: 15px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+@media (min-width: 768px) {
+  .nav-drawer .navbar-nav > li.user-details img {
+    height: 40px;
+  }
+}
+.nav-drawer .navbar-nav > li.active > a, .nav-drawer .navbar-nav > li.active > a:hover, .nav-drawer .navbar-nav > li.active > a:focus {
+  font-weight: bold;
+  background-color: inherit;
+  color: inherit;
+}
+.nav-drawer .navbar-nav > li > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .nav-drawer .navbar-nav > li > a {
+    border-bottom: 1px solid #eee;
+  }
+}

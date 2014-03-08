@@ -63,7 +63,10 @@
     "gulp-notify": "~1.0.0-beta",
     "grunt-phonegap": "~0.13.2",
     "css-parse": "~1.5.3",
-    "grunt-combine-media-queries": "~1.0.15"
+    "grunt-combine-media-queries": "~1.0.15",
+    "gulp-minify-html": "~0.1.1",
+    "gulp-strip-debug": "~0.3.0",
+    "gulp-usemin": "~0.3.3"
   },
   "engines": {
     "node": ">=0.10.0"
