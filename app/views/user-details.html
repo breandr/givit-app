@@ -1,4 +1,4 @@
-<div class="user-details">
+<div class="user-details container">
     <form role="form" id="user-details-form" ng-controller="UserDetailsCtrl">
         <div class="row">
             <div class="form-group col-sm-6">
@@ -45,13 +45,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-12">
-                <div class="checkbox">
+            <div class="form-group col-xs-12">
+                <div class=" checkbox">
                     <label>
                         <input type="checkbox" name="TermsOfParticipation" required ng-model="user.termsOfParticipation"> I agree to all <a href="/terms-of-participation">Terms of Participation*</a>
                     </label>
                 </div>
-                <!-- <button type="submit" class="btn btn-primary pull-right">Save</button> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </form>

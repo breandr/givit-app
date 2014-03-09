@@ -1,7 +1,10 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-// $grid-float-breakpoint: 15000px;
 @import 'sass-bootstrap/lib/bootstrap';
 
 .content-area{
-	padding: 65px 15px 15px 15px;
+	padding-top: 65px;
+}
+
+.radio, .checkbox{
+	border-radius: 4px;
 }

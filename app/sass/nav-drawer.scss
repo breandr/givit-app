@@ -1,5 +1,6 @@
 // // Core variables and mixins
 @import 'sass-bootstrap/lib/variables';
+$nav-drawer-breakpoint: 15000px;
 // @import 'sass-bootstrap/lib/mixins';
 
 // // Navbar collapse (body)
@@ -53,7 +54,7 @@
 }
 
 .nav-drawer {
-  @media (max-width: ($grid-float-breakpoint - 1)) {
+  @media (max-width: ($nav-drawer-breakpoint - 1)) {
     white-space: nowrap;
     position:absolute;
     max-height: none;
@@ -69,14 +70,14 @@
     }
   }
 
-  @media (min-width: $grid-float-breakpoint) {
+  @media (min-width: $nav-drawer-breakpoint) {
     // !important needed to override the inline width style set by collapsing the navigation drawer
     // without this, if the browser is resized up after collapsing, it breaks the nav
     width: inherit !important;
   }
 
   .navbar-nav{
-    @media (max-width: ($grid-float-breakpoint - 1)) {
+    @media (max-width: ($nav-drawer-breakpoint - 1)) {
       background: white;
       width: 400px;//need to find out how to set this to the screen width
       height: 100%;
@@ -87,7 +88,7 @@
     > li {
       &.user-details{
         > a{
-          @media (min-width: $grid-float-breakpoint) {
+          @media (min-width: $nav-drawer-breakpoint) {
             padding-top: 5px;
             padding-bottom: 5px;
 
@@ -106,7 +107,7 @@
           border-radius: 50%;
           margin-right: 5px;
 
-          @media (min-width: $grid-float-breakpoint) {
+          @media (min-width: $nav-drawer-breakpoint) {
             height: 40px;
           }
         }
@@ -124,10 +125,41 @@
         padding-top: 15px;
         padding-bottom: 15px;
 
-        @media (max-width: ($grid-float-breakpoint - 1)) {
+        @media (max-width: ($nav-drawer-breakpoint - 1)) {
           border-bottom: 1px solid #eee;
         }
       }
+    }
+  }
+}
+
+// prevent non-collapsed nav
+ @media (max-width: ($nav-drawer-breakpoint - 1)) {
+  .navbar-toggle{
+    display: inherit;
+  }
+  
+  .navbar-header{
+    float: inherit;
+  }
+  
+  .navbar-fixed-top, .navbar-fixed-bottom{
+    border-radius: inherit;
+  }
+  
+  .navbar-collapse.collapse{
+    display: none !important;
+    height: inherit !important;
+    padding-bottom: inherit;
+    overflow: inherit !important;
+  }
+
+  .navbar-nav{
+    float: inherit;
+    margin: inherit;
+
+    > li{
+      float: inherit;
     }
   }
 }
