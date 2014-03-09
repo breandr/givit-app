@@ -32,7 +32,7 @@ gulp.task('scripts', function () {
 // HTML
 gulp.task('html', function () {
   gulp.src('./app/*.html')
-    .pipe($.useref())
+    .pipe($.usemin())
     .pipe(gulp.dest('./dist'))
     .pipe($.size());
 });
@@ -68,6 +68,21 @@ gulp.task('build:prod', ['build'], function () {
   gulp.src('./dist')
     .pipe($.clean());
 
+  // Copy html; minify
+  gulp.src('./app/**/*.html', {
+    base: './app'
+  })
+    .pipe($.useMin({
+      css: [$.minifyCss(), 'concat', $.uncss({
+        html: './app/**/*.html'
+      })],
+      html: [$.minifyHtml({
+        empty: true
+      })],
+      js: [$.stripDebug(), $.uglify(), $.rev()]
+    }))
+    .pipe(gulp.dest('./dist'));
+
   // Copy scripts; strip debug; minify
   gulp.src('./app/scripts/**/*.js', {
     base: './app/scripts'
@@ -75,13 +90,6 @@ gulp.task('build:prod', ['build'], function () {
     .pipe($.stripDebug())
     .pipe($.uglify())
     .pipe(gulp.dest('./dist/scripts'));
-
-  // Copy html; minify
-  gulp.src('./app/**/*.html', {
-    base: './app'
-  })
-    .pipe($.minifyHTML())
-    .pipe(gulp.dest('./dist'));
 
   // Copy css; minify
   gulp.src('./app/styles/**/*.css', {
@@ -92,7 +100,7 @@ gulp.task('build:prod', ['build'], function () {
 
   // Copy images
   gulp.src('./app/images')
-  .pipe(gulp.dest('./dist/images'));
+    .pipe(gulp.dest('./dist/images'));
 });
 
 // Default task
