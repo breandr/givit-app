@@ -1,6 +1,6 @@
 <div class="navbar-collapse collapse nav-drawer width" ng-controller="NavDrawerCtrl">
     <ul class="nav navbar-nav">
-        <li ng-class="{ active: isActive('/user-details')}" class="banner user-details">
+        <!-- <li ng-class="{ active: isActive('/user-details')}" class="banner user-details">
             <a href="/user-details" class="clearfix">
             <img ng-src="images/users/{{user.guid}}/user-avatar.png" class="pull-left" />
             <div class="pull-left">
@@ -8,9 +8,10 @@
                 <div class="user-email">{{user.email}}</div>
             </div>
             </a>
-        </li>
+        </li> -->
         <li ng-class="{ active: isActive('/') || isActive('/givit-list')}"><a href="/givit-list">Givit List</a></li>
         <li ng-class="{ active: isActive('/donate-item')}"><a href="/donate-item">Donate Item</a></li>
+        <li ng-class="{ active: isActive('/user-details')}"><a href="/user-details">My Details</a></li>
         <li ng-class="{ active: isActive('/about')}"><a href="/about">About</a></li>
     </ul>
 </div>

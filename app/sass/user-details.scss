@@ -1,12 +1,14 @@
-@import 'sass-bootstrap/lib/variables';
+@import 'variables';
 
 .user-details{
 
 	.checkbox {
-		padding-top: 10px;
+		padding-left: 0;
+		/* padding-top: 10px;
 		padding-bottom: 10px;
-		background-color: #22FF22;
+		background-color: #F8971D;
 		padding-left: 25px;
+		color: #FFF; */
 
   		@media (min-width: $grid-float-breakpoint) {
   			// padding-top: 20px;
@@ -16,4 +18,8 @@
   	button[type="submit"]{
   		width: 100%;
   	}
+}
+
+#user-details-terms-of-participation{
+	width: 240px;
 }

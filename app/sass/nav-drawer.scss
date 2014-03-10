@@ -1,6 +1,6 @@
-// // Core variables and mixins
-@import 'sass-bootstrap/lib/variables';
-$nav-drawer-breakpoint: 15000px;
+@import 'variables';
+
+
 // @import 'sass-bootstrap/lib/mixins';
 
 // // Navbar collapse (body)
@@ -39,11 +39,10 @@ $nav-drawer-breakpoint: 15000px;
     }
 
     .logo{
-      width:32px;
-      height:32px;
-      margin-right:5px;
-      border:1px solid #DDD;
-      background-url: img("givit-logo.png");
+      width: 32px;
+      height: 32px;
+      margin-right: 5px;
+      background: url("/images/givit-logo-32x32.png");
     }
 
     .navbar-brand{

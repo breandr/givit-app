@@ -143,10 +143,11 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
-    'bower-install': {
-      app: {
-        html: '<%= yeoman.app %>/index.html',
-        ignorePath: '<%= yeoman.app %>/'
+    bowerInstall: {
+      target: {
+        cwd: './',
+        src: ['<%= yeoman.app %>/index.html'],
+        exclude: [/sass-bootstrap\/dist\/css/]
       }
     },
 
@@ -411,13 +412,14 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('serve', function (target) {
+    debugger;
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+      'bowerInstall',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -440,7 +442,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+    'bowerInstall',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

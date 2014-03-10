@@ -57,10 +57,10 @@ gulp.task('clean', function () {
 });
 
 // Bundle
-gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
+// gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
 
 // Build
-gulp.task('build', ['html', 'bundle', 'images']);
+gulp.task('build', ['html', /*'bundle',*/ 'images']);
 
 // Build production
 gulp.task('build:prod', ['build'], function () {

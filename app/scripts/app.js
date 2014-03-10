@@ -5,7 +5,8 @@ angular.module('givitApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngStorage'
+  'ngStorage',
+  'toggle-switch'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {

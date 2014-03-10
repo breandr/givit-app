@@ -44,12 +44,20 @@
                 <input type="text" class="form-control" id="user-details-field-suburb" name="Suburb" placeholder="Yelpsville" ng-model="user.suburb">
             </div>
         </div>
+        <!-- <div class="row">
+                        <div class="form-group col-xs-12">
+                                <div class=" checkbox">
+                                        <label>
+                                                <input type="checkbox" name="TermsOfParticipation" required ng-model="user.termsOfParticipation"> I agree to all <a href="/terms-of-participation">Terms of Participation*</a>
+                                        </label>
+                                </div>
+                        </div>
+        </div> -->
         <div class="row">
             <div class="form-group col-xs-12">
                 <div class=" checkbox">
-                    <label>
-                        <input type="checkbox" name="TermsOfParticipation" required ng-model="user.termsOfParticipation"> I agree to all <a href="/terms-of-participation">Terms of Participation*</a>
-                    </label>
+                    <toggle-switch id="user-details-terms-of-participation" model="user.termsOfParticipation" on-label="Yes, I agree" off-label="No, I don't agree"></toggle-switch>
+                    <label>to all <a href="/terms-of-participation">Terms of Participation*</a></label>
                 </div>
             </div>
         </div>

@@ -1,0 +1,12 @@
+$nav-drawer-breakpoint: 15000px;
+
+$font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$brand-primary: #729BC7;
+$navbar-default-bg: #29C53B;
+$navbar-default-color: #FFF;
+$navbar-default-brand-color: #FFF;
+// $navbar-default-link-color: #FFF;
+$navbar-default-toggle-icon-bar-bg: #FFF;
+
+@import 'sass-bootstrap/lib/variables';

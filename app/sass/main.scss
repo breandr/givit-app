@@ -1,4 +1,4 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+@import 'variables';
 @import 'sass-bootstrap/lib/bootstrap';
 
 .content-area{
@@ -7,4 +7,13 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 .radio, .checkbox{
 	border-radius: 4px;
+}
+
+.switch{
+	border: 1px solid #CCC;
+	border-radius: 4px;
+
+	+ label{
+		vertical-align: super;
+	}
 }
