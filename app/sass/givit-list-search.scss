@@ -1,0 +1,19 @@
+@import "variables";
+
+#givit-list-search-form{
+	position: absolute;
+	background-color: white;
+	border-top: 1px solid $navbar-default-bg;
+	width: 100%;
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+	padding-bottom: 15px;
+
+	.search-btn{
+		padding: 25px 0 0 0;
+
+		@media (min-width: $grid-float-breakpoint) {
+			width: 100%;
+			padding: inherit;
+		}
+	}
+}

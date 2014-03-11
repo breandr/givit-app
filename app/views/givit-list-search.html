@@ -1,0 +1,16 @@
+<form role="form" id="givit-list-search-form" clas="container" ng-controller="GivitListCtrl"  ng-show="isGivitListSearchShown()">
+    <div class="form-group col-xs-4 col-sm-4">
+        <label for="givit-list-search-field-qty">Within</label>
+        <input type="text" class="form-control" id="givit-list-search-within-km" name="Km" placeholder="2" required ng-model="search.km">
+    </div>
+    <div class="form-group col-xs-6 col-sm-4">
+        <label for="givit-list-search-field-postcode">Km of postcode</label>
+        <input type="text" class="form-control" id="givit-list-search-field-postcode" name="Postcode" placeholder="4718" required ng-model="search.postcode">
+    </div>
+    <div class="col-xs-2">
+        <button class="search-btn btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <button class="search-btn btn btn-primary">Search</button>
+    </div>
+</form>

@@ -55,7 +55,7 @@
   .navbar-nav{
     @media (max-width: ($nav-drawer-breakpoint - 1)) {
       background: white;
-      width: 400px;//need to find out how to set this to the screen width
+      width: 300px;//need to find out how to set this to the screen width
       height: 100%;
       margin: 0 0 0 -15px;
       padding-left: 15px;
