@@ -1,33 +1,10 @@
 @import 'variables';
-
-
-// @import 'sass-bootstrap/lib/mixins';
-
-// // Navbar collapse (body)
-// //
-// // Group your navbar content into this for easy collapsing and expanding across
-// // various device sizes. By default, this content is collapsed when <768px, but
-// // will expand past that for a horizontal display.
-// //
-// // To start (on mobile devices) the navbar links, forms, and buttons are stacked
-// // vertically and include a `max-height` to overflow in case you have too much
-// // content for the user's viewport.
 .action-bar{
   min-height: inherit;
 
   .navbar-toggle{
     border-color: transparent;
     margin: 0 5px 0 0;
-
-    &:hover, &:focus{
-      background-color: inherit;
-      outline: none;
-    }
-
-    &:active{
-      // box-shadow: none;
-      // background-color: @darken($nav-color, 90%);
-    }
 
     .btn{
       position:relative;

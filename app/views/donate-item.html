@@ -7,17 +7,11 @@
             </div>
             <div class="form-group col-sm-6">
                 <label for="donate-item-field-photo">Photo</label>
-                <input type="upload" class="form-control" id="donate-item-field-photo" name="Photo" required ng-model="item.photo">
+                <input type="file" class="form-control" id="donate-item-field-photo" name="Photo" required ng-model="item.photo">
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-12">
-                <label for="donate-item-field-comment">Comments</label>
-                <textarea class="form-control" id="donate-item-field-comment" name="Comments" placeholder="What kind of comments are we looking for?" ng-model="item.comments" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12">
+            <div class="form-group col-sm-6">
                 <label for="donate-item-field-condition">Condition</label>
                 <select class="form-control" id="donate-item-field-condition" name="Condition" required ng-model="item.condition">
                     <option value="">Please select a condition</option>
@@ -26,33 +20,7 @@
                     <option value="Older">Older, but excellent</option>
                 </select>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12">
-                <div class=" checkbox">
-                    <toggle-switch id="donate-item-terms-field-can-drop-off" model="item.canDropOff" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
-                    <label>drop this item off to a charity in my area</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12">
-                <div class=" checkbox">
-                    <toggle-switch id="donate-item-terms-field-can-post-aus-wide" model="item.canPostAusWide" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
-                    <label>post this item Australia-wide</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12">
-                <div class=" checkbox">
-                    <toggle-switch id="donate-item-terms-field-prefer-charity-collection" model="item.preferCharityCollection" on-label="Yes, I would" off-label="No, I wouldn't"></toggle-switch>
-                    <label>prefer the charity to collect this item</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12">
+            <div class="form-group col-sm-6">
                 <label for="donate-item-field-hold-duration">I will hold this item for</label>
                 <select class="form-control" id="donate-item-field-hold-duration" name="HoldDuration" required ng-model="item.holdDuration">
                     <option value="">Please select a duration</option>
@@ -60,6 +28,30 @@
                     <option value="ACT">Two months</option>
                     <option value="NSW">Three months</option>
                 </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <label for="donate-item-field-comment">Comments</label>
+                <textarea rows="3" class="form-control" id="donate-item-field-comment" name="Comments" placeholder="What kind of comments are we looking for?" ng-model="item.comments" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <toggle-switch id="donate-item-field-can-drop-off" model="item.canDropOff" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
+                <label>drop this item off to a charity in my area</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <toggle-switch id="donate-item-field-can-post-aus-wide" model="item.canPostAusWide" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
+                <label>post this item Australia-wide</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <toggle-switch id="donate-item-field-prefer-charity-collection" model="item.preferCharityCollection" on-label="Yes, I would" off-label="No, I wouldn't"></toggle-switch>
+                <label>prefer the charity to collect this item</label>
             </div>
         </div>
         <div class="row">

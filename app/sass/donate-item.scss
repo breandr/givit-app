@@ -1,5 +1,11 @@
 @import 'variables';
 
 .donate-item{
+	.switch{
+		width: 200px;
 
+		+ label{
+			width: 250px;
+		}
+	}
 }

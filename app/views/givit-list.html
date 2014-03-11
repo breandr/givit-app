@@ -1,17 +1,17 @@
 <div class="givit-list" ng-controller="GivitListCtrl">
     <ul>
-        <li ng-repeat="item in items">
-            <h4>
-            <span>{{item.name}}</span>
-            <br />
-            <small>{{item.location.suburb}}, {{item.location.state}}, {{item.location.postcode}}</small>
-            <small>{{item.deliveryMethods.join(', ')}}</small>
-            </h4>
-            <p>{{item.recipient}}</p>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-primary pull-right">Give</button>
-                </div>
+        <li ng-repeat="item in items" class="clearfix">
+            <div class="col-xs-12">
+                <h4>
+                <span>{{item.name}}</span>
+                <br />
+                <small>{{item.location.suburb}}, {{item.location.state}}, {{item.location.postcode}}</small>
+                <small>{{item.deliveryMethods.join(', ')}}</small>
+                </h4>
+                <p>{{item.recipient}}</p>
+            </div>
+            <div class="col-xs-12">
+                <button class="btn btn-primary">Give</button>
             </div>
         </li>
     </ul>

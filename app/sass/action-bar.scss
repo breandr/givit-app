@@ -1,11 +1,25 @@
 @import 'variables';
 
 .navbar-default{
-	.navbar-toggle .icon-bar{
-		// background-color: #FFF;
+	.navbar-header{
+		button.btn{
+	      	background-color: transparent;
+		    
+		    &:hover, &:focus{
+		      outline: none;
+		    }
+
+		    &:active{
+		      box-shadow: none;
+		      background-color: darken($navbar-default-bg, 3%);
+		    }
+		}
 	}
 
-	.navbar-brand{
-		// color: #FFF;
-	}
+}
+
+#action-bar-givit-list-search-button{
+	font-size: 25px;
+	padding-top: 9px;
+	color: #FFF;
 }

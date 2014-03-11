@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('givitApp')
-  .service('Donateitem', function Donateitem() {
+  .service('DonateItem', function DonateItem($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
   });
