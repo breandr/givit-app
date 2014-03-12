@@ -2,7 +2,7 @@
 
 angular.module('givitApp')
   .controller('GivitListCtrl', function ($scope, User) {
-    $scope.search = User.$storage.search;
+    $scope.search = User.$storage.givitListSearch;
     
     $scope.items = [{
       name: 'Bike - Adult',

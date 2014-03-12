@@ -1,0 +1,10 @@
+@import "variables.scss";
+
+.hidden-xs-inline {
+    display: inline !important;
+}
+@media (max-width: $screen-xs-max) {
+  .hidden-xs-inline {
+    display: none !important;
+  }
+}

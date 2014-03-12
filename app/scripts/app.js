@@ -12,8 +12,10 @@ angular.module('givitApp', [
     function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl'
+          // templateUrl: 'views/main.html',
+          // controller: 'MainCtrl'
+          templateUrl: 'views/givit-list.html',
+          controller: 'GivitListCtrl'
         })
         .when('/givit-list', {
           templateUrl: 'views/givit-list.html',

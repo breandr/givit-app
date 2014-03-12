@@ -3,12 +3,11 @@
 angular.module('givitApp')
   .controller('ActionBarCtrl', function ($scope, $route, GivitList) {
     $scope.isGivitListSearchShown = function () {
-      console.log(GivitList.searchIsShown);
-      return GivitList.searchIsShown;
+      return GivitList.isSearchShown;
     };
 
     $scope.showGivitListSearch = function () {
-      GivitList.searchIsShown = !GivitList.searchIsShown;
+      GivitList.isSearchShown = !GivitList.isSearchShown;
     };
 
     $scope.currentRouteIs = function (routes) {

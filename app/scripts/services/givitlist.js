@@ -2,5 +2,5 @@
 
 angular.module('givitApp')
   .service('GivitList', function () {
-    this.searchIsShown = false;
+    this.isSearchShown = false;
   });
