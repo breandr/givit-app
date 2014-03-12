@@ -147,7 +147,7 @@ module.exports = function (grunt) {
       target: {
         cwd: './',
         src: ['<%= yeoman.app %>/index.html'],
-        exclude: [/sass-bootstrap\/dist\/css/]
+        exclude: [/app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/]
       }
     },
 
@@ -398,7 +398,7 @@ module.exports = function (grunt) {
         remote: {
           username: 'brett.j.andrews@gmail.com',
           password: 'password',
-          platforms: ['android', 'ios', 'winphone']
+          platforms: ['android', 'ios', 'wp8']
         }
       }
     }
