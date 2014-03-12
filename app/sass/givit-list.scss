@@ -1,15 +1,53 @@
 @import 'variables';
 
+$num-lines-to-show: 5;
+$p-height: $num-lines-to-show * $line-height-base *1em;
+
 .givit-list{
-	.givit-list-item{
-        button{
-        	width: 100%;
-        	position: absolute;
-        	bottom: 0;
+        .givit-list-item{
+                button{
+                	width: 100%;
+                }
+
+                p{
+                        height: $p-height;
+
+                        @media (max-width: ($grid-float-breakpoint - 1)) {
+                                height: auto;
+                        }
+                }
+
+                h4{
+                        span, small{
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                display: block;
+                        }
+                }
+
+
+                @media (max-width: ($grid-float-breakpoint - 1)) {
+                        border-bottom: 1px solid #eee;
+                        padding-bottom: 15px;
+                }
         }
 
-        p{
-        	padding-bottom: 30px;
+        @media (min-width: ($grid-float-breakpoint)) {
+                .line-clamp {
+                        position: relative;
+                        overflow: hidden;
+                }
+
+                .line-clamp:after {
+                  content: "";
+                  text-align: right;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  width: 80%;
+                  height: $line-height-base *1em;
+                  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+                }
         }
-	}
 }
