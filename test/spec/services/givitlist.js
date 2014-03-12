@@ -3,7 +3,7 @@
 describe('Service: Givitlist', function () {
 
   // load the service's module
-  beforeEach(module('givitAppApp'));
+  beforeEach(module('givitApp'));
 
   // instantiate service
   var Givitlist;

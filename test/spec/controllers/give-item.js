@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: ActionbarCtrl', function () {
+describe('Controller: GiveItemCtrl', function () {
 
   // load the controller's module
   beforeEach(module('givitApp'));
 
-  var ActionbarCtrl,
+  var GiveItemCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ActionbarCtrl = $controller('ActionbarCtrl', {
+    GiveItemCtrl = $controller('GiveItemCtrl', {
       $scope: scope
     });
   }));

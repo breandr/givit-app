@@ -9,9 +9,9 @@
             </div>
             </a>
         </li> -->
-        <li ng-class="{ active: isActive('/') || isActive('/givit-list')}"><a href="/givit-list">Givit List</a></li>
-        <li ng-class="{ active: isActive('/donate-item')}"><a href="/donate-item">Donate Item</a></li>
-        <li ng-class="{ active: isActive('/user-details')}"><a href="/user-details">My Details</a></li>
-        <li ng-class="{ active: isActive('/about')}"><a href="/about">About</a></li>
+        <li ng-class="{ active: isActive('/') || isActive('/givit-list')}"><a href="/givit-list" ng-click="hide()">Givit List</a></li>
+        <li ng-class="{ active: isActive('/donate-item')}"><a href="/donate-item" ng-click="hide()">Donate Item</a></li>
+        <li ng-class="{ active: isActive('/user-details')}"><a href="/user-details" ng-click="hide()">My Details</a></li>
+        <li ng-class="{ active: isActive('/about')}"><a href="/about" ng-click="hide()">About</a></li>
     </ul>
 </div>

@@ -1,0 +1,13 @@
+<div class="give-item" ng-controller="GiveItemCtrl">
+    <div class="col-xs-12">
+        <h4>
+        <span>{{item.name}}</span>
+        <small>{{item.location.suburb}}, {{item.location.state}}, {{item.location.postcode}}</small>
+        <small>{{item.deliveryMethods.join(', ')}}</small>
+        </h4>
+        <p class="line-clamp">{{item.recipient}}</p>
+    </div>
+    <div class="col-xs-12">
+        <button class="btn btn-primary">Give</button>
+    </div>
+</div>
