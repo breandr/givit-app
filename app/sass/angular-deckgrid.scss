@@ -1,0 +1,72 @@
+@import 'variables';
+
+@mixin make-deckgrid-columns($columns, $class) {
+  	@for $i from 0 through $columns {
+	  @if ($i > 0) {
+	    .deckgrid-cols-#{$class}-#{$i} {
+			.column{
+		    	width: percentage((1/$i));
+		 	}
+		 	&[deckgrid]::before {
+	    		content: $i + ' .column.column-1-' + $i;
+		 	}
+	    }
+	}
+	
+	// [deckgrid] .column-1-$i {
+ //        width: 100%;
+ //    }
+
+  	// [deckgrid]::before {
+   //      content: '$i .column.column-1-$i';
+   //  }
+
+  }
+}
+
+@include make-deckgrid-columns($grid-columns, xs);
+
+@media (min-width: $screen-sm-min) {
+  @include make-deckgrid-columns($grid-columns, sm);
+}
+
+@media (min-width: $screen-md-min) {
+  @include make-deckgrid-columns($grid-columns, md);
+}
+
+@media (min-width: $screen-lg-min) {
+  @include make-deckgrid-columns($grid-columns, lg);
+}
+
+
+
+
+.deckgrid{
+	padding: 0 10px;
+
+	&[deckgrid]::before {
+	    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+	    // content: '4 .column.column-1-4';
+	    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+	    visibility: hidden;
+	}
+
+	.column {
+	    float: left;
+
+	    &:not(:last-child){
+		    padding-right: $deckgrid-card-gap;
+		}
+	}
+	
+	.column-1-4 {
+    	// width: 25%;
+	}
+
+	.deckgrid-card{
+		background: $deckgrid-card-bg;
+		margin-bottom: $deckgrid-card-gap;
+		border-radius: $deckgrid-card-border-radius;
+		border: $deckgrid-card-border;
+	}
+}

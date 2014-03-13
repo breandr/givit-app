@@ -11,7 +11,7 @@
 
 .switch{
 	border: 1px solid #CCC;
-	border-radius: 4px;
+	border-radius: $border-radius-base;
 
 	+ label{
 		vertical-align: super;

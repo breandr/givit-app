@@ -10,11 +10,13 @@
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <!-- endbower -->
+        <!-- why isn't bower-install including angular-toggle-switch.css? -->
         <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css" />
         <!-- endbuild -->
         <!-- build:css({.tmp,app}) styles/main.css -->
         <link rel="stylesheet" href="fonts/OpenSans-Regular.ttf">
         <link rel="stylesheet" href="styles/responsive-utilities-inline.css">
+        <link rel="stylesheet" href="styles/angular-deckgrid.css">
         <link rel="stylesheet" href="styles/forms.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/action-bar.css">
@@ -54,7 +56,10 @@
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/ngstorage/ngStorage.js"></script>
         <script src="bower_components/angular-toggle-switch/angular-toggle-switch.min.js"></script>
+        <script src="bower_components/angular-deckgrid/angular-deckgrid.js"></script>
         <!-- endbower -->
+        <!-- bower-install wants to use lodash.compat.js, but we want the modern lodash build-->
+        <script src="bower_components/lodash/dist/lodash.js"></script>
         <!-- endbuild -->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>

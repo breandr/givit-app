@@ -6,7 +6,8 @@ angular.module('givitApp', [
   'ngSanitize',
   'ngRoute',
   'ngStorage',
-  'toggle-switch'
+  'toggle-switch',
+  'akoenig.deckgrid'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {

@@ -1,0 +1,24 @@
+@import 'variables';
+
+@mixin make-col-count($columns, $class) {
+  @for $i from 0 through $columns {
+    .col-count-#{$class}-#{$i} {
+      column-count: $i;
+    }
+  }
+}
+
+@include make-col-count($grid-columns, xs);
+
+@media (min-width: $screen-sm-min) {
+  @include make-col-count($grid-columns, sm);
+}
+
+@media (min-width: $screen-md-min) {
+  @include make-col-count($grid-columns, md);
+}
+
+@media (min-width: $screen-lg-min) {
+  @include make-col-count($grid-columns, lg);
+}
+

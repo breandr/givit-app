@@ -5,7 +5,9 @@ angular.module('givitApp')
     var itemGuid = $routeParams.itemGuid;
 
     // change this to loop through items and find it
-    $scope.item = GivitList.items[itemGuid];
+    $scope.item = _.find(GivitList.items, function (item) {
+      return item.guid === itemGuid;
+    });
 
     console.log($scope.item);
   });

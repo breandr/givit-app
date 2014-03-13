@@ -1,53 +1,121 @@
 @import 'variables';
 
-$num-lines-to-show: 5;
-$p-height: $num-lines-to-show * $line-height-base *1em;
+// $num-lines-to-show: 5;
+// $p-height: $num-lines-to-show * $line-height-base *1em;
+
+// .givit-list{
+//         .givit-list-item{
+
+//                 p{
+//                         height: $p-height;
+
+//                         @media (max-width: ($grid-float-breakpoint - 1)) {
+//                                 height: auto;
+//                         }
+//                 }
+
+//                 h4{
+//                         span, small{
+//                                 text-overflow: ellipsis;
+//                                 overflow: hidden;
+//                                 white-space: nowrap;
+//                                 display: block;
+//                         }
+//                 }
+
+
+//                 @media (max-width: ($grid-float-breakpoint - 1)) {
+//                         border-bottom: 1px solid #eee;
+//                         padding-bottom: 15px;
+//                 }
+//         }
+
+//         @media (min-width: ($grid-float-breakpoint)) {
+//                 .line-clamp {
+//                         position: relative;
+//                         overflow: hidden;
+//                 }
+
+//                 .line-clamp:after {
+//                   content: "";
+//                   text-align: right;
+//                   position: absolute;
+//                   bottom: 0;
+//                   right: 0;
+//                   width: 80%;
+//                   height: $line-height-base *1em;
+//                   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+//                 }
+//         }
+// }
+
+
+
+// $column-gap: 8px;
+// $column-card-border-radius: 5px;
+// .givit-list{
+// 	column-gap: $column-gap;
+// 	column-fill: auto;
+// 	padding: 0 10px;
+
+// 	.givit-list-item{
+// 		display: inline-block; //hack because column-break-* is not yet supported
+// 		// column-break-inside: avoid; //webkit has -webkit-column-break-inside, but nothing for firefox yet
+// 		background-color: #FFF;
+// 		margin-bottom: $column-gap;
+// 		border-radius: $column-card-border-radius;
+// 		border: 1px solid #DDD;
+
+// 		img{
+// 			width: 100%;
+// 			border-top-right-radius: $column-card-border-radius;
+// 			border-top-left-radius: $column-card-border-radius;
+// 		}
+//         .btn{
+//         	margin: 0px 10px 10px 0;
+//         }
+
+//         h4{
+//             span, small{
+//                     display: block;
+//             }
+//         }
+
+//         h4, p{
+// 			padding: 0 10px 10px 10px;
+//         }
+
+// 	}
+// }
+
+
+
 
 .givit-list{
-        .givit-list-item{
-                button{
-                	width: 100%;
-                }
+	.givit-list-item{
+		.img-container{
+			max-height: 300px;
+			overflow: hidden;
+			
+			img{
+				width: 100%;
+				border-top-right-radius: $deckgrid-card-border-radius;
+				border-top-left-radius: $deckgrid-card-border-radius;
+			}
+		}
 
-                p{
-                        height: $p-height;
-
-                        @media (max-width: ($grid-float-breakpoint - 1)) {
-                                height: auto;
-                        }
-                }
-
-                h4{
-                        span, small{
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                white-space: nowrap;
-                                display: block;
-                        }
-                }
-
-
-                @media (max-width: ($grid-float-breakpoint - 1)) {
-                        border-bottom: 1px solid #eee;
-                        padding-bottom: 15px;
-                }
+        h4{
+            span, small{
+                display: block;
+            }
         }
 
-        @media (min-width: ($grid-float-breakpoint)) {
-                .line-clamp {
-                        position: relative;
-                        overflow: hidden;
-                }
-
-                .line-clamp:after {
-                  content: "";
-                  text-align: right;
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-                  width: 80%;
-                  height: $line-height-base *1em;
-                  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
-                }
+        h4, p{
+			padding: 0 10px 10px 10px;
         }
+
+        .btn{
+        	margin: 0px 10px 10px 0;
+        }
+	}
 }

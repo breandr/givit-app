@@ -147,7 +147,10 @@ module.exports = function (grunt) {
       target: {
         cwd: './',
         src: ['<%= yeoman.app %>/index.html'],
-        exclude: [/app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/]
+        exclude: [
+        /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/,
+        /app\\bower_components\\lodash\\dist\\lodash\.compat\.js/
+        ]
       }
     },
 

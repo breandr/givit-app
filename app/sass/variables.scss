@@ -1,5 +1,5 @@
-$nav-drawer-breakpoint: 15000px;
-
+$border-radius-base: 0;
+$body-bg: #EEE;
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-base: $font-family-sans-serif;
@@ -9,5 +9,13 @@ $navbar-default-color: #FFF;
 $navbar-default-brand-color: #FFF;
 // $navbar-default-link-color: #FFF;
 $navbar-default-toggle-icon-bar-bg: #FFF;
+
+$nav-drawer-breakpoint: 15000px;
+
+
+$deckgrid-card-gap: 8px;
+$deckgrid-card-border-radius: $border-radius-base;
+$deckgrid-card-bg: #FFF;
+$deckgrid-card-border: 1px solid #DDD;
 
 @import 'sass-bootstrap/lib/variables';
