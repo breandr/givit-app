@@ -93,7 +93,7 @@
 
 .givit-list{
 	.givit-list-item{
-		.img-container{
+		.card-img{
 			max-height: 300px;
 			overflow: hidden;
 			
@@ -104,18 +104,24 @@
 			}
 		}
 
-        h4{
-            span, small{
-                display: block;
-            }
-        }
+		.card-content{
+        	border-bottom: 1px solid #EEE;
+        	border-top: 1px solid #EEE;
 
-        h4, p{
-			padding: 0 10px 10px 10px;
-        }
+	        h4{
+				padding: 0 10px 0px 10px;
 
-        .btn{
-        	margin: 0px 10px 10px 0;
+	            span, small{
+	                display: block;
+	            }
+	        }
+
+	        p{
+				padding: 0 10px 0px 10px;
+	        }
+	    }
+        .card-actions{
+        	padding: 5px 10px;
         }
 	}
 }

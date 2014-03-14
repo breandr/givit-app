@@ -1,18 +1,18 @@
 <div ng-controller="GivitListCtrl" class="givit-list deckgrid deckgrid-cols-xs-2 deckgrid-cols-sm-3 deckgrid-cols-md-4 deckgrid-cols-lg-5" deckgrid source="items">
     <div class="givit-list-item deckgrid-card clearfix">
-        <div class="img-container">
+        <div class="card-img">
             <img ng-src="/images/givit-list-items/{{card.guid}}.jpg" />
         </div>
-        <div>
+        <div class="card-content">
             <h4>
             <span>{{card.name}}</span>
             <small>{{card.location.suburb}}, {{card.location.state}}, {{card.location.postcode}}</small>
             <small>{{card.deliveryMethods.join(', ')}}</small>
             </h4>
-            <p class="line-clamp">{{card.recipient}}</p>
+            <p>{{card.recipient}}</p>
         </div>
-        <div>
-            <a href="give-item/{{card.guid}}" class="btn btn-primary pull-right">Give</a>
+        <div class="card-actions clearfix">
+            <a href="#/give-item/{{card.guid}}" class="btn btn-primary pull-right">Give</a>
         </div>
     </div>
 </div>
