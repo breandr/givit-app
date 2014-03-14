@@ -1,19 +1,3 @@
-<!-- <div class="givit-list col-count-xs-2 col-count-sm-3 col-count-md-4 col-count-lg-5" ng-controller="GivitListCtrl">
-                            <div ng-repeat="item in items" class="givit-list-item">
-                                                        <div>
-                                                                                    <img ng-src="/images/givit-list-items/{{item.guid}}.jpg" />
-                                                                                    <h4>
-                                                                                    <span>{{item.name}}</span>
-                                                                                    <small>{{item.location.suburb}}, {{item.location.state}}, {{item.location.postcode}}</small>
-                                                                                    <small>{{item.deliveryMethods.join(', ')}}</small>
-                                                                                    </h4>
-                                                                                    <p class="line-clamp">{{item.recipient}}</p>
-                                                        </div>
-                                                        <div>
-                                                                                    <a href="give-item/{{item.guid}}" class="btn btn-primary pull-right">Give</a>
-                                                        </div>
-                            </div>
-</div> -->
 <div ng-controller="GivitListCtrl" class="givit-list deckgrid deckgrid-cols-xs-2 deckgrid-cols-sm-3 deckgrid-cols-md-4 deckgrid-cols-lg-5" deckgrid source="items">
     <div class="givit-list-item deckgrid-card clearfix">
         <div class="img-container">
