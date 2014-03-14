@@ -1,0 +1,31 @@
+/* line 6, ../../app/sass/forms.scss */
+
+.form-inline-always .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+/* line 13, ../../app/sass/forms.scss */
+
+.form-inline-always .form-control {
+  display: inline-block;
+}
+
+/* line 21, ../../app/sass/forms.scss */
+
+.form-inline-always .radio,
+.form-inline-always .checkbox {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+/* line 28, ../../app/sass/forms.scss */
+
+.form-inline-always .radio input[type="radio"],
+.form-inline-always .checkbox input[type="checkbox"] {
+  float: none;
+  margin-left: 0;
+}

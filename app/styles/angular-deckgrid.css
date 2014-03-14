@@ -1,0 +1,618 @@
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-1 .column {
+  width: 100%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-1[deckgrid]::before {
+  content: "1 .column.column-1-1";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-2 .column {
+  width: 50%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-2[deckgrid]::before {
+  content: "2 .column.column-1-2";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-3 .column {
+  width: 33.3333333333%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-3[deckgrid]::before {
+  content: "3 .column.column-1-3";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-4 .column {
+  width: 25%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-4[deckgrid]::before {
+  content: "4 .column.column-1-4";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-5 .column {
+  width: 20%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-5[deckgrid]::before {
+  content: "5 .column.column-1-5";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-6 .column {
+  width: 16.6666666667%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-6[deckgrid]::before {
+  content: "6 .column.column-1-6";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-7 .column {
+  width: 14.2857142857%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-7[deckgrid]::before {
+  content: "7 .column.column-1-7";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-8 .column {
+  width: 12.5%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-8[deckgrid]::before {
+  content: "8 .column.column-1-8";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-9 .column {
+  width: 11.1111111111%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-9[deckgrid]::before {
+  content: "9 .column.column-1-9";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-10 .column {
+  width: 10%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-10[deckgrid]::before {
+  content: "10 .column.column-1-10";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-11 .column {
+  width: 9.0909090909%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-11[deckgrid]::before {
+  content: "11 .column.column-1-11";
+}
+
+/* line 7, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-12 .column {
+  width: 8.3333333333%;
+}
+
+/* line 10, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid-cols-xs-12[deckgrid]::before {
+  content: "12 .column.column-1-12";
+}
+
+@media (min-width: 768px) {
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-1 .column {
+    width: 100%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-1[deckgrid]::before {
+    content: "1 .column.column-1-1";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-2 .column {
+    width: 50%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-2[deckgrid]::before {
+    content: "2 .column.column-1-2";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-3 .column {
+    width: 33.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-3[deckgrid]::before {
+    content: "3 .column.column-1-3";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-4 .column {
+    width: 25%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-4[deckgrid]::before {
+    content: "4 .column.column-1-4";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-5 .column {
+    width: 20%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-5[deckgrid]::before {
+    content: "5 .column.column-1-5";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-6 .column {
+    width: 16.6666666667%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-6[deckgrid]::before {
+    content: "6 .column.column-1-6";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-7 .column {
+    width: 14.2857142857%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-7[deckgrid]::before {
+    content: "7 .column.column-1-7";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-8 .column {
+    width: 12.5%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-8[deckgrid]::before {
+    content: "8 .column.column-1-8";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-9 .column {
+    width: 11.1111111111%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-9[deckgrid]::before {
+    content: "9 .column.column-1-9";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-10 .column {
+    width: 10%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-10[deckgrid]::before {
+    content: "10 .column.column-1-10";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-11 .column {
+    width: 9.0909090909%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-11[deckgrid]::before {
+    content: "11 .column.column-1-11";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-12 .column {
+    width: 8.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-sm-12[deckgrid]::before {
+    content: "12 .column.column-1-12";
+  }
+}
+
+@media (min-width: 992px) {
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-1 .column {
+    width: 100%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-1[deckgrid]::before {
+    content: "1 .column.column-1-1";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-2 .column {
+    width: 50%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-2[deckgrid]::before {
+    content: "2 .column.column-1-2";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-3 .column {
+    width: 33.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-3[deckgrid]::before {
+    content: "3 .column.column-1-3";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-4 .column {
+    width: 25%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-4[deckgrid]::before {
+    content: "4 .column.column-1-4";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-5 .column {
+    width: 20%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-5[deckgrid]::before {
+    content: "5 .column.column-1-5";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-6 .column {
+    width: 16.6666666667%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-6[deckgrid]::before {
+    content: "6 .column.column-1-6";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-7 .column {
+    width: 14.2857142857%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-7[deckgrid]::before {
+    content: "7 .column.column-1-7";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-8 .column {
+    width: 12.5%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-8[deckgrid]::before {
+    content: "8 .column.column-1-8";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-9 .column {
+    width: 11.1111111111%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-9[deckgrid]::before {
+    content: "9 .column.column-1-9";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-10 .column {
+    width: 10%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-10[deckgrid]::before {
+    content: "10 .column.column-1-10";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-11 .column {
+    width: 9.0909090909%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-11[deckgrid]::before {
+    content: "11 .column.column-1-11";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-12 .column {
+    width: 8.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-md-12[deckgrid]::before {
+    content: "12 .column.column-1-12";
+  }
+}
+
+@media (min-width: 1200px) {
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-1 .column {
+    width: 100%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-1[deckgrid]::before {
+    content: "1 .column.column-1-1";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-2 .column {
+    width: 50%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-2[deckgrid]::before {
+    content: "2 .column.column-1-2";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-3 .column {
+    width: 33.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-3[deckgrid]::before {
+    content: "3 .column.column-1-3";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-4 .column {
+    width: 25%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-4[deckgrid]::before {
+    content: "4 .column.column-1-4";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-5 .column {
+    width: 20%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-5[deckgrid]::before {
+    content: "5 .column.column-1-5";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-6 .column {
+    width: 16.6666666667%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-6[deckgrid]::before {
+    content: "6 .column.column-1-6";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-7 .column {
+    width: 14.2857142857%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-7[deckgrid]::before {
+    content: "7 .column.column-1-7";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-8 .column {
+    width: 12.5%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-8[deckgrid]::before {
+    content: "8 .column.column-1-8";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-9 .column {
+    width: 11.1111111111%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-9[deckgrid]::before {
+    content: "9 .column.column-1-9";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-10 .column {
+    width: 10%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-10[deckgrid]::before {
+    content: "10 .column.column-1-10";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-11 .column {
+    width: 9.0909090909%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-11[deckgrid]::before {
+    content: "11 .column.column-1-11";
+  }
+
+  /* line 7, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-12 .column {
+    width: 8.3333333333%;
+  }
+
+  /* line 10, ../../app/sass/angular-deckgrid.scss */
+
+  .deckgrid-cols-lg-12[deckgrid]::before {
+    content: "12 .column.column-1-12";
+  }
+}
+
+/* line 44, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid {
+  padding: 0 10px;
+}
+
+/* line 47, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid[deckgrid]::before {
+  /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+  font-size: 0;
+  /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+  visibility: hidden;
+}
+
+/* line 54, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid .column {
+  float: left;
+}
+
+/* line 57, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid .column:not(:last-child) {
+  padding-right: 8px;
+}
+
+/* line 66, ../../app/sass/angular-deckgrid.scss */
+
+.deckgrid .deckgrid-card {
+  background: white;
+  margin-bottom: 8px;
+  border-radius: 0;
+  border: 1px solid #dddddd;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
