@@ -398,11 +398,11 @@ module.exports = function (grunt) {
         // If you want to use the Phonegap Build service to build one or more
         // of the platforms specified above, include these options.
         // See https://build.phonegap.com/
-        // remote: {
-        //   username: 'brett.j.andrews@gmail.com',
-        //   password: 'password',
-        //   platforms: ['android', 'ios', 'wp8']
-        // }
+        remote: {
+          username: 'brett.j.andrews@gmail.com',
+          password: 'password',
+          platforms: ['android', 'ios', 'wp8']
+        }
       }
     }
   });
