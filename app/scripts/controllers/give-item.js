@@ -8,7 +8,7 @@ angular.module('givitApp')
       return item.guid === itemGuid;
     });
 
-    if(!$scope.item){
-    	// reroute to givit-list
+    if (!$scope.item) {
+      // reroute to givit-list
     }
   });

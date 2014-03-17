@@ -148,8 +148,8 @@ module.exports = function (grunt) {
         cwd: './',
         src: ['<%= yeoman.app %>/index.html'],
         exclude: [
-        /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/,
-        /app\\bower_components\\lodash\\dist\\lodash\.compat\.js/
+          /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/,
+          /app\\bower_components\\lodash\\dist\\lodash\.compat\.js/
         ]
       }
     },
@@ -194,7 +194,7 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    
+
     // Renames files for browser caching purposes
     rev: {
       dist: {
@@ -398,11 +398,11 @@ module.exports = function (grunt) {
         // If you want to use the Phonegap Build service to build one or more
         // of the platforms specified above, include these options.
         // See https://build.phonegap.com/
-        remote: {
-          username: 'brett.j.andrews@gmail.com',
-          password: 'password',
-          platforms: ['android', 'ios', 'wp8']
-        }
+        // remote: {
+        //   username: 'brett.j.andrews@gmail.com',
+        //   password: 'password',
+        //   platforms: ['android', 'ios', 'wp8']
+        // }
       }
     }
   });
@@ -412,6 +412,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build-phonegap', function () {
     grunt.task.run('phonegap:build');
+  });
+
+  grunt.registerTask('emulate-android', function () {
+    grunt.task.run('phonegap:run:android:emulator');
   });
 
   grunt.registerTask('serve', function (target) {

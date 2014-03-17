@@ -7,7 +7,8 @@ angular.module('givitApp', [
   'ngRoute',
   'ngStorage',
   'toggle-switch',
-  'akoenig.deckgrid'
+  'akoenig.deckgrid',
+  'pasvaz.bindonce'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
@@ -46,14 +47,10 @@ angular.module('givitApp', [
           redirectTo: '/'
         });
 
-      // $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(false);
     }
   ])
   .run(function () {
-    // $rootScope.$on('$locationChangeStart', function () {
-    //   $('.nav-drawer').collapse('hide');
-    // });
-
     $(document).on('show.bs.collapse', '.nav-drawer', function () {
       var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
 
