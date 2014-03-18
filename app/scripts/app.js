@@ -60,4 +60,13 @@ angular.module('givitApp', [
 
       toggleButton.css('left', '-15px');
     });
+
+    document.addEventListener('backbutton', function (e) {
+      var navDrawer = $('.nav-drawer');
+
+      if (navDrawer.hasClass('in')) {
+        e.preventDefault();
+        navDrawer.collapse('hide');
+      }
+    }, false);
   });
