@@ -76,7 +76,11 @@
     "gulp-rev": "~0.3.0",
     "gulp-header": "~1.0.2",
     "gulp-jade": "~0.4.2",
-    "gulp-plumber": "~0.5.6"
+    "gulp-plumber": "~0.5.6",
+    "gulp-ngmin": "~0.1.2",
+    "gulp-zip": "~0.1.2",
+    "gulp-combine-media-queries": "0.0.1",
+    "gulp-filter": "~0.3.1"
   },
   "engines": {
     "node": ">=0.10.0"
