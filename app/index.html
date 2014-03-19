@@ -9,14 +9,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css styles/vendor.css -->
+        <!-- build:vendorCss styles/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
         <!-- why isn't bower-install including angular-toggle-switch.css? -->
         <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css" />
         <!-- endbuild -->
         <link rel="stylesheet" href="fonts/OpenSans-Regular.ttf">
-        <!-- build:css styles/main.css -->
+        <!-- build:appCss styles/app.css -->
         <link rel="stylesheet" href="styles/responsive-utilities-inline.css">
         <link rel="stylesheet" href="styles/angular-deckgrid.css">
         <link rel="stylesheet" href="styles/forms.css">
@@ -44,7 +45,7 @@
                 ga('create', 'UA-XXXXX-X');
                 ga('send', 'pageview');
         </script>
-        <!-- build:js scripts/vendor.js -->
+        <!-- build:vendorJs scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -58,13 +59,14 @@
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/ngstorage/ngStorage.js"></script>
         <script src="bower_components/angular-toggle-switch/angular-toggle-switch.min.js"></script>
+        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/angular-deckgrid/angular-deckgrid.js"></script>
         <script src="bower_components/angular-bindonce/bindonce.js"></script>
         <!-- endbower -->
         <!-- bower-install wants to use lodash.compat.js, but we want the modern lodash build-->
         <script src="bower_components/lodash/dist/lodash.js"></script>
         <!-- endbuild -->
-        <!-- build:js scripts/scripts.js -->
+        <!-- build:appJs scripts/app.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/actionbar.js"></script>

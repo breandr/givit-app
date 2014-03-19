@@ -9,21 +9,25 @@ module.exports = {
       html: srcRoot,
       img: srcRoot + 'images/',
       sass: srcRoot + 'sass/',
-      js: srcRoot + 'scripts/'
+      css: srcRoot + 'styles/',
+      js: srcRoot + 'scripts/',
+      fonts: srcRoot + 'fonts/'
     },
     debug: {
       root: debugRoot,
       html: debugRoot,
       img: debugRoot + 'images/',
       css: debugRoot + 'styles/',
-      js: debugRoot + 'scripts/'
+      js: debugRoot + 'scripts/',
+      fonts: debugRoot + 'fonts/'
     },
     release: {
       root: releaseRoot,
       html: releaseRoot,
       img: releaseRoot + 'images/',
       css: releaseRoot + 'styles/',
-      js: releaseRoot + 'scripts/'
+      js: releaseRoot + 'scripts/',
+      fonts: releaseRoot + 'fonts/'
     }
   },
   banner: '/*!\n' +

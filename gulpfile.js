@@ -27,15 +27,16 @@ var _ = require('lodash'),
   minifyCss = require('gulp-minify-css'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
+  ngmin = require('gulp-ngmin'),
   imagemin = require('gulp-imagemin'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
   notify = require('gulp-notify'),
   cache = require('gulp-cache'),
-  livereload = require('gulp-livereload'),
-  lr = require('tiny-lr'),
-  server = lr(),
+  // livereload = require('gulp-livereload'),
+  // lr = require('tiny-lr'),
+  // server = lr(),
   IS_RELEASE_BUILD = !! argv.release,
   BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
   src = buildConfig.paths.src,
@@ -56,42 +57,43 @@ if (IS_RELEASE_BUILD) {
 // });
 
 // Html
-gulp.task('html', ['styles', 'scripts'], function () {
-  // gulp.src(src.html + '**/*.jade')
+gulp.task('html', function () {
+  // var html = gulp.src(src.html + '**/*.jade')
   //   .pipe(jade({
   //     data: pkg,
   //     pretty: true
   //   }))
-  gulp.src(src.html + '*.html')
-    .pipe(gulpIf(IS_RELEASE_BUILD, usemin({
-      css: [minifyCss(), 'concat'],
+  var html = gulp.src(src.html + '*.html');
+
+  if(IS_RELEASE_BUILD){
+    html = html.pipe(usemin({
+      vendorCss: [minifyCss(), 'concat', rev()],
+      appCss: [minifyCss(), 'concat', rev()],
+      vendorJs: [uglify(), rev()],
+      appJs: [/*ngmin(), */uglify(), rev()],
       html: [minifyHtml({
         empty: true
-      })],
-      js: [uglify(), rev()]
-    })))
-    .pipe(gulpIf(IS_RELEASE_BUILD, gulp.dest(dest.root)))
-    .pipe(livereload(server))
-    .pipe(notify({
-    	message: 'Html task complete'
+      })]
+    }))
+    .pipe(gulp.dest(dest.root));
+  }
+
+  html.pipe(notify({
+      message: 'Html task complete'
     }));
 });
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src(src.sass + '*.scss')
+  gulp.src(src.sass + '*.scss')
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    // .pipe(gulp.dest(dest.css))
-  // .pipe(rename({
-  //   suffix: '.min'
-  // }))
   // .pipe(minifyCss())
-  .pipe(livereload(server))
-  // .pipe(gulp.dest(dest.css))
+  .pipe(connect.reload())
+  .pipe(gulp.dest(src.css)) //always put processed css into the src.css path since we only want minified css in dist
   .pipe(notify({
     message: 'Styles task complete'
   }));
@@ -108,9 +110,9 @@ gulp.task('scripts', function () {
   // .pipe(rename({
   //   suffix: '.min'
   // }))
-  // .pipe(gulpIf(IS_RELEASE_BUILD, uglify()))
+  // .pipe(gulpIf(IS_RELEASE_BUILD, uglify({outSourceMap: true})))
   // .pipe(gulpIf(IS_RELEASE_BUILD, gulp.dest(dest.js)))
-  .pipe(livereload(server))
+  .pipe(connect.reload())
   .pipe(notify({
     message: 'Scripts task complete'
   }));
@@ -118,60 +120,62 @@ gulp.task('scripts', function () {
 
 // Images
 gulp.task('images', function () {
+  if(IS_RELEASE_BUILD){
   return gulp.src(src.img + '/**/*')
     .pipe(cache(imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     })))
-    .pipe(livereload(server))
+    .pipe(connect.reload())
     .pipe(gulp.dest(dest.img))
     .pipe(notify({
       message: 'Images task complete'
     }));
+  }
 });
 
 // Clean
 gulp.task('clean', function () {
-  return gulp.src([dest.css, dest.js, dest.img], {
+  gulp.src('./dist/*/**', {/*[dest.css, dest.js, dest.img, dest.fonts]*/
     read: false
   })
     .pipe(clean());
 });
 
-// Default task
-gulp.task('default', ['build']);
-
-var preBuild = IS_RELEASE_BUILD ? ['clean'] : null;
-gulp.task('build', preBuild, function () {
-  gulp.start('html', 'images');
-});
-
 // //Watch
-gulp.task('watch', function () {
-  // Listen on port 35729
-  var liveReloadPort = 35729;
+// gulp.task('watch', function () {
+//   // Listen on port 35729
+//   var liveReloadPort = 35729;
   
-  server.listen(liveReloadPort, function (err) {
-    if (err) {
-      return console.log(err)
-    };
+//   server.listen(liveReloadPort, function (err) {
+//     if (err) {
+//       return console.log(err)
+//     };
 
-  	console.log('... Listening on %s ...', liveReloadPort);
+//     console.log('... Listening on %s ...', liveReloadPort);
 
-    // Watch html files
+//     // Watch html files
+//     gulp.watch(src.html + '*.html', ['html']);
+
+//     // Watch sass files
+//     gulp.watch(src.sass + '**/*.scss', ['styles']);
+
+//     // Watch js files
+//     gulp.watch(src.js + '**/*.js', ['scripts']);
+
+//     // Watch image files
+//     gulp.watch(src.img + '**/*', ['images']);
+
+//   });
+// });
+
+//Watch
+gulp.task('watch', function () {
     gulp.watch(src.html + '*.html', ['html']);
-
-    // Watch sass files
     gulp.watch(src.sass + '**/*.scss', ['styles']);
-
-    // Watch js files
     gulp.watch(src.js + '**/*.js', ['scripts']);
-
-    // Watch image files
     gulp.watch(src.img + '**/*', ['images']);
-
-  });
 });
 
 
@@ -184,4 +188,16 @@ gulp.task('connect', connect.server({
   }
 }));
 
-gulp.task('serve', ['build', 'connect', 'watch']);
+gulp.task('serve', ['connect', 'build', 'watch']);
+
+// Default task
+gulp.task('default', ['build']);
+
+var preBuild = IS_RELEASE_BUILD ? ['clean'] : null;
+gulp.task('build', preBuild, function () {
+  gulp.start('styles', 'scripts', 'html');
+});
+
+gulp.task('build:prod', ['clean', 'build'], function(){
+
+});

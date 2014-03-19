@@ -2,7 +2,6 @@
 .tmp
 app/bower_components
 app/styles
-debug
 dist
 node_modules
 phonegap/www/**
