@@ -16,7 +16,19 @@
     "angular-toggle-switch": "~0.3.0",
     "lodash": "~2.4.1",
     "angular-deckgrid": "~0.4.0",
-    "angular-bindonce": "~0.3.1"
+    "angular-bindonce": "~0.3.1",
+    "ngInfiniteScroll": "~1.0.0"
+  },
+  "overrides": {
+    "lodash": {
+      "main": "dist/lodash.js"
+    },
+    "angular-toggle-switch": {
+      "main": [
+        "angular-toggle-switch.css",
+        "angular-toggle-switch.js"
+      ]
+    }
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

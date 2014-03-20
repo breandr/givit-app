@@ -16,17 +16,17 @@ module.exports = {
     debug: {
       root: debugRoot,
       html: debugRoot,
-      img: debugRoot + 'images/',
-      css: debugRoot + 'styles/',
-      js: debugRoot + 'scripts/',
-      fonts: debugRoot + 'fonts/'
+      img: debugRoot + 'img/',
+      css: debugRoot + 'css/',
+      js: debugRoot + 'js/',
+      fonts: debugRoot + 'font/'
     },
     release: {
       root: releaseRoot,
       html: releaseRoot,
-      img: releaseRoot + 'images/',
-      css: releaseRoot + 'styles/',
-      js: releaseRoot + 'scripts/',
+      img: releaseRoot + 'img/',
+      css: releaseRoot + 'css/',
+      js: releaseRoot + 'js/',
       fonts: releaseRoot + 'fonts/'
     }
   },

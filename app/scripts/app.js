@@ -1,5 +1,11 @@
 'use strict';
 
+// require('angular/angular');
+// require('angular-route/angular-route');
+// require('./controllers');
+// require('./directives');
+// require('./services');
+
 angular.module('givitApp', [
   'ngCookies',
   'ngResource',
@@ -8,7 +14,8 @@ angular.module('givitApp', [
   'ngStorage',
   'toggle-switch',
   'akoenig.deckgrid',
-  'pasvaz.bindonce'
+  'pasvaz.bindonce',
+  'infinite-scroll'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {

@@ -11,10 +11,8 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:vendorCss styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-        <!-- endbower -->
-        <!-- why isn't bower-install including angular-toggle-switch.css? -->
         <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css" />
+        <!-- endbower -->
         <!-- endbuild -->
         <link rel="stylesheet" href="fonts/OpenSans-Regular.ttf">
         <!-- build:appCss styles/app.css -->
@@ -58,10 +56,10 @@
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/ngstorage/ngStorage.js"></script>
-        <script src="bower_components/angular-toggle-switch/angular-toggle-switch.min.js"></script>
-        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="bower_components/angular-toggle-switch/angular-toggle-switch.js"></script>
         <script src="bower_components/angular-deckgrid/angular-deckgrid.js"></script>
         <script src="bower_components/angular-bindonce/bindonce.js"></script>
+        <script src="bower_components/ngInfiniteScroll/ng-infinite-scroll.js"></script>
         <!-- endbower -->
         <!-- bower-install wants to use lodash.compat.js, but we want the modern lodash build-->
         <script src="bower_components/lodash/dist/lodash.js"></script>
@@ -77,6 +75,7 @@
         <script src="scripts/controllers/user-details.js"></script>
         <script src="scripts/controllers/givit-list.js"></script>
         <script src="scripts/controllers/terms-of-participation.js"></script>
+        <script src="scripts/services/GivitApi.js"></script>
         <script src="scripts/services/user.js"></script>
         <script src="scripts/services/items.js"></script>
         <script src="scripts/services/donateitem.js"></script>
