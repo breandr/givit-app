@@ -1,24 +1,40 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GivitListCtrl', function ($scope, User, Items /*, GivitList*/ ) {
+  .controller('GivitListCtrl', function ($rootScope, $scope, User, Items) {
     $scope.search = User.$storage.givitListSearch;
     $scope.items = Items.$storage.cachedItems;
     $scope.isLoadingItems = false;
-    // $scope.items = GivitList.items;
+    $scope.pageNumber = 1;
 
-    if (true || _.isEmpty($scope.items)) {
-      //fItemName=lounge&fPostOnly=false&fPostcode=4000&fWithinKm=10
-      Items.getItems();
-    }
+    $scope.selectGivitItem = function (itemGuid) {
+      $rootScope.$broadcast('selectGivitItem', itemGuid);
+    };
 
-    $scope.loadMoreItems = function () {
+    $scope.loadItems = function (addMode) {
+      addMode = addMode || 'set';
       $scope.isLoadingItems = true;
 
       Items.getItems({
-        pageNumber: 1
-      }).then(function () {
+        pageNumber: $scope.pageNumber++
+      }, addMode).then(function () {
         $scope.isLoadingItems = false;
+        $scope.items = Items.$storage.cachedItems;
       });
     };
+
+    $scope.hideItem = function (itemGuid, $event) {
+      $($event.target.parentNode.parentNode)
+        .addClass('animated fadeOutUp')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+          $scope.items = Items.$storage.cachedItems;
+          $scope.$apply();
+        });
+
+      Items.hideItem(itemGuid);
+    };
+
+    if (_.isEmpty($scope.items)) {
+      $scope.loadItems();
+    }
   });

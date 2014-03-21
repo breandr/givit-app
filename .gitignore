@@ -2,7 +2,10 @@
 .tmp
 app/bower_components
 app/styles
+css
 dist
+font
+js
 node_modules
 phonegap/www/**
 phonegap-build/**

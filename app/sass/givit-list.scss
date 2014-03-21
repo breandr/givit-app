@@ -92,10 +92,33 @@
 
 
 .givit-list{
+	.column>div{
+		-webkit-animation-duration: 0.3s;
+		-webkit-animation-delay: 0s;
+		-moz-animation-duration: 0.3s;
+		-moz-animation-delay: 0s;
+		-ms-animation-duration: 0.3s;
+		-ms-animation-delay: 0s;
+	}
+
 	.givit-list-item{
+		position: relative;
+
+		.close{
+			position: absolute;
+			top: 0;
+			right: 5px;
+			font-size: 2.5em;
+			color: $brand-warning;
+			opacity: 1;
+			float: none;
+			font-weight: normal;
+		}
+
 		.card-img{
 			max-height: 300px;
 			overflow: hidden;
+        	border-bottom: 1px solid #EEE;
 			
 			img{
 				width: 100%;
@@ -105,12 +128,12 @@
 		}
 
 		.card-content{
-        	border-bottom: 1px solid #EEE;
-        	border-top: 1px solid #EEE;
-
 	        h4{
 				padding: 0 10px 0px 10px;
 
+				span{
+					max-width: 85%;
+				}
 	            span, small{
 	                display: block;
 	            }
@@ -120,7 +143,9 @@
 				padding: 0 10px 0px 10px;
 	        }
 	    }
+	    
         .card-actions{
+        	border-top: 1px solid #EEE;
         	padding: 5px 10px;
         }
 	}

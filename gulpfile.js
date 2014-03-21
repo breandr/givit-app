@@ -88,18 +88,23 @@ gulp.task('html', function () {
   //   }));
 });
 
+gulp.task('views', function () {
+  return gulp.src(src.root + 'views/*.html')
+    .pipe(watch())
+    .pipe(plumber())
+    .pipe(connect.reload());
+});
+
 // Styles
 gulp.task('styles', function () {
-  return gulp.src(src.sass + '*.scss', {
-    read: false
-  })
+  return gulp.src(src.sass + '*.scss')
     .pipe(watch())
     .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
     }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {cascade: true}))
     .pipe(gulp.dest(dest.css))
     .pipe(connect.reload());
 });
@@ -107,21 +112,23 @@ gulp.task('styles', function () {
 // Scripts
 gulp.task('scripts', function () {
   return gulp.src(src.js + '/**/*.js', {
-    read: false
+    base: src.js
   })
     .pipe(watch())
     .pipe(plumber())
   // .pipe(jscs())
   .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'))
+  // .pipe(jshint.reporter('fail'))
+  // .pipe(plumber())
   // .pipe(filter('app.js'))
   // .pipe(browserify({
   //   insertGlobals: true,
   //   debug: !IS_RELEASE_BUILD
   // }))
   // .pipe(filter.restore())
-  .pipe(connect.reload())
+  .pipe(gulp.dest(dest.js))
+    .pipe(connect.reload())
   // .pipe(notify({
   //   message: 'Scripts task complete'
   // }));
@@ -159,7 +166,7 @@ gulp.task('copy', function () {
 });
 
 //Watch
-gulp.task('watch', function () {
+gulp.task('watch', ['views'], function () {
   gulp.watch(src.html + '**/*.html', ['html']);
   gulp.watch(src.img + '**/*', ['images']);
 });
@@ -187,7 +194,6 @@ gulp.task('bower', function () {
     ignorePath: 'app/',
     exclude: [
       /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/, //we include this in main
-      // /app\\bower_components\\lodash\\dist\\lodash\.compat\.js/ //we want the modern version instead
     ]
   });
 });

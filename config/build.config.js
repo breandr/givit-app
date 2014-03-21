@@ -27,7 +27,7 @@ module.exports = {
       img: releaseRoot + 'img/',
       css: releaseRoot + 'css/',
       js: releaseRoot + 'js/',
-      fonts: releaseRoot + 'fonts/'
+      fonts: releaseRoot + 'font/'
     }
   },
   banner: '/*!\n' +

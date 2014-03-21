@@ -58,6 +58,8 @@ angular.module('givitApp', [
     }
   ])
   .run(function () {
+    FastClick.attach(document.body);
+
     $(document).on('show.bs.collapse', '.nav-drawer', function () {
       var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
 

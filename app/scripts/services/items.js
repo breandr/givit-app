@@ -4,13 +4,18 @@ angular.module('givitApp')
   .service('Items', function ($localStorage, $http, GivitApi) {
     this.$storage = $localStorage;
     this.$storage.$default({
-      cachedItems: {}
+      cachedItems: [],
+      hiddenItems: []
     });
 
+    /**
+     * Maps remote data to reduce and modify (esp. delivery methods) data stored in local storage
+     * @param  {Array} items Items returned from the API
+     * @return {Array}       Data to be stored in local storage
+     */
     function mapData(items) {
       return _.map(items, function (item) {
         item.DeliveryMethods = [];
-
         _.each({
           'pick-up': item.CharityCanPickUp,
           'drop-off': item.DonorCanDropOff,
@@ -29,12 +34,35 @@ angular.module('givitApp')
           QuantityReserved: item.QuantityReserved,
           Recipient: item.Recipient,
           RecipientDescription: item.RecipientDescription,
-          HasImg: true
+          HasImg: false,
+          DeliveryMethods: item.DeliveryMethods
         };
       });
     }
 
+    /**
+     * Gets items from API
+     * @param  {Object} params  Request parameters
+     * @param  {String} addMode Can be `set` (default) or `add`
+     * @return {Promise}
+     */
     this.getItems = function (params, addMode) {
+      params = params || {};
+      addMode = addMode || 'set';
+
+      _.defaults(params, {
+        pageNumber: 1,
+        rowsPerPage: 15,
+        fItemName: '',
+        fPostOnly: false,
+        fPostcode: '',
+        fWithinKm: 0
+      });
+
+      /**
+       * Updates local storage with data returned from API. Defined as variable to allow `bind`
+       * @param  {Object} response Response from API
+       */
       var updateCachedItems = function (response) {
         var items = response.data.Data;
 
@@ -47,18 +75,6 @@ angular.module('givitApp')
         }
       };
 
-      params = params || {};
-      addMode = addMode || 'set';
-
-      _.defaults(params, {
-        pageNumber: 1,
-        rowsPerPage: 14,
-        fItemName: '',
-        fPostOnly: false,
-        fPostcode: '',
-        fWithinKm: 0
-      });
-
       return $http({
         method: 'GET',
         url: GivitApi.url + 'givit-list',
@@ -67,8 +83,7 @@ angular.module('givitApp')
     };
 
     this.addItemsToCache = function (items) {
-      //untested
-      _.uniq(_.union(this.$storage.cachedItems, items), false, function (item) {
+      this.$storage.cachedItems = _.uniq(_.union(this.$storage.cachedItems, items), false, function (item) {
         return item.GUID;
       });
     };
@@ -77,7 +92,15 @@ angular.module('givitApp')
       this.$storage.cachedItems = items;
     };
 
-    this.clear = function () {
+    this.clearCachedItems = function () {
       delete this.$storage.cachedItems;
+    };
+
+    this.hideItem = function (itemGuid) {
+      this.$storage.hiddenItems.push(itemGuid);
+
+      this.$storage.cachedItems = _.reject(this.$storage.cachedItems, function (item) {
+        return item.GUID === itemGuid;
+      });
     };
   });

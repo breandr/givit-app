@@ -1,19 +1,20 @@
-<div ng-controller="GivitListCtrl" class="givit-list deckgrid deckgrid-cols-xs-2 deckgrid-cols-sm-3 deckgrid-cols-md-4 deckgrid-cols-lg-5" deckgrid source="items" infinite-scroll="myPagingFunction()" infinite-scroll-distance="3" infinite-scroll-disabled='isLoadingItems'>
+<div ng-controller="GivitListCtrl" class="clearfix givit-list deckgrid deckgrid-cols-xs-2 deckgrid-cols-sm-3 deckgrid-cols-md-4 deckgrid-cols-lg-5" infinite-scroll="loadItems('add')" infinite-scroll-distance="1" infinite-scroll-disabled='isLoadingItems' infinite-scroll-immediate-check="{{true}}" deckgrid source="items">
     <div class="givit-list-item deckgrid-card clearfix">
+        <button type="button" class="close" aria-hidden="true" ng-click="mother.hideItem(card.GUID, $event)">&times;</button>
         <!-- <div class="card-img" ng-if="true">
-            <img ng-src="images/givit-list-items/{{card.GUID}}.jpg" />
+                                                                                <img ng-src="images/givit-list-items/{{card.GUID}}.jpg" />
         </div> -->
         <div class="card-content">
             <h4>
-            <span>{{card.ItemName}}</span>
+            <span class="text-primary">{{card.ItemName}}</span>
             <small>{{card.Location}}</small>
             <small>{{card.DeliveryMethods.join(', ')}}</small>
             </h4>
             <p>{{card.Recipient}}</p>
         </div>
         <div class="card-actions clearfix">
-            <a href="#/give-item/{{card.GUID}}" class="btn btn-primary pull-right">Give</a>
+            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#giveItemConfirmationModal" ng-click="mother.selectGivitItem(card.GUID)">Give</button>
         </div>
+        <div ng-show='isLoadingItems'>Loading more items...</div>
     </div>
-    <div ng-show='isLoadingItems'>Loading more items...</div>
 </div>

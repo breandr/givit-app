@@ -23,6 +23,7 @@
     "$": false,
     "d3": false,
     "moment": false,
-    "_": false
+    "_": false,
+    "FastClick": false
   }
 }

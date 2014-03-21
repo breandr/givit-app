@@ -1,13 +1,18 @@
-<div class="give-item" ng-controller="GiveItemCtrl">
-    <div class="col-xs-12">
-        <h4>
-        <span>{{item.name}}</span>
-        <small>{{item.location.suburb}}, {{item.location.state}}, {{item.location.postcode}}</small>
-        <small>{{item.deliveryMethods.join(', ')}}</small>
-        </h4>
-        <p class="line-clamp">{{item.recipient}}</p>
-    </div>
-    <div class="col-xs-12">
-        <button class="btn btn-primary">Give</button>
+<div id="giveItemConfirmationModal" class="give-item-confirmation-modal modal fade" ng-controller="GiveItemCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ItemName}} <small>{{Location}}</small></h4>
+            </div>
+            <div class="modal-body">
+                <small>{{DeliveryMethods.join(', ')}}</small>
+                <p>{{Recipient}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Give</button>
+            </div>
+        </div>
     </div>
 </div>
