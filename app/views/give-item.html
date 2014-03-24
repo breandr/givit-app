@@ -3,15 +3,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{ItemName}} <small>{{Location}}</small></h4>
+                <h4 class="modal-title">{{item.ItemName}} <small class="location">{{item.Location}}</small></h4>
             </div>
             <div class="modal-body">
-                <small>{{DeliveryMethods.join(', ')}}</small>
-                <p>{{Recipient}}</p>
+                <small>{{item.DeliveryMethods.join(', ')}}</small>
+                <p>{{item.Recipient}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Give</button>
+                <button type="button" class="btn btn-primary" ng-click="give()">Give</button>
             </div>
         </div>
     </div>

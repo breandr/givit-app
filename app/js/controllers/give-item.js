@@ -13,5 +13,6 @@ angular.module('givitApp')
       $scope.item = _.find(Items.$storage.cachedItems, function (item) {
         return item.GUID === itemGuid;
       });
-    })
+      console.log($scope.item);
+    });
   });

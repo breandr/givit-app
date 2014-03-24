@@ -19,7 +19,8 @@
     "angular-bindonce": "~0.3.1",
     "ngInfiniteScroll": "~1.0.0",
     "fastclick": "~1.0.0",
-    "animate.css": "~3.1.0"
+    "animate.css": "~3.1.0",
+    "font-awesome": "~4.0.3"
   },
   "overrides": {
     "lodash": {

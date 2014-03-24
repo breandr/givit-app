@@ -1,11 +1,8 @@
 .sass-cache
 .tmp
 app/bower_components
-app/styles
-css
+debug
 dist
-font
-js
 node_modules
 phonegap/www/**
 phonegap-build/**

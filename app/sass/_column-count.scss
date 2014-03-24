@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'sass-bootstrap/lib/_variables.scss';
 
 @mixin make-col-count($columns, $class) {
   @for $i from 0 through $columns {
@@ -21,4 +21,3 @@
 @media (min-width: $screen-lg-min) {
   @include make-col-count($grid-columns, lg);
 }
-

@@ -1,5 +1,5 @@
 var srcRoot = './app/',
-  debugRoot = './app/',
+  debugRoot = './debug/',
   releaseRoot = './dist/';
 
 module.exports = {
@@ -7,10 +7,10 @@ module.exports = {
     src: {
       root: srcRoot,
       html: srcRoot,
-      img: srcRoot + 'images/',
+      img: srcRoot + 'img/',
       sass: srcRoot + 'sass/',
-      css: srcRoot + 'styles/',
-      js: srcRoot + 'scripts/',
+      css: srcRoot + 'css/',
+      js: srcRoot + 'js/',
       fonts: srcRoot + 'fonts/'
     },
     debug: {
@@ -19,7 +19,7 @@ module.exports = {
       img: debugRoot + 'img/',
       css: debugRoot + 'css/',
       js: debugRoot + 'js/',
-      fonts: debugRoot + 'font/'
+      fonts: debugRoot + 'fonts/'
     },
     release: {
       root: releaseRoot,
@@ -27,7 +27,7 @@ module.exports = {
       img: releaseRoot + 'img/',
       css: releaseRoot + 'css/',
       js: releaseRoot + 'js/',
-      fonts: releaseRoot + 'font/'
+      fonts: releaseRoot + 'fonts/'
     }
   },
   banner: '/*!\n' +

@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'sass-bootstrap/lib/_variables.scss';
 
 @mixin make-deckgrid-columns($columns, $class) {
   	@for $i from 0 through $columns {
@@ -37,9 +38,6 @@
 @media (min-width: $screen-lg-min) {
   @include make-deckgrid-columns($grid-columns, lg);
 }
-
-
-
 
 .deckgrid{
 	padding: 0 10px;

@@ -17,9 +17,9 @@ angular.module('givitApp')
       return _.map(items, function (item) {
         item.DeliveryMethods = [];
         _.each({
-          'pick-up': item.CharityCanPickUp,
-          'drop-off': item.DonorCanDropOff,
-          'can-post': item.DonorCanPost
+          'Pick Up': item.CharityCanPickUp,
+          'Drop Off': item.DonorCanDropOff,
+          'Post': item.DonorCanPost
         }, function (val, key) {
           if (val) {
             item.DeliveryMethods.push(key);

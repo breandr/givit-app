@@ -1,5 +1,11 @@
 @import 'variables';
-@import 'sass-bootstrap/lib/bootstrap';
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
 
 .content-area{
 	padding-top: 65px;
@@ -25,4 +31,8 @@
 
 .modal-header .close {
   margin-top: -10px;
+}
+
+.give-item-confirmation-modal .modal-dialog{
+	max-width: 465px;
 }

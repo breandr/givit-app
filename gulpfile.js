@@ -60,32 +60,40 @@ if (IS_RELEASE_BUILD) {
 //   gulp.run('build-phonegap');
 // });
 
+// // Html
+// gulp.task('html', function () {
+//   // var html = gulp.src(src.html + '**/*.jade')
+//   //   .pipe(jade({
+//   //     data: pkg,
+//   //     pretty: true
+//   //   }))
+//   var html = gulp.src(src.html + '*.html');
+
+//   if (IS_RELEASE_BUILD) {
+//     html = html.pipe(usemin({
+//       vendorCss: [minifyCss(), 'concat', rev()],
+//       appCss: [minifyCss(), 'concat', rev()],
+//       vendorJs: [ngmin(), uglify(), rev()],
+//       appJs: [ /*ngmin(), */ uglify(), rev()],
+//       html: [minifyHtml({
+//         empty: true
+//       })]
+//     }));
+//   }
+
+//   html.pipe(gulp.dest(dest.root));
+
+//   return html;
+//   // html.pipe(notify({
+//   //     message: 'Html task complete'
+//   //   }));
+// });
+
 // Html
 gulp.task('html', function () {
-  // var html = gulp.src(src.html + '**/*.jade')
-  //   .pipe(jade({
-  //     data: pkg,
-  //     pretty: true
-  //   }))
-  var html = gulp.src(src.html + '*.html');
-
-  if (IS_RELEASE_BUILD) {
-    html = html.pipe(usemin({
-      vendorCss: [minifyCss(), 'concat', rev()],
-      appCss: [minifyCss(), 'concat', rev()],
-      vendorJs: [ngmin(), uglify(), rev()],
-      appJs: [ /*ngmin(), */ uglify(), rev()],
-      html: [minifyHtml({
-        empty: true
-      })]
-    }))
-      .pipe(gulp.dest(dest.root));
-  }
-
-  return html;
-  // html.pipe(notify({
-  //     message: 'Html task complete'
-  //   }));
+  gulp.src('./app/index.html')
+    .pipe(usemin())
+    .pipe(gulp.dest(dest.root));
 });
 
 gulp.task('views', function () {
@@ -97,14 +105,16 @@ gulp.task('views', function () {
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src(src.sass + '*.scss')
+  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
     .pipe(watch())
     .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
     }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {cascade: true}))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {
+      cascade: true
+    }))
     .pipe(gulp.dest(dest.css))
     .pipe(connect.reload());
 });
@@ -151,7 +161,7 @@ gulp.task('images', function () {
 
 // Clean
 gulp.task('clean', function () {
-  return gulp.src('./dist', { /*[dest.css, dest.js, dest.img, dest.fonts]*/
+  return gulp.src(dest.root, {
     read: false
   })
     .pipe(clean());
@@ -159,7 +169,19 @@ gulp.task('clean', function () {
 
 // Copy
 gulp.task('copy', function () {
-  gulp.src([src.fonts + '**', src.root + 'views/**', src.root + '.htaccess', src.root + 'favicon.ico', src.root + 'robots.txt'], {
+  var filesToCopy = [
+    src.root + 'views/**',
+    src.root + 'fonts/**',
+    src.root + '.htaccess',
+    src.root + 'favicon.ico',
+    src.root + 'robots.txt'
+  ];
+
+  if (!IS_RELEASE_BUILD) {
+    filesToCopy.push(src.root + 'bower_components/**');
+  }
+
+  gulp.src(filesToCopy, {
     base: src.root
   })
     .pipe(gulp.dest(dest.root));
@@ -193,12 +215,12 @@ gulp.task('bower', function () {
     src: src.root + 'index.html',
     ignorePath: 'app/',
     exclude: [
-      /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/, //we include this in main
+      /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/, //we include this in our own bootstrap.css
+      /app\\bower_components\\font-awesome\\css\\font-awesome\.css/ //we include this in our own font-awesome.css
     ]
   });
 });
 
-var preBuild = IS_RELEASE_BUILD ? ['clean'] : null;
-gulp.task('build', preBuild, function () {
-  gulp.start('styles', 'scripts', 'bower', 'html');
+gulp.task('build', ['clean'], function () {
+  gulp.start('styles', 'scripts', 'images', 'bower', 'copy', 'html');
 });
