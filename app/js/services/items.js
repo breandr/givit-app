@@ -8,6 +8,21 @@ angular.module('givitApp')
       hiddenItems: []
     });
 
+    this.getDeliveryMethodsMarkup = function(deliveryMethods){
+      var deliveryMethodMarkup = '',
+        deliveryMethodIconClasses = {
+          'Pick Up': 'fa-home',
+          'Drop Off': 'fa-truck',
+          'Post': 'fa-dropbox'
+        };
+
+      _.each(deliveryMethods, function (value) {
+        deliveryMethodMarkup += '<span class="delivery-method"><i class="fa ' + deliveryMethodIconClasses[value] + '" />' + value + '</span>';
+      });
+
+      return deliveryMethodMarkup;
+    };
+
     /**
      * Maps remote data to reduce and modify (esp. delivery methods) data stored in local storage
      * @param  {Array} items Items returned from the API

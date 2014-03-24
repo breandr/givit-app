@@ -1,5 +1,21 @@
+@import 'variables-bootstrap.scss';
+
 .give-item-confirmation-modal{
+	.modal-body{
+		padding: 10px 20px 0 20px;
+	}
+	
 	.location{
 		white-space: nowrap;
+	}
+
+	.delivery-method{
+		margin-right: 10px;
+		font-size: 1.6em;
+
+		.fa{
+			color: $brand-primary;
+			padding-right: 5px;
+		}
 	}
 }

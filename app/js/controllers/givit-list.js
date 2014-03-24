@@ -7,6 +7,10 @@ angular.module('givitApp')
     $scope.isLoadingItems = false;
     $scope.pageNumber = 1;
 
+    $scope.getDeliveryMethods = function (deliveryMethods) {
+      return Items.getDeliveryMethodsMarkup(deliveryMethods);
+    };
+
     $scope.selectGivitItem = function (itemGuid) {
       $rootScope.$broadcast('selectGivitItem', itemGuid);
     };

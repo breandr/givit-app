@@ -3,16 +3,18 @@
 angular.module('givitApp')
   .controller('GiveItemCtrl', function ($scope, $routeParams, Items) {
     $scope.item = null;
-    // var itemGuid = $routeParams.itemGuid;
 
+    $scope.getDeliveryMethods = function () {
+      var deliveryMethods = $scope.item && $scope.item.DeliveryMethods;
 
-    // if (!$scope.item) {
-    //   // reroute to givit-list
-    // }
+      if (deliveryMethods) {
+        return Items.getDeliveryMethodsMarkup(deliveryMethods);
+      }
+    };
+
     $scope.$on('selectGivitItem', function (event, itemGuid) {
       $scope.item = _.find(Items.$storage.cachedItems, function (item) {
         return item.GUID === itemGuid;
       });
-      console.log($scope.item);
     });
   });

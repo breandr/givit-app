@@ -6,8 +6,9 @@
                 <h4 class="modal-title">{{item.ItemName}} <small class="location">{{item.Location}}</small></h4>
             </div>
             <div class="modal-body">
-                <small>{{item.DeliveryMethods.join(', ')}}</small>
                 <p>{{item.Recipient}}</p>
+                <h4>Acceptable delivery methods:</h4>
+                <small class="delivery-methods" ng-bind-html="getDeliveryMethods()"></small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

@@ -6,10 +6,13 @@
         </div> -->
         <div class="card-content">
             <h4>
-            <span class="text-primary">{{card.ItemName}}</span>
-            <small>{{card.Location}}</small>
-            <small>{{card.DeliveryMethods.join(', ')}}</small>
+            <span class="item-name">{{card.ItemName}}</span>
+            <small class="location">{{card.Location}}</small>
+            <small class="delivery-methods" ng-bind-html="mother.getDeliveryMethods(card.DeliveryMethods)"></small>
             </h4>
+            <!-- <i class="fa fa-home" />
+            <i class="fa fa-truck" />
+            <i class="fa fa-dropbox" /> -->
             <p>{{card.Recipient}}</p>
         </div>
         <div class="card-actions clearfix">

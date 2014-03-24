@@ -92,14 +92,17 @@ if (IS_RELEASE_BUILD) {
 // Html
 gulp.task('html', function () {
   gulp.src('./app/index.html')
-    .pipe(usemin())
+    // .pipe(usemin())
     .pipe(gulp.dest(dest.root));
 });
 
 gulp.task('views', function () {
-  return gulp.src(src.root + 'views/*.html')
+  return gulp.src(src.root + 'views/*.html', {
+    base: src.root
+  })
     .pipe(watch())
     .pipe(plumber())
+    .pipe(gulp.dest(dest.root))
     .pipe(connect.reload());
 });
 
