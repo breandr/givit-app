@@ -1,0 +1,15 @@
+Send the list of hidden guids to the server on givit-list request (exclude these from query)
+  On app open: send a request to the server with the list of hidden items; return a list of items that have been fulfilled; remove from local hidden items list so they will no longer be sent in subsequent requests
+Givit List Search
+  Add "Use current location" feature
+Givit List Response
+  Add qty
+  Add image
+  Hook up to server
+Donate Item
+  Add image
+  Style Donate button - how?
+Gulp
+  Task to resize splash screens and icons from source images to required device sizes (specified in cordova config) and put in destination
+  fix ngmin
+  

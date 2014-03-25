@@ -2,7 +2,6 @@
 // set up jscs in scripts task
 // set up gulp-uncss in styles task
 // set up gulp-combine-media-queries in styles task
-// convert html to jade and add jade step to html task
 var _ = require('lodash'),
   buildConfig = require('./config/build.config.js'),
   pkg = require('./package.json'),
@@ -87,21 +86,13 @@ gulp.task('phonegap', function () {
 // Html
 gulp.task('html', function () {
   gulp.src(src.html + '**/*.jade')
+    .pipe(watch())
     .pipe(jade({
       data: pkg,
       pretty: true
     }))
   // .pipe(usemin())
-  .pipe(gulp.dest(dest.root));
-});
-
-gulp.task('views', function () {
-  return gulp.src(src.root + 'views/*.html', {
-    base: src.root
-  })
-    .pipe(watch())
-    .pipe(plumber())
-    .pipe(gulp.dest(dest.root))
+  .pipe(gulp.dest(dest.root))
     .pipe(connect.reload());
 });
 
@@ -165,7 +156,6 @@ gulp.task('clean', function () {
 // Copy
 gulp.task('copy', function () {
   var filesToCopy = [
-    src.root + 'views/**',
     src.root + 'fonts/**',
     src.root + '.htaccess',
     src.root + 'favicon.ico',
@@ -182,13 +172,6 @@ gulp.task('copy', function () {
     .pipe(gulp.dest(dest.root));
 });
 
-//Watch
-gulp.task('watch', ['views'], function () {
-  gulp.watch(src.html + '**/*.html', ['html']);
-  gulp.watch(src.img + '**/*', ['images']);
-});
-
-
 gulp.task('connect', connect.server({
   root: [dest.root],
   port: 9000,
@@ -198,7 +181,7 @@ gulp.task('connect', connect.server({
   }
 }));
 
-gulp.task('serve', ['build', 'connect', 'watch']);
+gulp.task('serve', ['build', 'connect']);
 
 // Default task
 gulp.task('default', ['build']);

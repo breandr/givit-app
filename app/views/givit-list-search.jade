@@ -1,12 +1,14 @@
 #givit-list-search-form-container.navbar-collapse.collapse(ng-controller='GivitListCtrl', ng-show='currentRouteIs(\'views/givit-list.html\')')
-  form#givit-list-search-form.form-inline-always.pull-right(role='form')
+  form#givit-list-search-form.form-inline-always.pull-right(role='form', ng-submit='search()')
     #givit-list-search-field-container-km.form-group
-      label(for='givit-list-search-field-km') Within {{search.km | number}}
-      input#givit-list-search-field-km.form-control(type='number', min='1', max='9999', name='Km', placeholder='2', required='required', ng-model='search.km')
+      label(for='givit-list-search-field-km') Within {{filter.km | number}}
+      input#givit-list-search-field-km.form-control(type='text', minlength='1', maxlength='4', name='Km', placeholder='50', pattern='[0-9]*', required, ng-model='filter.km')
     #givit-list-search-field-container-postcode.form-group
-      label(for='givit-list-search-field-postcode') Km of postcode: {{search.postcode}}
-      input#givit-list-search-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='[0-9]{4}', minlength='4', maxlength='4', required='required', ng-model='search.postcode')
+      label(for='givit-list-search-field-postcode') Km of postcode: {{filter.postcode}}
+      input#givit-list-search-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='[0-9]*', minlength='4', maxlength='4', required, ng-model='filter.postcode')
     .form-group.search-btn-container
-      button.search-btn.btn.btn-primary
-        span.glyphicon.glyphicon-search
+      button.btn.btn-warning(type='reset', ng-click='clearSearch($event)')
+        i.fa.fa-times
+      button.search-btn.btn.btn-primary(type='submit')
+        i.fa.fa-search
         span.btn-text Search

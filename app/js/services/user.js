@@ -5,7 +5,10 @@ angular.module('givitApp')
     this.$storage = $localStorage;
     this.$storage.$default({
       userDetails: {},
-      givitListSearch: {},
+      givitListSearch: {
+        postcode: '',
+        km: 0
+      },
       // nav: Navigate the app from here
       // <open nav to explain each page>
       // givit list: See what items charities have requested for someone in need

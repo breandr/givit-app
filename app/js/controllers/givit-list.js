@@ -2,17 +2,34 @@
 
 angular.module('givitApp')
   .controller('GivitListCtrl', function ($rootScope, $scope, User, Items) {
-    $scope.search = User.$storage.givitListSearch;
-    $scope.items = Items.$storage.cachedItems;
+    $scope.filter = $scope.$watch(function () {
+      return User.$storage.givitListSearch;
+    }, function (givitListSearch) {
+      $scope.filter = givitListSearch;
+    });
+    $scope.items = $scope.$watch(function () {
+      return Items.$storage.cachedItems;
+    }, function (cachedItems) {
+      $scope.items = cachedItems;
+    });
+
     $scope.isLoadingItems = false;
     $scope.pageNumber = 1;
 
-    $scope.getDeliveryMethods = function (deliveryMethods) {
-      return Items.getDeliveryMethodsMarkup(deliveryMethods);
+    $scope.clearSearch = function (e) {
+      User.$storage.givitListSearch = {};
+      $scope.hideSearch();
+      e.preventDefault();
     };
 
-    $scope.selectGivitItem = function (itemGuid) {
-      $rootScope.$broadcast('selectGivitItem', itemGuid);
+    $scope.search = function () {
+      $scope.pageNumber = 1;
+      $scope.hideSearch();
+      $scope.loadItems('set');
+    };
+
+    $scope.hideSearch = function(){
+      $('#givit-list-search-form-container').collapse('hide');
     };
 
     $scope.loadItems = function (addMode) {
@@ -20,10 +37,11 @@ angular.module('givitApp')
       $scope.isLoadingItems = true;
 
       Items.getItems({
-        pageNumber: $scope.pageNumber++
+        pageNumber: $scope.pageNumber++,
+        fPostcode: $scope.filter.postcode,
+        fWithinKm: $scope.filter.km
       }, addMode).then(function () {
         $scope.isLoadingItems = false;
-        $scope.items = Items.$storage.cachedItems;
       });
     };
 
@@ -31,11 +49,17 @@ angular.module('givitApp')
       $($event.target.parentNode.parentNode)
         .addClass('animated fadeOutUp')
         .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-          $scope.items = Items.$storage.cachedItems;
+          Items.hideItem(itemGuid);
           $scope.$apply();
         });
+    };
 
-      Items.hideItem(itemGuid);
+    $scope.getDeliveryMethods = function (deliveryMethods) {
+      return Items.getDeliveryMethodsMarkup(deliveryMethods);
+    };
+
+    $scope.selectGivitItem = function (itemGuid) {
+      $rootScope.$broadcast('selectGivitItem', itemGuid);
     };
 
     if (_.isEmpty($scope.items)) {

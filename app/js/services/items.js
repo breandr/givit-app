@@ -8,6 +8,11 @@ angular.module('givitApp')
       hiddenItems: []
     });
 
+    /**
+     * Get markup to present delivery methods with icons
+     * @param  {Array} deliveryMethods An array of delivery methods available to the item
+     * @return {String}                Markup representing delivery methods with icons
+     */
     this.getDeliveryMethodsMarkup = function(deliveryMethods){
       var deliveryMethodMarkup = '',
         deliveryMethodIconClasses = {
@@ -114,8 +119,8 @@ angular.module('givitApp')
     this.hideItem = function (itemGuid) {
       this.$storage.hiddenItems.push(itemGuid);
 
-      this.$storage.cachedItems = _.reject(this.$storage.cachedItems, function (item) {
-        return item.GUID === itemGuid;
-      });
+      // this.$storage.cachedItems = _.reject(this.$storage.cachedItems, function (item) {
+      //   return item.GUID === itemGuid;
+      // });
     };
   });

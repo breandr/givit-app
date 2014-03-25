@@ -1,13 +1,11 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('ActionBarCtrl', function ($scope, $route, GivitList) {
-    $scope.isGivitListSearchShown = function () {
-      return GivitList.isSearchShown;
-    };
-
+  .controller('ActionBarCtrl', function ($scope, $route) {
+    $scope.isSearchShown = false;
+    
     $scope.showGivitListSearch = function () {
-      GivitList.isSearchShown = !GivitList.isSearchShown;
+      $scope.isSearchShown = !$scope.isSearchShown;
     };
 
     $scope.currentRouteIs = function (routes) {
