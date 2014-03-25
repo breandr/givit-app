@@ -1,28 +1,26 @@
-@import 'variables';
-.action-bar{
-  min-height: inherit;
+@import "variables";
 
-  .navbar-toggle{
+.action-bar {
+  min-height: inherit;
+  .navbar-toggle {
     border-color: transparent;
     margin: 0 5px 0 0;
-
-    .btn{
-      position:relative;
+    .fa-bars {
+      position: relative;
       left: -15px;
       margin-right: -10px;
       padding: 0;
-      padding-top: 10px;
+      padding-top: 2px;
       transition: left 0.35s ease;
+      color: #FFF;
     }
-
-    .logo{
+    .logo {
       width: 32px;
       height: 32px;
       margin-right: 5px;
       background: url("../img/givit-logo-32x32.png");
     }
-
-    .navbar-brand{
+    .navbar-brand {
       padding: 0;
       padding-top: 7px;
     }
@@ -30,78 +28,69 @@
 }
 
 .nav-drawer {
-  @media (max-width: ($nav-drawer-breakpoint - 1)) {
+  @media (max-width: $nav-drawer-breakpoint - 1) {
     white-space: nowrap;
-    position:absolute;
+    position: absolute;
     max-height: none;
     height: auto;
     transition: width 0.35s ease;
     overflow-x: hidden;
-    height: 1000px;//need to find out how to set this to the screen height
+    height: 1000px;
+    //need to find out how to set this to the screen height
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 0;
-
-    &.collapsing{
+    &.collapsing {
       overflow-y: auto;
     }
   }
-
   @media (min-width: $nav-drawer-breakpoint) {
     // !important needed to override the inline width style set by collapsing the navigation drawer
     // without this, if the browser is resized up after collapsing, it breaks the nav
     width: inherit !important;
   }
-
-  .navbar-nav{
-    @media (max-width: ($nav-drawer-breakpoint - 1)) {
+  .navbar-nav {
+    @media (max-width: $nav-drawer-breakpoint - 1) {
       background: white;
-      width: 300px;//need to find out how to set this to the screen width
+      width: 300px;
+      //need to find out how to set this to the screen width
       height: 100%;
       margin: 0 0 0 -15px;
       padding-left: 15px;
     }
-
     > li {
-      &.user-details{
-        > a{
+      &.user-details {
+        > a {
           @media (min-width: $nav-drawer-breakpoint) {
             padding-top: 5px;
             padding-bottom: 5px;
-
-            .user-email{
-              display:none;
+            .user-email {
+              display: none;
             }
-            
-            .user-name{
+            .user-name {
               padding-top: 10px;
             }
           }
         }
-
-        img{
+        img {
           margin-right: 15px;
           border-radius: 50%;
           margin-right: 5px;
-
           @media (min-width: $nav-drawer-breakpoint) {
             height: 40px;
           }
         }
       }
-
       &.active > a {
-        &, &:hover, &:focus{
+        &, &:hover, &:focus {
           font-weight: bold;
           background-color: inherit;
           color: inherit;
         }
       }
-
       > a {
         padding-top: 15px;
         padding-bottom: 15px;
-
-        @media (max-width: ($nav-drawer-breakpoint - 1)) {
+        @media (max-width: $nav-drawer-breakpoint - 1) {
           border-bottom: 1px solid #eee;
         }
       }
@@ -110,31 +99,27 @@
 }
 
 // prevent non-collapsed nav
- @media (max-width: ($nav-drawer-breakpoint - 1)) {
-  .navbar-toggle{
+
+@media (max-width: $nav-drawer-breakpoint - 1) {
+  .navbar-toggle {
     display: inherit;
   }
-  
-  .navbar-header{
+  .navbar-header {
     float: inherit;
   }
-  
-  .navbar-fixed-top, .navbar-fixed-bottom{
+  .navbar-fixed-top, .navbar-fixed-bottom {
     border-radius: inherit;
   }
-  
-  .navbar-collapse.collapse{
+  .navbar-collapse.collapse {
     display: none !important;
     height: inherit !important;
     padding-bottom: inherit;
     overflow: inherit !important;
   }
-
-  .navbar-nav{
+  .navbar-nav {
     float: inherit;
     margin: inherit;
-
-    > li{
+    > li {
       float: inherit;
     }
   }

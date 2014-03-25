@@ -1,0 +1,18 @@
+.clearfix.givit-list.deckgrid.deckgrid-cols-xs-2.deckgrid-cols-sm-3.deckgrid-cols-md-4.deckgrid-cols-lg-5(ng-controller='GivitListCtrl', infinite-scroll='loadItems(\'add\')', infinite-scroll-distance='1', infinite-scroll-disabled='isLoadingItems', infinite-scroll-immediate-check='{{true}}', deckgrid='deckgrid', source='items')
+  .givit-list-item.deckgrid-card.clearfix
+    button.close(type='button', aria-hidden='true', ng-click='mother.hideItem(card.GUID, $event)') ×
+    //-
+      <div class="card-img" ng-if="true">
+        <img ng-src="images/givit-list-items/{{card.GUID}}.jpg" />
+      </div> 
+    .card-content
+      h4
+        span.item-name {{card.ItemName}}
+        small.location
+          i.fa.fa-map-marker
+          | {{card.Location}}
+        small.delivery-methods(ng-bind-html='mother.getDeliveryMethods(card.DeliveryMethods)')
+      p {{card.Recipient}}
+    .card-actions.clearfix
+      button.btn.btn-primary.pull-right(data-toggle='modal', data-target='#giveItemConfirmationModal', ng-click='mother.selectGivitItem(card.GUID)') Give
+    div(ng-show='isLoadingItems') Loading more items...

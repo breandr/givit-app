@@ -1,0 +1,12 @@
+#givit-list-search-form-container.navbar-collapse.collapse(ng-controller='GivitListCtrl', ng-show='currentRouteIs(\'views/givit-list.html\')')
+  form#givit-list-search-form.form-inline-always.pull-right(role='form')
+    #givit-list-search-field-container-km.form-group
+      label(for='givit-list-search-field-km') Within {{search.km | number}}
+      input#givit-list-search-field-km.form-control(type='number', min='1', max='9999', name='Km', placeholder='2', required='required', ng-model='search.km')
+    #givit-list-search-field-container-postcode.form-group
+      label(for='givit-list-search-field-postcode') Km of postcode: {{search.postcode}}
+      input#givit-list-search-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='[0-9]{4}', minlength='4', maxlength='4', required='required', ng-model='search.postcode')
+    .form-group.search-btn-container
+      button.search-btn.btn.btn-primary
+        span.glyphicon.glyphicon-search
+        span.btn-text Search

@@ -8,8 +8,7 @@ var _ = require('lodash'),
   pkg = require('./package.json'),
   argv = require('minimist')(process.argv.slice(2)),
   gulp = require('gulp'),
-  // gulpGrunt = require('gulp-grunt')(gulp),
-  // 
+  gulpGrunt = require('gulp-grunt')(gulp),
   plumber = require('gulp-plumber'),
   connect = require('gulp-connect'),
   gulpIf = require('gulp-if'),
@@ -32,7 +31,6 @@ var _ = require('lodash'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
-  notify = require('gulp-notify'),
   cache = require('gulp-cache'),
   changed = require('gulp-changed'),
   watch = require('gulp-watch'),
@@ -56,9 +54,9 @@ if (IS_RELEASE_BUILD) {
   );
 }
 
-// gulp.task('phonegap', function () {
-//   gulp.run('build-phonegap');
-// });
+gulp.task('phonegap', function () {
+  gulp.run('build-phonegap');
+});
 
 // // Html
 // gulp.task('html', function () {
@@ -84,16 +82,17 @@ if (IS_RELEASE_BUILD) {
 //   html.pipe(gulp.dest(dest.root));
 
 //   return html;
-//   // html.pipe(notify({
-//   //     message: 'Html task complete'
-//   //   }));
 // });
 
 // Html
 gulp.task('html', function () {
-  gulp.src('./app/index.html')
-    // .pipe(usemin())
-    .pipe(gulp.dest(dest.root));
+  gulp.src(src.html + '**/*.jade')
+    .pipe(jade({
+      data: pkg,
+      pretty: true
+    }))
+  // .pipe(usemin())
+  .pipe(gulp.dest(dest.root));
 });
 
 gulp.task('views', function () {
@@ -132,7 +131,6 @@ gulp.task('scripts', function () {
   // .pipe(jscs())
   .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
-  // .pipe(jshint.reporter('fail'))
   // .pipe(plumber())
   // .pipe(filter('app.js'))
   // .pipe(browserify({
@@ -142,9 +140,6 @@ gulp.task('scripts', function () {
   // .pipe(filter.restore())
   .pipe(gulp.dest(dest.js))
     .pipe(connect.reload())
-  // .pipe(notify({
-  //   message: 'Scripts task complete'
-  // }));
 });
 
 // Images
@@ -157,9 +152,6 @@ gulp.task('images', function () {
     })))
     .pipe(connect.reload())
     .pipe(gulp.dest(dest.img))
-  // .pipe(notify({
-  //   message: 'Images task complete'
-  // }));
 });
 
 // Clean

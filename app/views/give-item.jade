@@ -1,0 +1,17 @@
+#giveItemConfirmationModal.give-item-confirmation-modal.modal.fade(ng-controller='GiveItemCtrl')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+        h4.modal-title
+          | {{item.ItemName}}
+          small.location
+            i.fa.fa-map-marker
+            | {{item.Location}}
+      .modal-body
+        p {{item.Recipient}}
+        h5 Acceptable delivery methods:
+        small.delivery-methods(ng-bind-html='getDeliveryMethods()')
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+        button.btn.btn-primary(type='button', ng-click='give()') Give

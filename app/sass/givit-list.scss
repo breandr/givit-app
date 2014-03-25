@@ -49,13 +49,18 @@
 	                display: block;
 	            }
 
+	            .location i{
+	            	color: $brand-primary;
+	            	margin-right: 2px;
+	            }
+
 				.delivery-method{
 					margin-right: 5px;
 					font-size: 0.8em;
 
 					.fa{
 						color: $brand-primary;
-						padding-right: 2px;
+						margin-right: 2px;
 					}
 				}
 

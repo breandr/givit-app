@@ -7,6 +7,15 @@
 	
 	.location{
 		white-space: nowrap;
+        
+        i{
+        	color: $brand-primary;
+        	margin-right: 2px;
+        }
+	}
+
+	h5{
+		font-weight: bold;
 	}
 
 	.delivery-method{

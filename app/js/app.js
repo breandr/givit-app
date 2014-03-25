@@ -21,8 +21,6 @@ angular.module('givitApp', [
     function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/', {
-          // templateUrl: 'views/main.html',
-          // controller: 'MainCtrl'
           templateUrl: 'views/givit-list.html',
           controller: 'GivitListCtrl'
         })
@@ -42,14 +40,6 @@ angular.module('givitApp', [
           templateUrl: 'views/about.html',
           controller: 'AboutCtrl'
         })
-        .when('/terms-of-participation', {
-          templateUrl: 'views/terms-of-participation.html',
-          controller: 'TermsOfParticipationCtrl'
-        })
-        .when('/give-item/:itemGuid', {
-          templateUrl: 'views/give-item.html',
-          controller: 'GiveItemCtrl'
-        })
         .otherwise({
           redirectTo: '/'
         });
@@ -61,16 +51,17 @@ angular.module('givitApp', [
     FastClick.attach(document.body);
 
     $(document).on('show.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
+      var toggleButton = $('.navbar-header .navbar-toggle .fa-bars', $(this).parent().parent());
 
       toggleButton.css('left', '-25px');
     }).on('hide.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = $('.navbar-header .navbar-toggle .btn', $(this).parent().parent());
+      var toggleButton = $('.navbar-header .navbar-toggle .fa-bars', $(this).parent().parent());
 
       toggleButton.css('left', '-15px');
     });
 
     document.addEventListener('backbutton', function (e) {
+      console.log(e);
       var navDrawer = $('.nav-drawer');
 
       if (navDrawer.hasClass('in')) {
