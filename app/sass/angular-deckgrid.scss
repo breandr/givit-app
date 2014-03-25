@@ -1,4 +1,4 @@
-@import 'variables';
+@import '_variables.scss';
 @import 'sass-bootstrap/lib/_variables.scss';
 
 @mixin make-deckgrid-columns($columns, $class) {

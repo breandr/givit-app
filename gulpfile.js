@@ -98,14 +98,15 @@ gulp.task('html', function () {
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
-    .pipe(watch())
-    .pipe(plumber())
+  // return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
+  return gulp.src(src.sass + 'about.scss')
+    // .pipe(watch())
+    // .pipe(plumber())
     .pipe(sass({
-      style: 'expanded',
-      loadPath: 'app/bower_components'
+      // style: 'expanded',
+      // loadPath: 'app/bower_components'
     }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {
+    .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {
       cascade: true
     }))
     .pipe(gulp.dest(dest.css))
@@ -176,9 +177,7 @@ gulp.task('connect', connect.server({
   root: [dest.root],
   port: 9000,
   livereload: true,
-  open: {
-    browser: 'chrome'
-  }
+  open: true
 }));
 
 gulp.task('serve', ['build', 'connect']);

@@ -26,6 +26,9 @@
     "lodash": {
       "main": "dist/lodash.js"
     },
+    "font-awesome": {
+      "main": "font-awesome.css"
+    },
     "angular-toggle-switch": {
       "main": [
         "angular-toggle-switch.css",
