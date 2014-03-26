@@ -1,4 +1,4 @@
-@import 'sass-bootstrap/lib/_variables.scss';
+@import '../bower_components/sass-bootstrap/lib/_variables.scss';
 
 @mixin make-col-count($columns, $class) {
   @for $i from 0 through $columns {

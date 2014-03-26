@@ -98,17 +98,14 @@ gulp.task('html', function () {
 
 // Styles
 gulp.task('styles', function () {
-  // return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
-  return gulp.src(src.sass + 'about.scss')
+  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
     // .pipe(watch())
     // .pipe(plumber())
     .pipe(sass({
-      // style: 'expanded',
-      // loadPath: 'app/bower_components'
+      style: 'expanded',
+      loadPath: 'app/bower_components'
     }))
-    .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4', {
-      cascade: true
-    }))
+    .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(dest.css))
     .pipe(connect.reload());
 });
