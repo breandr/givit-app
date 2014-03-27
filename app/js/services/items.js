@@ -13,7 +13,7 @@ angular.module('givitApp')
      * @param  {Array} deliveryMethods An array of delivery methods available to the item
      * @return {String}                Markup representing delivery methods with icons
      */
-    this.getDeliveryMethodsMarkup = function(deliveryMethods){
+    this.getDeliveryMethodsMarkup = function (deliveryMethods) {
       var deliveryMethodMarkup = '',
         deliveryMethodIconClasses = {
           'Pick Up': 'fa-home',
@@ -60,15 +60,22 @@ angular.module('givitApp')
       });
     }
 
+    this.rejectHiddenItems = function (items) {
+      var hiddenItems = this.$storage.hiddenItems;
+      return _.reject(items, function (item) {
+        return _.contains(hiddenItems, item.GUID);
+      });
+    };
+
     /**
      * Gets items from API
      * @param  {Object} params  Request parameters
-     * @param  {String} addMode Can be `set` (default) or `add`
+     * @param  {String} loadMode Can be `set` (default) or `add`
      * @return {Promise}
      */
-    this.getItems = function (params, addMode) {
+    this.getItems = function (params, loadMode) {
       params = params || {};
-      addMode = addMode || 'set';
+      loadMode = loadMode || 'set';
 
       _.defaults(params, {
         pageNumber: 1,
@@ -86,9 +93,9 @@ angular.module('givitApp')
       var updateCachedItems = function (response) {
         var items = response.data.Data;
 
-        items = mapData(items);
+        items = this.rejectHiddenItems(mapData(items));
 
-        if (addMode === 'set') {
+        if (loadMode === 'set') {
           this.setCachedItems(items);
         } else {
           this.addItemsToCache(items);
@@ -118,9 +125,8 @@ angular.module('givitApp')
 
     this.hideItem = function (itemGuid) {
       this.$storage.hiddenItems.push(itemGuid);
-
-      // this.$storage.cachedItems = _.reject(this.$storage.cachedItems, function (item) {
-      //   return item.GUID === itemGuid;
-      // });
+      this.$storage.cachedItems = _.reject(this.$storage.cachedItems, function (item) {
+        return item.GUID === itemGuid;
+      });
     };
   });

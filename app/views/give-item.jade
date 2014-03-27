@@ -3,15 +3,26 @@
     .modal-content
       .modal-header
         button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-        h4.modal-title
-          | {{item.ItemName}}
-          small.location
+        h4.modal-title {{item.ItemName}}
+      .modal-body
+        .clearfix
+          .location.pull-left
             i.fa.fa-map-marker
             | {{item.Location}}
-      .modal-body
+          .delivery-methods.pull-left(ng-bind-html='getDeliveryMethods()')
         p {{item.Recipient}}
-        h5 Acceptable delivery methods:
-        small.delivery-methods(ng-bind-html='getDeliveryMethods()')
+        form
+          .row
+            .form-group.col-xs-3
+              label(for='donate-item-field-qty') Qty.
+              input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required='required', ng-model='item.qty', min='1')
+            .form-group.col-xs-9
+              label Photo
+              .photo-selector
+                .photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto()')
+                  i.fa.fa-camera
+                .photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
+                  input#donate-item-field-photo(type='file', name='Photo', required='required', ng-model='item.photo')
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
         button.btn.btn-primary(type='button', ng-click='give()') Give

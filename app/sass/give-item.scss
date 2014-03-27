@@ -1,30 +1,26 @@
-@import '_variables-bootstrap.scss';
+@import "_variables-bootstrap.scss";
 
-.give-item-confirmation-modal{
-	.modal-body{
-		padding: 10px 20px 0 20px;
-	}
-	
-	.location{
-		white-space: nowrap;
-        
-        i{
-        	color: $brand-primary;
-        	margin-right: 2px;
-        }
-	}
-
-	h5{
-		font-weight: bold;
-	}
-
-	.delivery-method{
-		margin-right: 10px;
-		font-size: 1.6em;
-
-		.fa{
-			color: $brand-primary;
-			padding-right: 5px;
-		}
-	}
+.give-item-confirmation-modal {
+  .modal-body {
+    padding: 10px 20px 0 20px;
+  }
+  .location {
+    white-space: nowrap;
+    color: $brand-primary;
+    margin-right: 15px;
+    i {
+      margin-right: 2px;
+    }
+  }
+  h5 {
+    font-weight: bold;
+  }
+  .delivery-method {
+    margin-right: 10px;
+    // font-size: 1.6em;
+    color: $brand-primary;
+    .fa {
+      padding-right: 5px;
+    }
+  }
 }

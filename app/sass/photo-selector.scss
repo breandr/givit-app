@@ -1,0 +1,12 @@
+.photo-selector-gallery {
+  position: relative;
+  input[type="file"] {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 102%;
+    height: 110%;
+    cursor: pointer;
+    opacity: 0;
+  }
+}

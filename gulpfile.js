@@ -2,6 +2,9 @@
 // set up jscs in scripts task
 // set up gulp-uncss in styles task
 // set up gulp-combine-media-queries in styles task
+// browserify
+// usemin
+// change watch to livereload
 var _ = require('lodash'),
   buildConfig = require('./config/build.config.js'),
   pkg = require('./package.json'),
@@ -17,6 +20,7 @@ var _ = require('lodash'),
   gutil = require('gulp-util'),
   jade = require('gulp-jade'),
   usemin = require('gulp-usemin'),
+  useref = require('gulp-useref'),
   minifyHtml = require('gulp-minify-html'),
   jscs = require('gulp-jscs'),
   rev = require('gulp-rev'),
@@ -57,50 +61,72 @@ gulp.task('phonegap', function () {
   gulp.run('build-phonegap');
 });
 
-// // Html
-// gulp.task('html', function () {
-//   // var html = gulp.src(src.html + '**/*.jade')
-//   //   .pipe(jade({
-//   //     data: pkg,
-//   //     pretty: true
-//   //   }))
-//   var html = gulp.src(src.html + '*.html');
+gulp.task('html-useref', ['styles', 'scripts'], function () {
+  var jsFilter = filter(src.js + '**/*.js');
+  var scssFilter = filter([src.sass + '*.scss', '!' + src.sass + '_*.scss']);
 
-//   if (IS_RELEASE_BUILD) {
-//     html = html.pipe(usemin({
-//       vendorCss: [minifyCss(), 'concat', rev()],
-//       appCss: [minifyCss(), 'concat', rev()],
-//       vendorJs: [ngmin(), uglify(), rev()],
-//       appJs: [ /*ngmin(), */ uglify(), rev()],
-//       html: [minifyHtml({
-//         empty: true
-//       })]
-//     }));
-//   }
-
-//   html.pipe(gulp.dest(dest.root));
-
-//   return html;
-// });
-
-// Html
-gulp.task('html', function () {
-  gulp.src(src.html + '**/*.jade')
+  var html = gulp.src(src.html + '**/*.jade')
     .pipe(watch())
+    .pipe(plumber())
     .pipe(jade({
       data: pkg,
       pretty: true
-    }))
-  // .pipe(usemin())
-  .pipe(gulp.dest(dest.root))
+    }));
+
+  if (IS_RELEASE_BUILD) {
+    // .pipe(useref.assets())
+    // .pipe(jsFilter)
+    // .pipe(ngmin())
+    // .pipe(rev())
+    // .pipe(uglify())
+    // .pipe(jsFilter.restore())
+    // .pipe(scssFilter)
+    // .pipe(minifyCss())
+    // .pipe(rev())
+    // .pipe(scssFilter.restore())
+    // .pipe(useref.restore())
+    html = html.pipe(useref())
+    // .pipe(minifyHtml({
+    //   empty: true
+    // }))
+  }
+
+  html.pipe(gulp.dest(dest.root))
+    .pipe(connect.reload());
+});
+
+// Html
+gulp.task('html', ['styles', 'scripts'], function () {
+  var html = gulp.src(src.html + '**/*.jade')
+    .pipe(watch())
+    .pipe(plumber())
+    .pipe(jade({
+      data: pkg,
+      pretty: true
+    }));
+
+  if (IS_RELEASE_BUILD) {
+    html = html.pipe(usemin({
+      vendorCss: [minifyCss(), 'concat', rev()],
+      appCss: [minifyCss(), 'concat', rev()],
+      vendorJs: [ngmin(), uglify(), rev()],
+      appJs: [ /*ngmin(), */ uglify(), rev()],
+      html: [minifyHtml({
+        empty: true
+      })]
+    }));
+  }
+
+  html
+    .pipe(gulp.dest(dest.root))
     .pipe(connect.reload());
 });
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
-    // .pipe(watch())
-    // .pipe(plumber())
+  gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
+    .pipe(watch())
+    .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
@@ -112,7 +138,9 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-  return gulp.src(src.js + '/**/*.js', {
+  var appFilter = filter('app.js');
+
+  gulp.src(src.js + '/**/*.js', {
     base: src.js
   })
     .pipe(watch())
@@ -121,12 +149,12 @@ gulp.task('scripts', function () {
   .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
   // .pipe(plumber())
-  // .pipe(filter('app.js'))
+  // .pipe(appFilter)
   // .pipe(browserify({
   //   insertGlobals: true,
   //   debug: !IS_RELEASE_BUILD
   // }))
-  // .pipe(filter.restore())
+  // .pipe(appFilter.restore())
   .pipe(gulp.dest(dest.js))
     .pipe(connect.reload())
 });
@@ -196,5 +224,5 @@ gulp.task('bower', function () {
 });
 
 gulp.task('build', ['clean'], function () {
-  gulp.start('styles', 'scripts', 'images', 'bower', 'copy', 'html');
+  gulp.start('images', 'bower', 'copy', 'html-useref');
 });

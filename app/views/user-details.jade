@@ -36,6 +36,5 @@
     .row
       .form-group.col-xs-12
         toggle-switch#user-details-field-terms-of-participation(model='user.termsOfParticipation', on-label='Yes, I agree', off-label='No, I don\'t agree')
-        label
-          | to all
-          a(data-toggle='modal', data-target='#termsOfParticipationModal') Terms of Participation*
+        label to all 
+          a(data-toggle='modal', data-target='#termsOfParticipationModal', href='') Terms of Participation*

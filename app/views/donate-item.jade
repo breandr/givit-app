@@ -3,7 +3,7 @@
     .row
       .form-group.col-xs-3.col-sm-2
         label(for='donate-item-field-qty') Qty.
-        input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', required='required', ng-model='item.qty')
+        input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required='required', ng-model='item.qty', min='1')
       .form-group.col-xs-9.col-sm-5
         label(for='donate-item-field-short-description') Short Description
         input#donate-item-field-short-description.form-control(type='text', name='ShortDescription', placeholder='Queen sized blankets', required='required', ng-model='item.shortDescription')
@@ -43,4 +43,4 @@
         label prefer the charity to collect this item
     .row
       .col-xs-12
-        button.btn.btn-primary(type='submit') Donate
+        button.btn.btn-primary.pull-right(type='submit') Donate

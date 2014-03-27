@@ -1,11 +1,10 @@
-@import '_variables.scss';
+@import "_variables.scss";
 
-.donate-item{
-	.switch{
-		width: 200px;
-
-		+ label{
-			width: 250px;
-		}
-	}
+.donate-item {
+  .switch {
+    width: 200px;
+    + label {
+      width: 280px;
+    }
+  }
 }
