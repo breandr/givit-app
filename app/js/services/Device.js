@@ -22,15 +22,15 @@ angular.module('givitApp')
       return this.getPhoto(Camera.PictureSourceType.CAMERA, onSuccess, onFail);
     };
 
-    this.getPhoto = function(source, onSuccess, onFail){
+    this.getPhoto = function (source, onSuccess, onFail) {
       if (!this.hasCamera()) {
         console.warn('Device does not have a camera.');
         return false;
       }
 
-      navigator.camera.getPicture(success, fail, {
+      navigator.camera.getPicture(onSuccess, onFail, {
         destinationType: Camera.DestinationType.FILE_URI,
-        sourceType: Camera.PictureSourceType.CAMERA,
+        sourceType: source,
         correctOrientation: true
       });
     };

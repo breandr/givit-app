@@ -1,25 +1,23 @@
-@import '_variables.scss';
+@import "_variables.scss";
 
-.navbar-default{
-	.navbar-header{
-		button.btn{
-	      	background-color: transparent;
-		    
-		    &:hover, &:focus{
-		      outline: none;
-		    }
-
-		    &:active{
-		      box-shadow: none;
-		      background-color: darken($navbar-default-bg, 3%);
-		    }
-		}
-	}
-
+.navbar-default {
+  .navbar-header {
+    button.btn {
+      background-color: transparent;
+      &:hover, &:focus {
+        outline: none;
+      }
+      &:active {
+        box-shadow: none;
+        background-color: darken($navbar-default-bg, 3%);
+      }
+    }
+  }
 }
 
-#action-bar-givit-list-search-button{
-	font-size: 25px;
-	padding-top: 9px;
-	color: #FFF;
+#action-bar-givit-list-search-button {
+  font-size: 25px;
+  // line-height: 1;
+  padding-top: 9px;
+  color: #FFF;
 }

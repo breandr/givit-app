@@ -9,6 +9,7 @@ var _ = require('lodash'),
   buildConfig = require('./config/build.config.js'),
   pkg = require('./package.json'),
   argv = require('minimist')(process.argv.slice(2)),
+  gracefulFs = require('graceful-fs'),
   gulp = require('gulp'),
   gulpGrunt = require('gulp-grunt')(gulp),
   plumber = require('gulp-plumber'),
@@ -43,6 +44,7 @@ var _ = require('lodash'),
   // lr = require('tiny-lr'),
   // server = lr(),
   IS_RELEASE_BUILD = !! argv.release,
+  LAUNCH = !! argv.launch,
   BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
   src = buildConfig.paths.src,
   dest = buildConfig.paths[BUILD_TYPE],
@@ -58,7 +60,7 @@ if (IS_RELEASE_BUILD) {
 }
 
 gulp.task('phonegap', function () {
-  gulp.run('build-phonegap');
+  gulp.run('grunt-build-phonegap');
 });
 
 gulp.task('html-useref', ['styles', 'scripts'], function () {
@@ -202,7 +204,7 @@ gulp.task('connect', connect.server({
   root: [dest.root],
   port: 9000,
   livereload: true,
-  open: true
+  open: LAUNCH
 }));
 
 gulp.task('serve', ['build', 'connect']);
@@ -214,7 +216,7 @@ gulp.task('bower', function () {
   wiredep({
     directory: src.root + 'bower_components',
     bowerJson: require('./bower.json'),
-    src: src.root + 'index.html',
+    src: src.root + 'index.jade',
     ignorePath: 'app/',
     exclude: [
       /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/, //we include this in our own bootstrap.css

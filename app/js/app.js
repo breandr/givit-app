@@ -15,7 +15,8 @@ angular.module('givitApp', [
   'toggle-switch',
   'akoenig.deckgrid',
   'pasvaz.bindonce',
-  'infinite-scroll'
+  'infinite-scroll',
+  'angularMoment'
 ])
   .config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {

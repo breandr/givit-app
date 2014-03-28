@@ -51,11 +51,11 @@ angular.module('givitApp')
           ItemName: item.ItemName,
           Location: item.Location,
           NumberDonationsRequried: item.NumberDonationsRequried,
-          QuantityReserved: item.QuantityReserved,
           Recipient: item.Recipient,
           RecipientDescription: item.RecipientDescription,
           HasImg: false,
-          DeliveryMethods: item.DeliveryMethods
+          DeliveryMethods: item.DeliveryMethods,
+          DateListed: item.DateListed
         };
       });
     }
@@ -104,7 +104,7 @@ angular.module('givitApp')
 
       return $http({
         method: 'GET',
-        url: GivitApi.url + 'givit-list',
+        url: GivitApi.url + 'givitlist',
         params: params
       }).then(updateCachedItems.bind(this));
     };

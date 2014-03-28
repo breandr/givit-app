@@ -20,14 +20,13 @@
     "ngInfiniteScroll": "~1.0.0",
     "fastclick": "~1.0.0",
     "animate.css": "~3.1.0",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "moment": "~2.5.1",
+    "angular-moment": "~0.6.2"
   },
   "overrides": {
     "lodash": {
       "main": "dist/lodash.js"
-    },
-    "font-awesome": {
-      "main": "font-awesome.css"
     },
     "angular-toggle-switch": {
       "main": [
@@ -39,8 +38,5 @@
   "devDependencies": {
     "angular-mocks": "1.2.6",
     "angular-scenario": "1.2.6"
-  },
-  "resolutions": {
-    "jquery": "~1.10.2"
   }
 }

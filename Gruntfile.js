@@ -4,7 +4,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     phonegap: {
       config: {
-        root: './app',
+        root: './debug',
         config: './phonegap/config.xml',
         cordova: './phonegap/.cordova',
         path: './phonegap-build/',
@@ -43,6 +43,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('graceful-fs');
   grunt.loadNpmTasks('grunt-phonegap');
 
   grunt.registerTask('build-phonegap', function () {

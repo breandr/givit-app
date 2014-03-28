@@ -5,10 +5,10 @@
     padding: 10px 20px 0 20px;
   }
   .location {
-    white-space: nowrap;
-    color: $brand-primary;
+    white-space: pre-line;
     margin-right: 15px;
-    i {
+    .fa {
+      color: $brand-primary;
       margin-right: 2px;
     }
   }
@@ -18,9 +18,13 @@
   .delivery-method {
     margin-right: 10px;
     // font-size: 1.6em;
-    color: $brand-primary;
     .fa {
+      color: $brand-primary;
       padding-right: 5px;
     }
+  }
+  .date-added {
+    white-space: pre-line;
+    font-style: italic;
   }
 }
