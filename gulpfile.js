@@ -76,21 +76,21 @@ gulp.task('html-useref', ['styles', 'scripts'], function () {
     }));
 
   if (IS_RELEASE_BUILD) {
-    // .pipe(useref.assets())
-    // .pipe(jsFilter)
-    // .pipe(ngmin())
-    // .pipe(rev())
-    // .pipe(uglify())
-    // .pipe(jsFilter.restore())
-    // .pipe(scssFilter)
-    // .pipe(minifyCss())
-    // .pipe(rev())
-    // .pipe(scssFilter.restore())
-    // .pipe(useref.restore())
-    html = html.pipe(useref())
-    // .pipe(minifyHtml({
-    //   empty: true
-    // }))
+    html = html.pipe(useref.assets())
+    .pipe(jsFilter)
+    .pipe(ngmin())
+    .pipe(rev())
+    .pipe(uglify())
+    .pipe(jsFilter.restore())
+    .pipe(scssFilter)
+    .pipe(minifyCss())
+    .pipe(rev())
+    .pipe(scssFilter.restore())
+    .pipe(useref.restore())
+    .pipe(useref())
+    .pipe(minifyHtml({
+      empty: true
+    }));
   }
 
   html.pipe(gulp.dest(dest.root))

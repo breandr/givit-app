@@ -20,25 +20,34 @@ angular.module('givitApp')
       $scope.item.photo = '';
     });
 
-    var onSuccess = function (imageUri) {
+    var onPhotoSuccess = function (imageUri) {
       imageUri = imageUri;
     };
 
-    var onFail = function (message) {
+    var onPhotoFail = function (message) {
       window.alert(message);
     };
 
     $scope.takePhoto = function ($event) {
       if (Device.hasCamera()) {
-        Device.takePhoto(onSuccess, onFail);
+        Device.takePhoto(onPhotoSuccess, onPhotoFail);
         $event.preventDefault();
       }
     };
 
     $scope.selectPhoto = function ($event) {
       if (Device.hasCamera()) {
-        Device.selectPhotoFromGallery(onSuccess, onFail);
+        Device.selectPhotoFromGallery(onPhotoSuccess, onPhotoFail);
         $event.preventDefault();
       }
     };
+
+    $scope.giveItem = function ($event) {
+      var itemData = {
+        itemId: guid,
+      };
+
+      //extend with user details
+      // $event.preventDefault();//is this needed?
+    }
   });
