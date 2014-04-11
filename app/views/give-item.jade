@@ -14,19 +14,19 @@
             | Listed 
             span(am-time-ago="item.DateListed")
         p {{item.Recipient}}
-        form(action="#{apiUri}", ng-submit="giveItem($event)")
+        form(ng-submit="giveItem($event)")
           .row
             .form-group.col-xs-3
               label(for='donate-item-field-qty') Qty.
-              input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required='required', ng-model='item.qty', min='1')
+              input#donate-item-field-qty.form-control(type='text', name='QuantityOffered', placeholder='2', pattern='\d*', required='required', ng-model='item.QuantityOffered', min='1')
             .form-group.col-xs-9
               label Photo
               .photo-selector
                 .photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto()')
                   i.fa.fa-camera
-                  //- input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
+                  input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
                 .photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
-                  //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
+                  input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-        button.btn.btn-primary(type='button', ng-click='give()') Give
+        button.btn.btn-primary(type='button', ng-click='giveItem()') Give

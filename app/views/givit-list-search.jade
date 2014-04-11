@@ -7,8 +7,8 @@
       label(for='givit-list-search-field-postcode') Km of postcode: {{filter.postcode}}
       input#givit-list-search-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='[0-9]*', minlength='4', maxlength='4', required, ng-model='filter.postcode')
     .form-group.search-btn-container
-      button.btn.btn-warning(type='reset', ng-click='clearSearch($event)')
-        i.fa.fa-times
       button.search-btn.btn.btn-primary(type='submit')
         i.fa.fa-search
         span.btn-text Search
+      button.btn.btn-warning(type='reset', ng-click='clearSearch($event)')
+        i.fa.fa-times

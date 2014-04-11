@@ -1,8 +1,14 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('ActionBarCtrl', function ($scope, $route) {
+  .controller('ActionBarCtrl', function ($scope, $route, $rootScope) {
     $scope.isSearchShown = false;
+
+    $scope.toggleNavDrawer = function(){
+      var hideOrShow = angular.element('.nav-drawer').hasClass('collapse') ? 'show' : 'hide';
+      
+      $rootScope.$broadcast('toggleNavDrawer', hideOrShow);
+    };
     
     $scope.showGivitListSearch = function () {
       $scope.isSearchShown = !$scope.isSearchShown;

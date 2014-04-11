@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GiveItemCtrl', function ($scope, $routeParams, Items, Device) {
+  .controller('GiveItemCtrl', function ($scope, $routeParams, $http, Items, Device, User, GivitApi) {
     $scope.item = null;
 
     $scope.getDeliveryMethods = function () {
@@ -16,7 +16,7 @@ angular.module('givitApp')
       $scope.item = _.find(Items.$storage.cachedItems, function (item) {
         return item.GUID === itemGuid;
       });
-      $scope.item.qty = 1;
+      $scope.item.QuantityOffered = 1;
       $scope.item.photo = '';
     });
 
@@ -42,12 +42,20 @@ angular.module('givitApp')
       }
     };
 
-    $scope.giveItem = function ($event) {
-      var itemData = {
-        itemId: guid,
-      };
+    $scope.giveItem = function ( /*$event, */ ) {
+      var requestData = _.cloneDeep(User.$storage.userDetails);
+      requestData.ItemGuid = $scope.item.GUID;
+      requestData.QuantityOffered = $scope.item.QuantityOffered;
+
+      $http({
+        method: 'POST',
+        url: GivitApi.url + 'givitlist/respond',
+        data: requestData
+      }).then(function () {
+        $('#giveItemConfirmationModal').modal('hide');
+      });
 
       //extend with user details
       // $event.preventDefault();//is this needed?
-    }
+    };
   });

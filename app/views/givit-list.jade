@@ -20,3 +20,4 @@
       .card-actions.clearfix
         button.btn.btn-primary.pull-right(data-toggle='modal', data-target='#giveItemConfirmationModal', ng-click='mother.selectGivitItem(card.GUID)') Give
   .loading-items-indicator(ng-show='isLoadingItems') Loading more items...
+  .no-items-indicator(ng-show='!isLoadingItems && items.length === 0') No items found

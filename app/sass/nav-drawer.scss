@@ -124,3 +124,11 @@
     }
   }
 }
+
+.nav-drawer-overlay {
+  position: fixed;
+  width: 100%;
+  background: #000;
+  opacity: 0.2;
+  display: none;
+}
