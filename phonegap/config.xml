@@ -2,14 +2,14 @@
     <widget xmlns = "http://www.w3.org/ns/widgets" 
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android   = "http://schemas.android.com/apk/res/android"
-        id = ".com.au.givit.app"
-        version = "0.0.0"
+        id = "org.au.givit.GivitMobile"
+        version = "0.0.1"
         versionCode = "0">
 
     <name>GIVIT</name>
     
     <description>
-        Mobile app for givit.com.au
+        Mobile app for givit.org.au
     </description>
     
     <author href="https://github.com/breandr" email="brett.j.andrews@gmail.com">Brett Andrews</author>
