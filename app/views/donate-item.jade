@@ -3,24 +3,30 @@
     .row
       .form-group.col-xs-3.col-sm-2
         label(for='donate-item-field-qty') Qty.
-        input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required='required', ng-model='item.qty', min='1')
+        input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required, ng-model='item.qty', min='1')
       .form-group.col-xs-9.col-sm-5
         label(for='donate-item-field-short-description') Short Description
-        input#donate-item-field-short-description.form-control(type='text', name='ShortDescription', placeholder='Queen sized blankets', required='required', ng-model='item.shortDescription')
+        input#donate-item-field-short-description.form-control(type='text', name='ShortDescription', placeholder='Queen sized blankets', required, ng-model='item.shortDescription')
       .form-group.col-xs-12.col-sm-5
-        label(for='donate-item-field-photo') Photo
-        input#donate-item-field-photo.form-control(type='file', name='Photo', required='required', ng-model='item.photo')
+              label Photo
+              .photo-selector
+                .photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto()')
+                  i.fa.fa-camera
+                  input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
+                .photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
+                  input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
+              img.preview
     .row
       .form-group.col-sm-6
         label(for='donate-item-field-condition') Condition
-        select#donate-item-field-condition.form-control(name='Condition', required='required', ng-model='item.condition')
+        select#donate-item-field-condition.form-control(name='Condition', required, ng-model='item.condition')
           option(value='') Please select a condition
           option(value='New') New/As new
           option(value='Used') Gently used
           option(value='Older') Older, but excellent
       .form-group.col-sm-6
         label(for='donate-item-field-hold-duration') I will hold this item for
-        select#donate-item-field-hold-duration.form-control(name='HoldDuration', required='required', ng-model='item.holdDuration')
+        select#donate-item-field-hold-duration.form-control(name='HoldDuration', required, ng-model='item.holdDuration')
           option(value='') Please select a duration
           option(value='QLD') One month
           option(value='ACT') Two months

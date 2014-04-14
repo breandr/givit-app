@@ -7,14 +7,22 @@ angular.module('givitApp')
     };
 
     this.hasCamera = function () {
-      return false;
+      return typeof navigator.camera !== 'undefined';
     };
 
     this.hasGps = function () {
-      return false;
+      return typeof navigator.geolocation !== 'undefined';
     };
 
-    this.selectPhotoFromGallery = function (onSuccess, onFail) {
+    this.getGeoLocation = function(onSuccess, onFail){
+      navigator.geolocation.getCurrentPosition(onSuccess, onFail);
+    };
+
+    this.selectPhotoFromLibrry = function (onSuccess, onFail) {
+      return this.getPhoto(Camera.PictureSourceType.PHOTOLIBRARY, onSuccess, onFail);
+    };
+
+    this.selectPhotoFromSavedPhotos = function (onSuccess, onFail) {
       return this.getPhoto(Camera.PictureSourceType.SAVEDPHOTOALBUM, onSuccess, onFail);
     };
 
@@ -29,7 +37,7 @@ angular.module('givitApp')
       }
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: Camera.DestinationType.FILE_URI,
+        destinationType: Camera.DestinationType.DATA_URL,
         sourceType: source,
         correctOrientation: true
       });

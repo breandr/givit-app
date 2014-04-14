@@ -20,11 +20,14 @@ angular.module('givitApp')
       $scope.item.photo = '';
     });
 
-    var onPhotoSuccess = function (imageUri) {
-      imageUri = imageUri;
+    function onPhotoSuccess (imageUri) {
+      var image = angulr.element('myImage');
+      image.prop('src', 'data:image/jpeg;base64,' + imageUri).show();
+
+      $scope.imageUri = imageUri;
     };
 
-    var onPhotoFail = function (message) {
+    function onPhotoFail (message) {
       window.alert(message);
     };
 
@@ -42,10 +45,11 @@ angular.module('givitApp')
       }
     };
 
-    $scope.giveItem = function ( /*$event, */ ) {
+    $scope.giveItem = function () {
       var requestData = _.cloneDeep(User.$storage.userDetails);
       requestData.ItemGuid = $scope.item.GUID;
       requestData.QuantityOffered = $scope.item.QuantityOffered;
+      requestData.Image = $scope.imageUri;
 
       $http({
         method: 'POST',
@@ -54,8 +58,5 @@ angular.module('givitApp')
       }).then(function () {
         $('#giveItemConfirmationModal').modal('hide');
       });
-
-      //extend with user details
-      // $event.preventDefault();//is this needed?
     };
   });
