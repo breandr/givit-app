@@ -18,12 +18,11 @@ angular.module('givitApp')
       $scope.items = cachedItems;
     });
 
-    $scope.clearSearch = function (e) {
+    $scope.clearSearch = function () {
       $scope.filter = User.$storage.givitListSearch = {};
       $scope.hideSearch();
       window.scrollTo(0, 0);
       $scope.loadItems('set');
-      // e.preventDefault();
     };
 
     $scope.search = function () {

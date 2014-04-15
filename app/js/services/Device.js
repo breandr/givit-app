@@ -18,7 +18,7 @@ angular.module('givitApp')
       navigator.geolocation.getCurrentPosition(onSuccess, onFail);
     };
 
-    this.selectPhotoFromLibrry = function (onSuccess, onFail) {
+    this.selectPhotoFromLibrary = function (onSuccess, onFail) {
       return this.getPhoto(Camera.PictureSourceType.PHOTOLIBRARY, onSuccess, onFail);
     };
 

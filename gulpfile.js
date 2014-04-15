@@ -187,7 +187,9 @@ gulp.task('copy', function () {
     src.root + 'fonts/**',
     src.root + '.htaccess',
     src.root + 'favicon.ico',
-    src.root + 'robots.txt'
+    src.root + 'robots.txt',
+    src.root + 'icon.png',
+    src.root + 'splash.png'
   ];
 
   if (!IS_RELEASE_BUILD) {

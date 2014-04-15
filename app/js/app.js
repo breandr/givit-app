@@ -62,12 +62,15 @@ angular.module('givitApp', [
     });
 
     document.addEventListener('backbutton', function (e) {
-      console.log(e);
-      var navDrawer = $('.nav-drawer');
+      var navDrawer = angular.element('.nav-drawer');
 
       if (navDrawer.hasClass('in')) {
         e.preventDefault();
         navDrawer.collapse('hide');
+      }else if(angular.element('body.modal-open').length > 0){
+        angular.element('.modal.in').modal('hide');
+      } else {
+        navigator.app.backHistory();
       }
     }, false);
   });

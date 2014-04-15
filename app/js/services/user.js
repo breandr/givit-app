@@ -7,7 +7,7 @@ angular.module('givitApp')
       userDetails: {},
       givitListSearch: {
         postcode: '',
-        km: 0
+        km: ''
       },
       // nav: Navigate the app from here
       // <open nav to explain each page>

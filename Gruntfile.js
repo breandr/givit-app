@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         config: './phonegap/config.xml',
         cordova: './phonegap/.cordova',
         path: './phonegap-build/',
-        platforms: ['android'],
+        platforms: ['android', 'ios'],
         maxBuffer: 200, // You may need to raise this for iOS.
         verbose: true,
 

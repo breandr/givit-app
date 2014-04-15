@@ -1,32 +1,32 @@
 .donate-item.container
-  form#donate-item-form(role='form', ng-controller='DonateItemCtrl')
+  form#donate-item-form(name='donateItemForm', role='form', ng-controller='DonateItemCtrl')
     .row
       .form-group.col-xs-3.col-sm-2
         label(for='donate-item-field-qty') Qty.
-        input#donate-item-field-qty.form-control(type='text', name='Qty', placeholder='2', pattern='\d*', required, ng-model='item.qty', min='1')
+        input#donate-item-field-qty.form-control(type='text', name='QuantityOffered', placeholder='2', pattern='[0-9]*', required, ng-model='item.QuantityOffered', min='1')
       .form-group.col-xs-9.col-sm-5
         label(for='donate-item-field-short-description') Short Description
-        input#donate-item-field-short-description.form-control(type='text', name='ShortDescription', placeholder='Queen sized blankets', required, ng-model='item.shortDescription')
+        input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName')
       .form-group.col-xs-12.col-sm-5
               label Photo
               .photo-selector
-                .photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto()')
+                button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
                   i.fa.fa-camera
-                  input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
-                .photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
-                  input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
+                  //- input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
+                button.photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
+                  //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
               img.preview
     .row
       .form-group.col-sm-6
         label(for='donate-item-field-condition') Condition
-        select#donate-item-field-condition.form-control(name='Condition', required, ng-model='item.condition')
+        select#donate-item-field-condition.form-control(name='ItemCondition', required, ng-model='item.ItemCondition')
           option(value='') Please select a condition
           option(value='New') New/As new
           option(value='Used') Gently used
           option(value='Older') Older, but excellent
       .form-group.col-sm-6
         label(for='donate-item-field-hold-duration') I will hold this item for
-        select#donate-item-field-hold-duration.form-control(name='HoldDuration', required, ng-model='item.holdDuration')
+        select#donate-item-field-hold-duration.form-control(name='HoldItemDays', required, ng-model='item.HoldItemDays')
           option(value='') Please select a duration
           option(value='QLD') One month
           option(value='ACT') Two months
@@ -34,19 +34,19 @@
     .row
       .form-group.col-xs-12
         label(for='donate-item-field-comment') Comments
-        textarea#donate-item-field-comment.form-control(rows='3', name='Comments', placeholder='What kind of comments are we looking for?', ng-model='item.comments')
+        textarea#donate-item-field-comment.form-control(rows='3', name='ItemDescription', placeholder='', ng-model='item.ItemDescription')
     .row
       .form-group.col-xs-12
-        toggle-switch#donate-item-field-can-drop-off(model='item.canDropOff', on-label='Yes, I can', off-label='No, I can\'t')
+        toggle-switch#donate-item-field-can-drop-off(model='item.DonorCanDropOff', on-label='Yes, I can', off-label='No, I can\'t')
         label drop this item off to a charity in my area
     .row
       .form-group.col-xs-12
-        toggle-switch#donate-item-field-can-post-aus-wide(model='item.canPostAusWide', on-label='Yes, I can', off-label='No, I can\'t')
+        toggle-switch#donate-item-field-can-post-aus-wide(model='item.DonorCanPost', on-label='Yes, I can', off-label='No, I can\'t')
         label post this item Australia-wide
     .row
       .form-group.col-xs-12
-        toggle-switch#donate-item-field-prefer-charity-collection(model='item.preferCharityCollection', on-label='Yes, I would', off-label='No, I wouldn\'t')
+        toggle-switch#donate-item-field-prefer-charity-collection(model='item.CharityCanPickUp', on-label='Yes, I would', off-label='No, I wouldn\'t')
         label prefer the charity to collect this item
     .row
       .col-xs-12
-        button.btn.btn-primary.pull-right(type='submit') Donate
+        button.btn.btn-primary.pull-right(type='submit', ng-click="donateItem()") Donate

@@ -11,7 +11,6 @@ html.no-js
     //-Place favicon.ico and apple-touch-icon.png in the root directory
     //build:css css/vendor.css
     //bower:css
-    link(rel='stylesheet', href='bower_components/sass-bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet', href='bower_components/angular-toggle-switch/angular-toggle-switch.css')
     link(rel='stylesheet', href='bower_components/animate.css/animate.css')
     //endbower
@@ -68,8 +67,6 @@ html.no-js
     script(src='bower_components/moment/moment.js')
     script(src='bower_components/angular-moment/angular-moment.js')
     //endbower
-    //-bower-install wants to use lodash.compat.js, but we want the modern lodash build
-    script(src='bower_components/lodash/dist/lodash.js')
     //endbuild
     //build:js js/app.js
     script(src='js/app.js')
@@ -90,3 +87,4 @@ html.no-js
     script(src='js/controllers/actionbar.js')
     script(src='js/controllers/give-item.js')
     //endbuild
+    script(src='cordova.js')

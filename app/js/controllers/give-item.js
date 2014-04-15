@@ -17,19 +17,18 @@ angular.module('givitApp')
         return item.GUID === itemGuid;
       });
       $scope.item.QuantityOffered = 1;
-      $scope.item.photo = '';
     });
 
-    function onPhotoSuccess (imageUri) {
-      var image = angulr.element('myImage');
+    function onPhotoSuccess(imageUri) {
+      var image = angular.element('img.preview');
       image.prop('src', 'data:image/jpeg;base64,' + imageUri).show();
 
       $scope.imageUri = imageUri;
-    };
+    }
 
-    function onPhotoFail (message) {
+    function onPhotoFail(message) {
       window.alert(message);
-    };
+    }
 
     $scope.takePhoto = function ($event) {
       if (Device.hasCamera()) {
@@ -40,15 +39,14 @@ angular.module('givitApp')
 
     $scope.selectPhoto = function ($event) {
       if (Device.hasCamera()) {
-        Device.selectPhotoFromGallery(onPhotoSuccess, onPhotoFail);
+        Device.selectPhotoFromSavedPhotos(onPhotoSuccess, onPhotoFail);
         $event.preventDefault();
       }
     };
 
     $scope.giveItem = function () {
-      var requestData = _.cloneDeep(User.$storage.userDetails);
+      var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
       requestData.ItemGuid = $scope.item.GUID;
-      requestData.QuantityOffered = $scope.item.QuantityOffered;
       requestData.Image = $scope.imageUri;
 
       $http({

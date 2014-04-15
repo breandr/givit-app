@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import "_variables.scss";
 
 @font-face {
   font-family: 'Open Sans';
@@ -7,32 +7,32 @@
   src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
 }
 
-.content-area{
-	padding-top: 65px;
+
+.content-area {
+  padding-top: 65px;
+  padding-hottom: 15px;
 }
 
-.radio, .checkbox{
-	border-radius: 4px;
+.radio, .checkbox {
+  border-radius: 4px;
 }
 
-.switch{
-	border: 1px solid #CCC;
-	border-radius: $border-radius-base;
-
-	+ label{
-		vertical-align: super;
-		font-weight: normal;
-	}
-
-	.switch-left{
-		background-color: $brand-primary;
-	}
+.switch {
+  border: 1px solid #CCC;
+  border-radius: $border-radius-base;
+  + label {
+    vertical-align: super;
+    font-weight: normal;
+  }
+  .switch-left {
+    background-color: $brand-primary;
+  }
 }
 
 .modal-header .close {
   margin-top: -10px;
 }
 
-.give-item-confirmation-modal .modal-dialog{
-	max-width: 465px;
+.give-item-confirmation-modal .modal-dialog {
+  max-width: 465px;
 }
