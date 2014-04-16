@@ -3,21 +3,28 @@
     .row
       .form-group.col-sm-6
         label(for='user-details-field-given-names') Given Name(s)
-        input#user-details-field-given-names.form-control(type='text', name='GivenNames', placeholder='Joe', required='required', ng-model='user.givenNames')
+        input#user-details-field-given-names.form-control(type='text', name='Firstname', placeholder='Joe', required, ng-model='user.Firstname')
       .form-group.col-sm-6
         label(for='user-details-field-family-name') Family Name
-        input#user-details-field-family-name.form-control(type='text', name='FamilyName', placeholder='Bloggs', required='required', ng-model='user.familyName')
+        input#user-details-field-family-name.form-control(type='text', name='Surname', placeholder='Bloggs', required, ng-model='user.Surname')
     .row
-      .form-group.col-sm-6
+      .form-group.col-sm-4
         label(for='user-details-field-phone') Phone (Landline or Mobile)
-        input#user-details-field-phone.form-control(type='tel', name='Phone', placeholder='(+61) 0400 420 007 or 37 236 198', required='required', ng-model='user.phone')
-      .form-group.col-sm-6
+        input#user-details-field-phone.form-control(type='tel', name='ContactNumber', placeholder='(+61) 0400 420 007 or 37 236 198', required, ng-model='user.ContactNumber')
+      .form-group.col-sm-4
         label(for='user-details-field-email') Email address
-        input#user-details-field-email.form-control(type='email', name='Email', placeholder='joe.bloggs@gmail.com', required='required', ng-model='user.email')
+        input#user-details-field-email.form-control(type='email', name='EmailAddress', placeholder='joe.bloggs@gmail.com', required, ng-model='user.EmailAddress')
+      .form-group.col-sm-4
+        label(for='user-details-preferred-contact-method') Preferred contact method
+        select#user-details-preferred-contact-method.form-control(name='PreferredContactMethod', required, ng-model='user.PreferredContactMethod')
+          option(value='') Please select a preferred contact method
+          option(value='Email') Email
+          option(value='Phone') Phone
+          option(value='Phone or email') Phone or email
     .row
       .form-group.col-sm-4
         label(for='user-details-field-state') State
-        select#user-details-field-state.form-control(name='State', required='required', ng-model='user.state')
+        select#user-details-field-state.form-control(name='State', required, ng-model='user.State')
           option(value='') Please select the state in which you reside
           option(value='QLD') QLD
           option(value='ACT') ACT
@@ -29,12 +36,12 @@
           option(value='NT') NT
       .form-group.col-sm-4
         label(for='user-details-field-postcode') Postcode
-        input#user-details-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='\d*', minlength='4', maxlength='4', required='required', ng-model='user.postcode')
+        input#user-details-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='\d*', minlength='4', maxlength='4', required, ng-model='user.Postcode')
       .form-group.col-sm-4
         label(for='user-details-field-suburb') Suburb
-        input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', ng-model='user.suburb')
+        input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', required ng-model='user.Suburb')
     .row
       .form-group.col-xs-12
-        toggle-switch#user-details-field-terms-of-participation(model='user.termsOfParticipation', on-label='Yes, I agree', off-label='No, I don\'t agree')
+        toggle-switch#user-details-field-terms-of-participation(model='user.TermsOfParticipation', on-label='Yes, I agree', off-label='No, I don\'t agree', required)
         label to all 
           a(data-toggle='modal', data-target='#termsOfParticipationModal', href='') Terms of Participation*

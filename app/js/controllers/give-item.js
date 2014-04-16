@@ -23,7 +23,7 @@ angular.module('givitApp')
       var image = angular.element('img.preview');
       image.prop('src', 'data:image/jpeg;base64,' + imageUri).show();
 
-      $scope.imageUri = imageUri;
+      $scope.item.ImageData = imageUri;
     }
 
     function onPhotoFail(message) {
@@ -46,14 +46,18 @@ angular.module('givitApp')
 
     $scope.giveItem = function () {
       var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
+      requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
       requestData.ItemGuid = $scope.item.GUID;
-      requestData.Image = $scope.imageUri;
 
       $http({
         method: 'POST',
         url: GivitApi.url + 'givitlist/respond',
         data: requestData
-      }).then(function () {
+      }).then(function (response) {
+        if(response.data.DonorID > 0){
+          User.setDonorId(response.data.DonorID);
+        }
+
         $('#giveItemConfirmationModal').modal('hide');
       });
     };

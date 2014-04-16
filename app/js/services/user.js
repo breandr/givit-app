@@ -19,6 +19,10 @@ angular.module('givitApp')
       showIntro: true
     });
 
+    this.setDonorId = function (donorId) {
+      this.$storage.userDetails.DonorID = donorId;
+    };
+
     this.setUserDetails = function (userDetails) {
       this.$storage.userDetails = userDetails;
     };

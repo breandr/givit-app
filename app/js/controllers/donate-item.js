@@ -2,14 +2,17 @@
 
 angular.module('givitApp')
   .controller('DonateItemCtrl', function ($scope, $http, Device, User, GivitApi) {
-    $scope.item = {};
-    $scope.item.QuantityOffered = 1;
+    $scope.item = {
+      ItemName: '',
+      ItemDescription: '',
+      QuantityOffered: 1
+    };
 
-    function onPhotoSuccess(imageUri) {
+    function onPhotoSuccess(imageData) {
       var image = angular.element('img.preview');
-      image.prop('src', 'data:image/jpeg;base64,' + imageUri).show();
+      image.prop('src', 'data:image/jpeg;base64,' + imageData).show();
 
-      $scope.imageUri = imageUri;
+      $scope.item.ImageData = imageData;
     }
 
     function onPhotoFail(message) {
@@ -36,13 +39,17 @@ angular.module('givitApp')
       }
 
       var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
-      requestData.Image = $scope.imageUri;
+      requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
 
       $http({
         method: 'POST',
-        url: GivitApi.url + 'give-items',
+        url: GivitApi.url + 'donations',
         data: requestData
-      }).then(function () {
+      }).then(function (response) {
+        if(response.data.DonorID > 0){
+          User.setDonorId(response.data.DonorID);
+        }
+
         $('#giveItemConfirmationModal').modal('hide');
       });
     };

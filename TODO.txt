@@ -11,3 +11,4 @@ Gulp
   switch from useref to inject
 Givit List
   When selecting givit list in nav, the animation is missed when there are a large number of items in Items.$storage.cachedItems
+Do not allow donating/responding until user has filled in details and accepted terms of participation
