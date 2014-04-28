@@ -1,15 +1,19 @@
 'use strict';
 
-var buildConfig = require('./config/build.config.js');
-
 module.exports = function (grunt) {
+  var buildConfig = require('./config/build.config.js'),
+    IS_RELEASE_BUILD = !! grunt.option('release'),
+    BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
+    src = buildConfig.paths[BUILD_TYPE],
+    dest = buildConfig.paths[('phonegap' + BUILD_TYPE.charAt(0).toUpperCase() + BUILD_TYPE.slice(1))];
+
   grunt.initConfig({
     phonegap: {
       config: {
-        root: './builds/debug',
+        root: src.root,
         config: './phonegap/config.xml',
         cordova: './phonegap/.cordova',
-        path: './builds/phonegap-debug/',
+        path: dest.root,
         platforms: ['android', 'ios'],
         maxBuffer: 200, // You may need to raise this for iOS.
         verbose: true,
@@ -36,11 +40,11 @@ module.exports = function (grunt) {
         // If you want to use the Phonegap Build service to build one or more
         // of the platforms specified above, include these options.
         // See https://build.phonegap.com/
-        // remote: {
-        //   username: 'brett.j.andrews@gmail.com',
-        //   password: 'password',
-        //   platforms: ['android', 'ios', 'wp8']
-        // }
+        remote: {
+          username: 'brett.j.andrews@gmail.com',
+          password: '',
+          platforms: ['android', 'ios', 'wp8']
+        }
       }
     }
   });

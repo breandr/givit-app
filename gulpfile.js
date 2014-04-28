@@ -69,6 +69,10 @@ if (IS_RELEASE_BUILD) {
   );
 }
 
+gulp.task('phonegap-build', ['clean'], function () {
+  gulp.run('grunt-phonegap-build');
+});
+
 gulp.task('phonegap-build-android', function () {
   gulp.run('grunt-phonegap-build-android');
 });
