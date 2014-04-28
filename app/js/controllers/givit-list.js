@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GivitListCtrl', function ($rootScope, $scope, User, Items) {
+  .controller('GivitListCtrl', function ($rootScope, $scope, $location, User, Items) {
     $scope.filter = User.$storage.givitListSearch;
     $scope.items = Items.$storage.cachedItems;
     $scope.isLoadingItems = false;
@@ -62,7 +62,12 @@ angular.module('givitApp')
     };
 
     $scope.selectGivitItem = function (itemGuid) {
-      $rootScope.$broadcast('selectGivitItem', itemGuid);
+      if (User.hasMinimalDetails()) {
+        angular.element('#giveItemConfirmationModal').modal('show');
+        $rootScope.$broadcast('selectGivitItem', itemGuid);
+      } else {
+        $location.path('/user-details');
+      }
     };
 
     // Ideally, this would poll the server for new and removed items to update the local cache.

@@ -52,11 +52,11 @@ angular.module('givitApp', [
     FastClick.attach(document.body);
 
     $(document).on('show.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = $('.navbar-header .navbar-toggle .fa-bars', $(this).parent().parent());
+      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
 
       toggleButton.css('left', '-25px');
     }).on('hide.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = $('.navbar-header .navbar-toggle .fa-bars', $(this).parent().parent());
+      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
 
       toggleButton.css('left', '-15px');
     });

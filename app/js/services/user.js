@@ -30,4 +30,17 @@ angular.module('givitApp')
     this.clear = function (key) {
       delete this.$storage[key];
     };
+
+    this.detailExists = function (detail) {
+      var details = this.$storage.userDetails,
+        value = details[detail];
+
+      return typeof value !== 'undefined' && value;
+    };
+
+    this.hasMinimalDetails = function () {
+      var details = this.$storage.userDetails;
+
+      return _.every(['Firstname', 'Surname', 'EmailAddress', 'TermsOfParticipation'], this.detailExists.bind(this)) && details.TermsOfParticipation;
+    };
   });

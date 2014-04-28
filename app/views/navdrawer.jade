@@ -13,7 +13,7 @@
     li(ng-class='{ active: isActive(\'/\') || isActive(\'/givit-list\')}')
       a(href='#/givit-list', ng-click='hide()') Givit List
     li(ng-class='{ active: isActive(\'/donate-item\')}')
-      a(href='#/donate-item', ng-click='hide()') Donate Item
+      a(href='#/donate-item', ng-click='hide(); redirectIfNoUserMinimalDetails($event)') Donate Item
     li(ng-class='{ active: isActive(\'/user-details\')}')
       a(href='#/user-details', ng-click='hide()') My Details
     li(ng-class='{ active: isActive(\'/about\')}')
