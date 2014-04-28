@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:35
+-keep class org.au.givit.GivitMobile.GIVIT { <init>(...); }
+

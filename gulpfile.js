@@ -18,6 +18,7 @@ var _ = require('lodash'),
   header = require('gulp-header'),
   stripDebug = require('gulp-strip-debug'),
   template = require('gulp-template'),
+  exec = require('child_process').exec,
   gutil = require('gulp-util'),
   jade = require('gulp-jade'),
   usemin = require('gulp-usemin'),
@@ -44,8 +45,17 @@ var _ = require('lodash'),
   // lr = require('tiny-lr'),
   // server = lr(),
   IS_RELEASE_BUILD = !! argv.release,
+  IS_PHONEGAP_BUILD = !! argv.phonegap,
   LAUNCH = !! argv.launch,
-  BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
+  BUILD_TYPE = (function(){
+    var buildType = IS_RELEASE_BUILD ? 'release' : 'debug';
+
+    if(IS_PHONEGAP_BUILD){
+      return 'phonegap' + buildType.charAt(0).toUpperCase() + buildType.slice(1);
+    }
+
+    return buildType;
+  })(),
   src = buildConfig.paths.src,
   dest = buildConfig.paths[BUILD_TYPE],
   banner = _.template(buildConfig.banner, {
@@ -59,8 +69,26 @@ if (IS_RELEASE_BUILD) {
   );
 }
 
-gulp.task('phonegap', function () {
-  gulp.run('grunt-build-phonegap');
+gulp.task('phonegap-build-android', function () {
+  gulp.run('grunt-phonegap-build-android');
+});
+
+gulp.task('phonegap-run-android', function () {
+  gulp.run('grunt-phonegap-run-android');
+});
+
+gulp.task('phonegap-serve', function () {
+  var serve = exec('phonegap serve', {
+    cwd: dest.root
+  },
+  function (error, stdout, stderr) {
+    gutil.log('stdout: ' + stdout);
+    gutil.log('stderr: ' + stderr);
+    
+    if (error !== null) {
+      gutil.log('exec error: ' + error);
+    }
+});
 });
 
 gulp.task('html-useref', ['styles', 'scripts'], function () {
@@ -77,20 +105,20 @@ gulp.task('html-useref', ['styles', 'scripts'], function () {
 
   if (IS_RELEASE_BUILD) {
     html = html.pipe(useref.assets())
-    .pipe(jsFilter)
-    .pipe(ngmin())
-    .pipe(rev())
-    .pipe(uglify())
-    .pipe(jsFilter.restore())
-    .pipe(scssFilter)
-    .pipe(minifyCss())
-    .pipe(rev())
-    .pipe(scssFilter.restore())
-    .pipe(useref.restore())
-    .pipe(useref())
-    .pipe(minifyHtml({
-      empty: true
-    }));
+      .pipe(jsFilter)
+      .pipe(ngmin())
+      .pipe(rev())
+      .pipe(uglify())
+      .pipe(jsFilter.restore())
+      .pipe(scssFilter)
+      .pipe(minifyCss())
+      .pipe(rev())
+      .pipe(scssFilter.restore())
+      .pipe(useref.restore())
+      .pipe(useref())
+      .pipe(minifyHtml({
+        empty: true
+      }));
   }
 
   html.pipe(gulp.dest(dest.root))

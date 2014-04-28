@@ -1,6 +1,8 @@
 var srcRoot = './app/',
-  debugRoot = './debug/',
-  releaseRoot = './dist/';
+  debugRoot = './builds/debug/',
+  releaseRoot = './builds/dist/',
+  phonegapDebugRoot = './builds/phonegap-debug/',
+  phonegapReleaseRoot = './builds/phonegap-release/';
 
 module.exports = {
   paths: {
@@ -28,6 +30,22 @@ module.exports = {
       css: releaseRoot + 'css/',
       js: releaseRoot + 'js/',
       fonts: releaseRoot + 'fonts/'
+    },
+    phonegapDebug: {
+      root: phonegapDebugRoot,
+      html: phonegapDebugRoot,
+      img: phonegapDebugRoot + 'img/',
+      css: phonegapDebugRoot + 'css/',
+      js: phonegapDebugRoot + 'js/',
+      fonts: phonegapDebugRoot + 'fonts/'
+    },
+    phonegapReleaseRoot: {
+      root: phonegapReleaseRoot,
+      html: phonegapReleaseRoot,
+      img: phonegapReleaseRoot + 'img/',
+      css: phonegapReleaseRoot + 'css/',
+      js: phonegapReleaseRoot + 'js/',
+      fonts: phonegapReleaseRoot + 'fonts/'
     }
   },
   banner: '/*!\n' +

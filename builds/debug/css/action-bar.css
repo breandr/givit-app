@@ -1,0 +1,16 @@
+.navbar-default .navbar-header button.btn {
+  background-color: transparent;
+}
+.navbar-default .navbar-header button.btn:hover, .navbar-default .navbar-header button.btn:focus {
+  outline: none;
+}
+.navbar-default .navbar-header button.btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#action-bar-givit-list-search-button {
+  font-size: 25px;
+  padding-top: 9px;
+  color: #FFF;
+}

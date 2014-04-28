@@ -1,0 +1,9 @@
+
+<nav role="navigation" ng-controller="ActionBarCtrl" class="navbar navbar-default navbar-fixed-top action-bar">
+  <div class="navbar-header">
+    <button type="button" data-toggle="collapse" data-target=".nav-drawer" class="btn navbar-toggle pull-left"><span class="sr-only">Navigation Drawer</span><i class="fa fa-bars fa-2x pull-left"></i><span class="logo pull-left"></span><span class="navbar-brand">GIVIT</span></button>
+    <button id="action-bar-givit-list-search-button" type="button" data-toggle="collapse" data-target="#givit-list-search-form-container" ng-show="currentRouteIs('views/givit-list.html')" class="btn pull-right"><i class="fa fa-search"></i></button>
+  </div>
+  <nav-drawer></nav-drawer>
+  <div ng-include="'views/givit-list-search.html'"></div>
+</nav>

@@ -1,0 +1,63 @@
+.givit-list .column > div {
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-delay: 0s;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-delay: 0s;
+  -ms-animation-duration: 0.3s;
+  -ms-animation-delay: 0s;
+}
+.givit-list .givit-list-item {
+  position: relative;
+}
+.givit-list .givit-list-item .close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 2.5em;
+  color: #f8971d;
+  opacity: 1;
+  float: none;
+  font-weight: normal;
+}
+.givit-list .givit-list-item .card-img {
+  max-height: 300px;
+  overflow: hidden;
+  border-bottom: 1px solid #EEE;
+}
+.givit-list .givit-list-item .card-img img {
+  width: 100%;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.givit-list .givit-list-item .card-content h4 {
+  padding: 0 10px 0px 10px;
+  color: #729bc7;
+}
+.givit-list .givit-list-item .card-content h4 > span {
+  max-width: 85%;
+}
+.givit-list .givit-list-item .card-content h4 > span, .givit-list .givit-list-item .card-content h4 > small {
+  display: block;
+}
+.givit-list .givit-list-item .card-content h4 .location i {
+  color: #729bc7;
+  margin-right: 2px;
+}
+.givit-list .givit-list-item .card-content h4 .delivery-method {
+  margin-right: 5px;
+  font-size: 0.8em;
+}
+.givit-list .givit-list-item .card-content h4 .delivery-method .fa {
+  color: #729bc7;
+  margin-right: 2px;
+}
+.givit-list .givit-list-item .card-content p {
+  padding: 0 10px 0px 10px;
+}
+.givit-list .givit-list-item .card-actions {
+  border-top: 1px solid #EEE;
+  padding: 5px 10px;
+}
+.givit-list .loading-items-indicator {
+  text-align: center;
+}

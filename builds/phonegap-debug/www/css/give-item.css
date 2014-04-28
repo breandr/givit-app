@@ -1,0 +1,29 @@
+.give-item-confirmation-modal .modal-body {
+  padding: 10px 20px 0 20px;
+}
+.give-item-confirmation-modal .location {
+  white-space: pre-line;
+  margin-right: 15px;
+}
+.give-item-confirmation-modal .location .fa {
+  color: #729bc7;
+  margin-right: 2px;
+}
+.give-item-confirmation-modal h5 {
+  font-weight: bold;
+}
+.give-item-confirmation-modal .delivery-method {
+  margin-right: 10px;
+}
+.give-item-confirmation-modal .delivery-method .fa {
+  color: #729bc7;
+  padding-right: 5px;
+}
+.give-item-confirmation-modal .date-added {
+  white-space: pre-line;
+  font-style: italic;
+}
+.give-item-confirmation-modal img.preview {
+  max-width: 100%;
+  display: none;
+}

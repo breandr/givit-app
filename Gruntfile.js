@@ -1,13 +1,15 @@
 'use strict';
 
+var buildConfig = require('./config/build.config.js');
+
 module.exports = function (grunt) {
   grunt.initConfig({
     phonegap: {
       config: {
-        root: './debug',
+        root: './builds/debug',
         config: './phonegap/config.xml',
         cordova: './phonegap/.cordova',
-        path: './phonegap-build/',
+        path: './builds/phonegap-debug/',
         platforms: ['android', 'ios'],
         maxBuffer: 200, // You may need to raise this for iOS.
         verbose: true,
@@ -34,11 +36,11 @@ module.exports = function (grunt) {
         // If you want to use the Phonegap Build service to build one or more
         // of the platforms specified above, include these options.
         // See https://build.phonegap.com/
-        remote: {
-          username: 'brett.j.andrews@gmail.com',
-          password: 'password',
-          platforms: ['android', 'ios', 'wp8']
-        }
+        // remote: {
+        //   username: 'brett.j.andrews@gmail.com',
+        //   password: 'password',
+        //   platforms: ['android', 'ios', 'wp8']
+        // }
       }
     }
   });
@@ -46,11 +48,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('graceful-fs');
   grunt.loadNpmTasks('grunt-phonegap');
 
-  grunt.registerTask('build-phonegap', function () {
+  grunt.registerTask('phonegap-build', function () {
     grunt.task.run('phonegap:build');
   });
 
-  grunt.registerTask('emulate-android', function () {
-    grunt.task.run('phonegap:run:android:emulator');
+  grunt.registerTask('phonegap-build-android', function () {
+    grunt.task.run('phonegap:build:android');
+  });
+
+  grunt.registerTask('phonegap-run-android', function () {
+    grunt.task.run('phonegap:run:android');
   });
 };

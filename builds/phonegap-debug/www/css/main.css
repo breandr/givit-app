@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+.content-area {
+  padding-top: 65px;
+  padding-hottom: 15px;
+}
+
+.radio, .checkbox {
+  border-radius: 4px;
+}
+
+.switch {
+  border: 1px solid #CCC;
+  border-radius: 0;
+}
+.switch + label {
+  vertical-align: super;
+  font-weight: normal;
+}
+.switch .switch-left {
+  background-color: #729bc7;
+}
+
+.modal-header .close {
+  margin-top: -10px;
+}
+
+.give-item-confirmation-modal .modal-dialog {
+  max-width: 465px;
+}

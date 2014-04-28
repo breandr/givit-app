@@ -1,0 +1,6 @@
+.donate-item .switch {
+  width: 200px;
+}
+.donate-item .switch + label {
+  width: 280px;
+}

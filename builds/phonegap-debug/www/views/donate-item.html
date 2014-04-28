@@ -1,0 +1,73 @@
+
+<div class="donate-item container">
+  <form id="donate-item-form" name="donateItemForm" role="form" ng-controller="DonateItemCtrl">
+    <div class="row">
+      <div class="form-group col-xs-3 col-sm-2">
+        <label for="donate-item-field-qty">Qty.</label>
+        <input id="donate-item-field-qty" type="text" name="QuantityOffered" placeholder="2" pattern="[0-9]*" required="required" ng-model="item.QuantityOffered" min="1" class="form-control"/>
+      </div>
+      <div class="form-group col-xs-9 col-sm-5">
+        <label for="donate-item-field-short-description">Short Description</label>
+        <input id="donate-item-field-short-description" type="text" name="ItemName" placeholder="Queen sized blankets" required="required" ng-model="item.ItemName" class="form-control"/>
+      </div>
+      <div class="form-group col-xs-12 col-sm-5">
+        <label>Photo</label>
+        <div class="photo-selector">
+          <button type="button" ng-click="takePhoto($event)" class="photo-selector-camera btn btn-primary"><i class="fa fa-camera"></i>
+          </button>
+          <button type="button" ng-click="selectPhoto($event)" class="photo-selector-gallery btn btn-primary">Select from gallery
+          </button>
+        </div><img class="preview"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="donate-item-field-condition">Condition</label>
+        <select id="donate-item-field-condition" name="ItemCondition" required="required" ng-model="item.ItemCondition" class="form-control">
+          <option value="">Please select a condition</option>
+          <option value="New">New/As new</option>
+          <option value="Used">Gently used</option>
+          <option value="Older">Older, but excellent</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="donate-item-field-hold-duration">I will hold this item for</label>
+        <select id="donate-item-field-hold-duration" name="HoldItemDays" required="required" ng-model="item.HoldItemDays" class="form-control">
+          <option value="">Please select a duration</option>
+          <option value="QLD">One month</option>
+          <option value="ACT">Two months</option>
+          <option value="NSW">Three months</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="donate-item-field-comment">Comments</label>
+        <textarea id="donate-item-field-comment" rows="3" name="ItemDescription" placeholder="" ng-model="item.ItemDescription" class="form-control"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <toggle-switch id="donate-item-field-can-drop-off" model="item.DonorCanDropOff" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
+        <label>drop this item off to a charity in my area</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <toggle-switch id="donate-item-field-can-post-aus-wide" model="item.DonorCanPost" on-label="Yes, I can" off-label="No, I can't"></toggle-switch>
+        <label>post this item Australia-wide</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <toggle-switch id="donate-item-field-prefer-charity-collection" model="item.CharityCanPickUp" on-label="Yes, I would" off-label="No, I wouldn't"></toggle-switch>
+        <label>prefer the charity to collect this item</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="submit" ng-click="donateItem()" class="btn btn-primary pull-right">Donate</button>
+      </div>
+    </div>
+  </form>
+</div>
