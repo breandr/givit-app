@@ -221,7 +221,8 @@ gulp.task('copy', function () {
     src.root + 'favicon.ico',
     src.root + 'robots.txt',
     src.root + 'icon.png',
-    src.root + 'splash.png'
+    src.root + 'splash.png',
+    src.root + 'Default-568h@2x.png'
   ];
 
   if (!IS_RELEASE_BUILD) {

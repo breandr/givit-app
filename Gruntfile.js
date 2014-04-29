@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
     src = buildConfig.paths[BUILD_TYPE],
     dest = buildConfig.paths[('phonegap' + BUILD_TYPE.charAt(0).toUpperCase() + BUILD_TYPE.slice(1))];
-
+    
   grunt.initConfig({
     phonegap: {
       config: {
@@ -42,7 +42,7 @@ module.exports = function (grunt) {
         // See https://build.phonegap.com/
         remote: {
           username: 'brett.j.andrews@gmail.com',
-          password: '',
+          password: 'password',
           platforms: ['android', 'ios', 'wp8']
         }
       }

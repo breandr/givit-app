@@ -26,8 +26,8 @@ angular.module('givitApp')
       $scope.item.ImageData = imageUri;
     }
 
-    function onPhotoFail(message) {
-      window.alert(message);
+    function onPhotoFail(/*message*/) {
+      // window.alert(message);
     }
 
     $scope.takePhoto = function ($event) {
@@ -44,6 +44,14 @@ angular.module('givitApp')
       }
     };
 
+    function onRespondSuccess(response) {
+      if (response.data.DonorID > 0) {
+        User.setDonorId(response.data.DonorID);
+      }
+      angular.element('img.preview', '#giveItemConfirmationModal').hide();
+      angular.element('#giveItemConfirmationModal').modal('hide');
+    }
+
     $scope.giveItem = function () {
       var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
       requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
@@ -53,12 +61,6 @@ angular.module('givitApp')
         method: 'POST',
         url: GivitApi.url + 'givitlist/respond',
         data: requestData
-      }).then(function (response) {
-        if(response.data.DonorID > 0){
-          User.setDonorId(response.data.DonorID);
-        }
-
-        $('#giveItemConfirmationModal').modal('hide');
-      });
+      }).then(onRespondSuccess);
     };
   });

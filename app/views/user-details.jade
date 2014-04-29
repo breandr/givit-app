@@ -36,7 +36,7 @@
           option(value='NT') NT
       .form-group.col-sm-4
         label(for='user-details-field-postcode') Postcode
-        input#user-details-field-postcode.form-control(type='text', name='Postcode', placeholder='4718', pattern='\d*', minlength='4', maxlength='4', required, ng-model='user.Postcode')
+        input#user-details-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', required, ng-model='user.Postcode')
       .form-group.col-sm-4
         label(for='user-details-field-suburb') Suburb
         input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', required ng-model='user.Suburb')

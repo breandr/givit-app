@@ -18,7 +18,7 @@
     
     <!-- ICONS -->
         
-    <icon src="icon.png" /> <!-- default 512 pixels -->
+    <icon src="img/icons/icon.png" /> <!-- default 512 pixels -->
         
     <icon src="img/icons/ios/icon57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone & iPod Touch non retina iOS6 -->
     <icon src="img/icons/ios/icon72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad non retina iOS6 -->
@@ -40,7 +40,7 @@
         
     <!-- SPLASH SCREENS -->
         
-    <gap:splash src="splash.png" /> <!-- default 320x480 pixels -->
+    <gap:splash src="img/splash/splash.png" /> <!-- default 320x480 pixels -->
         
     <gap:splash src="img/splash/ios/splash320x480.png" gap:platform="ios" width="320" height="480" /> <!-- iPhone & iPod Touch non retina -->
     <gap:splash src="img/splash/ios/splash640x960.png" gap:platform="ios" width="640" height="960" /> <!-- iPhone & iPod Touch retina 4- -->
@@ -70,7 +70,13 @@
     <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
         
     <!-- iOS PREFERENCES -->
-    
+    <gap:config-file platform="ios" parent="UIStatusBarHidden">
+        <true/>
+    </gap:config-file>
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+        <false/>
+    </gap:config-file>
+
     <preference name="target-device" value="universal" />
     <preference name="prerendered-icon" value="true" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
@@ -81,6 +87,9 @@
     <preference name="stay-in-webview" value="false" />
     <preference name="show-splash-screen-spinner" value="false" />
     <preference name="auto-hide-splash-screen" value="true" /> <!-- if set to false, the splash screen must be hidden using a JavaScript API -->
+
+    <!-- Not yet supported by Phonegap Build https://github.com/phonegap-build/StatusBarPlugin -->
+    <preference name="StatusBarOverlaysWebView" value="false" />
         
     <!-- ANDROID PREFERENCES -->
         
@@ -97,6 +106,9 @@
     <preference name="permissions" value="none"/>
     <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <feature name="http://api.phonegap.com/1.0/camera"/>
+
+    <!-- Phonegap Build Plugins -->
+    <gap:plugin name="com.phonegap.plugin.statusbar" />
 
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.camera" />
