@@ -3,16 +3,16 @@
 angular.module('givitApp')
   .service('User', function ($localStorage) {
     var defaultUserDetails = {
-      ContactNumber: "",
-      EmailAddress: "",
-      Firstname: "",
-      Postcode: "",
-      PreferredContactMethod: "",
-      State: "",
-      Suburb: "",
-      Surname: "",
+      ContactNumber: '',
+      EmailAddress: '',
+      Firstname: '',
+      Postcode: '',
+      PreferredContactMethod: '',
+      State: '',
+      Suburb: '',
+      Surname: '',
       TermsOfParticipation: false
-    }
+    };
 
     this.$storage = $localStorage;
     this.$storage.$default({

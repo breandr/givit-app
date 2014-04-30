@@ -76,7 +76,7 @@ angular.module('givitApp')
         url: GivitApi.url + 'donations',
         data: requestData
       })
-        .success(onDonateError)
+        .success(onDonateSuccess)
         .error(onDonateError)
         .
       finally(onDonate);

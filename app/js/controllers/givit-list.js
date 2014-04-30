@@ -18,23 +18,6 @@ angular.module('givitApp')
       $scope.items = cachedItems;
     });
 
-    $scope.clearSearch = function () {
-      $scope.filter = User.$storage.givitListSearch = {};
-      $scope.hideSearch();
-      window.scrollTo(0, 0);
-      $scope.loadItems('set');
-    };
-
-    $scope.search = function () {
-      $scope.pageNumber = 1;
-      $scope.hideSearch();
-      $scope.loadItems('set');
-    };
-
-    $scope.hideSearch = function () {
-      $('#givit-list-search-form-container').collapse('hide');
-    };
-
     $scope.loadItems = function (loadMode) {
       loadMode = loadMode || 'set';
       $scope.isLoadingItems = true;

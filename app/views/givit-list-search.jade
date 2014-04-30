@@ -1,4 +1,4 @@
-#givit-list-search-form-container.navbar-collapse.collapse(ng-controller='GivitListCtrl', ng-show='currentRouteIs(\'views/givit-list.html\')')
+#givit-list-search-form-container.navbar-collapse.collapse(ng-controller='GivitListSearchCtrl', ng-show='currentRouteIs(\'views/givit-list.html\')')
   form#givit-list-search-form.form-inline-always.pull-right(role='form', ng-submit='search()')
     #givit-list-search-field-container-km.form-group
       label(for='givit-list-search-field-km') Within {{filter.km | number}}

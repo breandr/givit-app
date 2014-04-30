@@ -1,13 +1,17 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('NavDrawerCtrl', function ($scope, $rootScope, $location, User) {
+  .controller('NavDrawerCtrl', function ($scope, $rootScope, $location, User, App) {
     $scope.user = User.$storage.userDetails;
 
-    $scope.$on('actionBar.givitListSearch.show', function hideNavBar() {
-      $scope.hide();
-    });
+    // $scope.$on('givitListSearch.show', function hideNavBar() {
+    //   $scope.hide();
+    // });
 
+    $scope.currentRouteIs = function (routes) {
+      return App.currentRouteIs(routes);
+    };
+    
     $scope.show = function () {
       angular.element('.nav-drawer').collapse('show');
     };
@@ -24,7 +28,10 @@ angular.module('givitApp')
     };
 
     function onShow() {
-      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
+      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars',
+        angular.element(this)
+        .parent()
+        .parent());
 
       toggleButton.css('left', '-25px');
       angular.element('nav-drawer')
@@ -36,7 +43,7 @@ angular.module('givitApp')
         .css('height', window.screen.height)
         .fadeIn();
       $rootScope.$broadcast('navDrawer.show');
-    };
+    }
 
     function onHide() {
       var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
@@ -47,9 +54,9 @@ angular.module('givitApp')
         .fadeOut(function () {
           angular.element('.nav-drawer-overlay').remove();
         });
-    };
+    }
 
     angular.element('nav-drawer')
-    .on('show.bs.collapse', onShow)
-    .on('hide.bs.collapse', onHide);
+      .on('show.bs.collapse', onShow)
+      .on('hide.bs.collapse', onHide);
   });

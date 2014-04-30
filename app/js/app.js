@@ -50,6 +50,7 @@ angular.module('givitApp', [
   ])
   .run(function () {
     FastClick.attach(document.body);
+    
     document.addEventListener('backbutton', function (e) {
       var navDrawer = angular.element('.nav-drawer');
 

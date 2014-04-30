@@ -20,7 +20,6 @@ angular.module('givitApp')
       this.feedbackEl.addClass('fadeInUp').removeClass('fadeOutDown');
 
       if (millisecondsToShowFor) {
-        console.log(this.hide)
         setTimeout(this.hide.bind(this), millisecondsToShowFor); // <-- time in milliseconds
       }
 

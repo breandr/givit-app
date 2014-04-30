@@ -4,7 +4,7 @@ angular.module('givitApp').directive('overlay', function () {
   return {
     restrict: 'E',
     replace: true,
-    controller: function ($scope, $element, $attrs) {
+    controller: function ($scope, $element) {
       $scope.message = '<p class="text-center">Loading....</p>';
       
       $scope.$on('overlay.show', function showOverlay() {
