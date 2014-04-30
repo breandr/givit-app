@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GiveItemCtrl', function ($scope, $routeParams, $http, Items, Device, User, GivitApi) {
+  .controller('GiveItemCtrl', function ($scope, $rootScope, $routeParams, $http, Items, Device, User, GivitApi, Feedback) {
     $scope.item = null;
 
     $scope.getDeliveryMethods = function () {
@@ -16,6 +16,7 @@ angular.module('givitApp')
       $scope.item = _.find(Items.$storage.cachedItems, function (item) {
         return item.GUID === itemGuid;
       });
+
       $scope.item.QuantityOffered = 1;
     });
 
@@ -26,7 +27,7 @@ angular.module('givitApp')
       $scope.item.ImageData = imageUri;
     }
 
-    function onPhotoFail(/*message*/) {
+    function onPhotoFail( /*message*/ ) {
       // window.alert(message);
     }
 
@@ -44,23 +45,41 @@ angular.module('givitApp')
       }
     };
 
-    function onRespondSuccess(response) {
-      if (response.data.DonorID > 0) {
-        User.setDonorId(response.data.DonorID);
+    function onRespondSuccess(responseBody) {
+      if (responseBody.DonorID > 0) {
+        User.setDonorId(responseBody.DonorID);
       }
+
+      Items.hideItem($scope.item.GUID);
+      Feedback.setStyle('success').setMessage('Thank you for pledgeing to give to someone in need. <i class="fa fa-heart-o"></i>').show(4000);
       angular.element('img.preview', '#giveItemConfirmationModal').hide();
       angular.element('#giveItemConfirmationModal').modal('hide');
     }
 
+    function onRespondError() {
+      Feedback.setStyle('danger').setMessage('Something went wrong, and your pledge didn\'t make it through. <i class="fa fa-frown-o"></i>').show(4000);
+    }
+
+    function onRespond() {
+      $rootScope.$broadcast('overlay.hide');
+    }
+
     $scope.giveItem = function () {
       var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
+
       requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
       requestData.ItemGuid = $scope.item.GUID;
+
+      $rootScope.$broadcast('overlay.show');
 
       $http({
         method: 'POST',
         url: GivitApi.url + 'givitlist/respond',
         data: requestData
-      }).then(onRespondSuccess);
+      })
+        .success(onRespondSuccess)
+        .error(onRespondError)
+        .
+      finally(onRespond);
     };
   });

@@ -50,17 +50,6 @@ angular.module('givitApp', [
   ])
   .run(function () {
     FastClick.attach(document.body);
-
-    $(document).on('show.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
-
-      toggleButton.css('left', '-25px');
-    }).on('hide.bs.collapse', '.nav-drawer', function () {
-      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
-
-      toggleButton.css('left', '-15px');
-    });
-
     document.addEventListener('backbutton', function (e) {
       var navDrawer = angular.element('.nav-drawer');
 

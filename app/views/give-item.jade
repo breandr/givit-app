@@ -20,7 +20,7 @@
               label(for='donate-item-field-qty') Qty.
               input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', pattern='\d*', required, ng-model='item.QuantityOffered', min='1')
             .form-group.col-xs-9
-              label Photo
+              label.optional Photo
               .photo-selector
                 button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
                   i.fa.fa-camera

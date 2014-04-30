@@ -9,13 +9,13 @@
         input#user-details-field-family-name.form-control(type='text', name='Surname', placeholder='Bloggs', required, ng-model='user.Surname')
     .row
       .form-group.col-sm-4
-        label(for='user-details-field-phone') Phone (Landline or Mobile)
+        label.optional(for='user-details-field-phone') Phone (Landline or Mobile)
         input#user-details-field-phone.form-control(type='tel', name='ContactNumber', placeholder='(+61) 0400 420 007 or 37 236 198', required, ng-model='user.ContactNumber')
       .form-group.col-sm-4
         label(for='user-details-field-email') Email address
         input#user-details-field-email.form-control(type='email', name='EmailAddress', placeholder='joe.bloggs@gmail.com', required, ng-model='user.EmailAddress')
       .form-group.col-sm-4
-        label(for='user-details-preferred-contact-method') Preferred contact method
+        label.optional(for='user-details-preferred-contact-method') Preferred contact method
         select#user-details-preferred-contact-method.form-control(name='PreferredContactMethod', required, ng-model='user.PreferredContactMethod')
           option(value='') Please select a preferred contact method
           option(value='Email') Email
@@ -23,7 +23,7 @@
           option(value='Phone or email') Phone or email
     .row
       .form-group.col-sm-4
-        label(for='user-details-field-state') State
+        label.optional(for='user-details-field-state') State
         select#user-details-field-state.form-control(name='State', required, ng-model='user.State')
           option(value='') Please select the state in which you reside
           option(value='QLD') QLD
@@ -35,10 +35,10 @@
           option(value='SA') SA
           option(value='NT') NT
       .form-group.col-sm-4
-        label(for='user-details-field-postcode') Postcode
+        label.optional(for='user-details-field-postcode') Postcode
         input#user-details-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', required, ng-model='user.Postcode')
       .form-group.col-sm-4
-        label(for='user-details-field-suburb') Suburb
+        label.optional(for='user-details-field-suburb') Suburb
         input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', required ng-model='user.Suburb')
     .row
       .form-group.col-xs-12

@@ -2,9 +2,21 @@
 
 angular.module('givitApp')
   .service('User', function ($localStorage) {
+    var defaultUserDetails = {
+      ContactNumber: "",
+      EmailAddress: "",
+      Firstname: "",
+      Postcode: "",
+      PreferredContactMethod: "",
+      State: "",
+      Suburb: "",
+      Surname: "",
+      TermsOfParticipation: false
+    }
+
     this.$storage = $localStorage;
     this.$storage.$default({
-      userDetails: {},
+      userDetails: angular.copy(defaultUserDetails),
       givitListSearch: {
         postcode: '',
         km: ''
@@ -24,6 +36,7 @@ angular.module('givitApp')
     };
 
     this.setUserDetails = function (userDetails) {
+      userDetails = _.assign({}, defaultUserDetails, userDetails);
       this.$storage.userDetails = userDetails;
     };
 

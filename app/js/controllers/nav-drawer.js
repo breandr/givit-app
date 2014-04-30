@@ -1,34 +1,19 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('NavDrawerCtrl', function ($scope, $location, User) {
+  .controller('NavDrawerCtrl', function ($scope, $rootScope, $location, User) {
     $scope.user = User.$storage.userDetails;
 
+    $scope.$on('actionBar.givitListSearch.show', function hideNavBar() {
+      $scope.hide();
+    });
+
     $scope.show = function () {
-      $('.nav-drawer').collapse('show');
+      angular.element('.nav-drawer').collapse('show');
     };
 
     $scope.hide = function () {
-      $('.nav-drawer').collapse('hide');
-    };
-
-    $scope.onShow = function () {
-      angular.element('nav-drawer')
-        .prepend($('<div class="nav-drawer-overlay" />'))
-        .children('.nav-drawer-overlay')
-        .on('click', function () {
-          $(this).siblings('.nav-drawer').collapse('hide');
-        })
-        .css('height', window.screen.height)
-        .fadeIn();
-    };
-
-    $scope.onHide = function () {
-      angular.element('nav-drawer')
-        .children('.nav-drawer-overlay')
-        .fadeOut(function () {
-          angular.element('.nav-drawer-overlay').remove();
-        });
+      angular.element('.nav-drawer').collapse('hide');
     };
 
     $scope.redirectIfNoUserMinimalDetails = function ($event) {
@@ -38,6 +23,33 @@ angular.module('givitApp')
       }
     };
 
-    angular.element('nav-drawer').on('hide.bs.collapse', $scope.onHide);
-    angular.element('nav-drawer').on('show.bs.collapse', $scope.onShow);
+    function onShow() {
+      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
+
+      toggleButton.css('left', '-25px');
+      angular.element('nav-drawer')
+        .prepend($('<div class="nav-drawer-overlay" />'))
+        .children('.nav-drawer-overlay')
+        .on('click', function () {
+          $(this).siblings('.nav-drawer').collapse('hide');
+        })
+        .css('height', window.screen.height)
+        .fadeIn();
+      $rootScope.$broadcast('navDrawer.show');
+    };
+
+    function onHide() {
+      var toggleButton = angular.element('.navbar-header .navbar-toggle .fa-bars', angular.element(this).parent().parent());
+
+      toggleButton.css('left', '-15px');
+      angular.element('nav-drawer')
+        .children('.nav-drawer-overlay')
+        .fadeOut(function () {
+          angular.element('.nav-drawer-overlay').remove();
+        });
+    };
+
+    angular.element('nav-drawer')
+    .on('show.bs.collapse', onShow)
+    .on('hide.bs.collapse', onHide);
   });

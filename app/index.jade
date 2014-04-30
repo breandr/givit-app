@@ -23,7 +23,7 @@ html.no-js
     link(rel='stylesheet', href='css/photo-selector.css')
     link(rel='stylesheet', href='css/main.css')
     link(rel='stylesheet', href='css/action-bar.css')
-    link(rel='stylesheet', href='css/info-msg.css')
+    link(rel='stylesheet', href='css/feedback.css')
     link(rel='stylesheet', href='css/nav-drawer.css')
     link(rel='stylesheet', href='css/about.css')
     link(rel='stylesheet', href='css/donate-item.css')
@@ -38,7 +38,8 @@ html.no-js
     .content-area(ng-view='')
     div(ng-include='\'views/give-item.html\'')
     div(ng-include='\'views/terms-of-participation.html\'')
-    info-msg
+    feedback
+    overlay
     //-Google Analytics: change UA-XXXXX-X to be your site's ID
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -76,10 +77,11 @@ html.no-js
     script(src='js/controllers/main.js')
     script(src='js/directives/actionbar.js')
     script(src='js/directives/navdrawer.js')
-    script(src='js/directives/info-msg.js')
+    script(src='js/directives/feedback.js')
+    script(src='js/directives/overlay.js')
     script(src='js/controllers/nav-drawer.js')
     script(src='js/controllers/actionbar.js')
-    script(src='js/controllers/info-msg.js')
+    script(src='js/controllers/feedback.js')
     script(src='js/controllers/give-item.js')
     script(src='js/controllers/about.js')
     script(src='js/controllers/donate-item.js')
@@ -91,5 +93,5 @@ html.no-js
     script(src='js/services/user.js')
     script(src='js/services/items.js')
     script(src='js/services/donateitem.js')
-    script(src='js/services/InfoMsg.js')
+    script(src='js/services/Feedback.js')
     //endbuild

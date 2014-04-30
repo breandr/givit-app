@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('DonateItemCtrl', function ($scope, $http, Device, User, GivitApi) {
+  .controller('DonateItemCtrl', function ($scope, $rootScope, $http, Device, User, GivitApi, Feedback) {
     var pristine = {
       ItemName: '',
       ItemDescription: '',
@@ -22,7 +22,7 @@ angular.module('givitApp')
       $scope.item.ImageData = imageData;
     }
 
-    function onPhotoFail(/*message*/) {
+    function onPhotoFail( /*message*/ ) {
       // window.alert(message);
     }
 
@@ -40,15 +40,25 @@ angular.module('givitApp')
       }
     };
 
-    function onDonateSuccess(response) {
-      if (response.data.DonorID > 0) {
-        User.setDonorId(response.data.DonorID);
+    function onDonateSuccess(responseBody) {
+      if (responseBody.DonorID > 0) {
+        User.setDonorId(responseBody.DonorID);
       }
 
       $scope.item = angular.copy(pristine);
       angular.element('img.preview').hide();
       $scope.donateItemForm.$setPristine();
       window.scrollTo(0, 0);
+      console.log(Feedback);
+      Feedback.setStyle('success').setMessage('Thank you for pledgeing to give to someone in need. <i class="fa fa-heart-o"></i>').show(4000);
+    }
+
+    function onDonateError() {
+      Feedback.setStyle('danger').setMessage('Something went wrong, and your pledge didn\'t make it through. <i class="fa fa-frown-o"></i>').show(4000);
+    }
+
+    function onDonate() {
+      $rootScope.$broadcast('overlay.hide');
     }
 
     $scope.donateItem = function () {
@@ -59,10 +69,16 @@ angular.module('givitApp')
       var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
       requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
 
+      $rootScope.$broadcast('overlay.show');
+
       $http({
         method: 'POST',
         url: GivitApi.url + 'donations',
         data: requestData
-      }).then(onDonateSuccess);
+      })
+        .success(onDonateError)
+        .error(onDonateError)
+        .
+      finally(onDonate);
     };
   });

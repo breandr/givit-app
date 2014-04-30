@@ -8,7 +8,7 @@
         label(for='donate-item-field-short-description') Short Description
         input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName')
       .form-group.col-xs-12.col-sm-5
-          label Photo
+          label.optional Photo
           .photo-selector
             button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
               i.fa.fa-camera
@@ -33,7 +33,7 @@
           option(value='90') Three months
     .row
       .form-group.col-xs-12
-        label(for='donate-item-field-comment') Comments
+        label.optional(for='donate-item-field-comment') Comments
         textarea#donate-item-field-comment.form-control(rows='3', name='ItemDescription', placeholder='', ng-model='item.ItemDescription')
     .row
       .form-group.col-xs-12

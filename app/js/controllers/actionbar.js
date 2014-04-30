@@ -1,15 +1,19 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('ActionBarCtrl', function ($scope, $route) {
+  .controller('ActionBarCtrl', function ($scope, $rootScope, $route) {
     $scope.isSearchShown = false;
 
-    $scope.toggleNavDrawer = function(){
-      angular.element('.nav-drawer').collapse('toggle');
+    $scope.$on('navDrawer.show', function hideGivitSearchList() {
+      $scope.hideGivitSearchList();
+    });
+
+    $scope.showGivitSearchList = function () {
+      angular.element('#givit-list-search-form-container').collapse('show');
     };
-    
-    $scope.showGivitListSearch = function () {
-      $scope.isSearchShown = !$scope.isSearchShown;
+
+    $scope.hideGivitSearchList = function () {
+      angular.element('#givit-list-search-form-container').collapse('hide');
     };
 
     $scope.currentRouteIs = function (routes) {
@@ -19,4 +23,18 @@ angular.module('givitApp')
 
       return routes.indexOf($route.current.templateUrl) > -1;
     };
+
+    function onShowGivitSearchList() {
+      alert(1);
+      $rootScope.$broadcast('actionBar.givitListSearch.show');
+    };
+
+    function onHideGivitSearchList() {
+      alert(2);
+    };
+console.log(angular.element('#givit-list-search-form-container'));
+    angular.element('#givit-list-search-form-container')
+    .on('show.bs.collapse', onShowGivitSearchList)
+    .on('hide.bs.collapse', onHideGivitSearchList);
+    $scope.showGivitSearchList();
   });

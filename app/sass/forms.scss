@@ -1,19 +1,18 @@
-@import '_variables.scss';
+@import "../bower_components/sass-bootstrap/lib/_variables.scss";
+@import "_variables.scss";
 
 // a copy from _forms.scss but without the min-width restriction
 .form-inline-always {
   // Inline-block all the things for "inline"
-  .form-group  {
+  .form-group {
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
   }
-
   // In navbar-form, allow folks to *not* use `.form-group`
   .form-control {
     display: inline-block;
   }
-
   // Remove default margin on radios/checkboxes that were used for stacking, and
   // then undo the floating of radios and checkboxes to match (which also avoids
   // a bug in WebKit: https://github.com/twbs/bootstrap/issues/1969).
@@ -29,4 +28,11 @@
     float: none;
     margin-left: 0;
   }
+}
+
+label.optional::after {
+  content: " Optional";
+  color: $text-muted;
+  font-size: 0.8em;
+  // font-style: italic;
 }
