@@ -5,14 +5,22 @@ angular.module('givitApp').directive('overlay', function () {
     restrict: 'E',
     replace: true,
     controller: function ($scope, $element) {
-      $scope.message = '<p class="text-center">Loading....</p>';
-      
+      $scope.message = '<div class="text-center"><i class="fa fa-repeat fa-spin"></i></div>';
+
       $scope.$on('overlay.show', function showOverlay() {
-        $element.modal('show');
+        $element
+          .show()
+          .removeClass('fadeOut')
+          .addClass('fadeIn');
       });
 
       $scope.$on('overlay.hide', function hideOverlay() {
-        $element.modal('hide');
+        $element
+          .removeClass('fadeIn')
+          .addClass('fadeOut')
+          .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            angular.element(this).hide();
+          });
       });
     },
     templateUrl: 'views/overlay.html'

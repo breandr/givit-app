@@ -1,5 +1,5 @@
 .givit-list(ng-controller='GivitListCtrl')
-  .clearfix.deckgrid.deckgrid-cols-xs-2.deckgrid-cols-sm-3.deckgrid-cols-md-4.deckgrid-cols-lg-5(infinite-scroll='loadItems(\'append\')', infinite-scroll-distance='1', infinite-scroll-disabled='isLoadingItems', infinite-scroll-immediate-check='{{true}}', deckgrid='deckgrid', source='items')
+  .clearfix.deckgrid.deckgrid-cols-xs-2.deckgrid-cols-sm-3.deckgrid-cols-md-4.deckgrid-cols-lg-5(infinite-scroll='loadItems(\'add\')', infinite-scroll-distance='5', infinite-scroll-disabled='isLoadingItems', infinite-scroll-immediate-check='{{true}}', deckgrid='deckgrid', source='items')
     .givit-list-item.deckgrid-card.clearfix
       button.close(type='button', aria-hidden='true', ng-click='mother.hideItem(card.GUID, $event)') &times;
       //-
@@ -19,5 +19,5 @@
         p {{card.Recipient}}
       .card-actions.clearfix
         button.btn.btn-primary.pull-right(ng-click='mother.selectGivitItem(card.GUID)') Give
-  .loading-items-indicator(ng-show='isLoadingItems') Loading more items...
+  //- .loading-items-indicator(ng-show='isLoadingItems') Loading more items...
   .no-items-indicator(ng-show='!isLoadingItems && items.length === 0') No items found

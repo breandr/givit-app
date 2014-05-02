@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('givitApp')
-  .service('Items', function ($localStorage, $http, GivitApi) {
+  .service('Items', function ($localStorage, $http, GivitApi, Feedback) {
+    this.isLoading = false;
     this.$storage = $localStorage;
     this.$storage.$default({
       cachedItems: [],
-      hiddenItems: []
+      hiddenItems: [],
+      givitListSearch: {
+        postcode: '',
+        km: '',
+        pageNumber: 1
+      }
     });
 
     /**
@@ -69,15 +75,23 @@ angular.module('givitApp')
 
     /**
      * Gets items from API
-     * @param  {Object} params  Request parameters
      * @param  {String} loadMode Can be `set` (default) or `add`
      * @return {Promise}
      */
-    this.getItems = function (params, loadMode) {
-      params = params || {};
+    this.getItems = function (loadMode) {
+      var params = {};
       loadMode = loadMode || 'set';
 
-      _.defaults(params, {
+      if (loadMode === 'set') {
+        this.$storage.givitListSearch.pageNumber = 1;
+      } else if(this.$storage.givitListSearch.pageNumber >= this.pageCount){
+        return false;
+      } else {
+        this.$storage.givitListSearch.pageNumber++;
+      }
+
+      Feedback.setStyle('info').setMessage('Loading... <i class="fa fa-repeat fa-spin"></i>').show();
+      _.defaults(params, this.$storage.givitListSearch, {
         pageNumber: 1,
         rowsPerPage: 15,
         fItemName: '',
@@ -100,13 +114,22 @@ angular.module('givitApp')
         } else {
           this.addItemsToCache(items);
         }
-      };
+      }.bind(this);
+
+      var onGetItemsSuccess = function(response) {
+        updateCachedItems(response);
+        this.pageCount = response.data.PageCount;
+        Feedback.hide();
+        this.isLoading = false;
+      }.bind(this);
+
+      this.isLoading = true;
 
       return $http({
         method: 'GET',
         url: GivitApi.url + 'givitlist',
         params: params
-      }).then(updateCachedItems.bind(this));
+      }).then(onGetItemsSuccess.bind(this));
     };
 
     this.addItemsToCache = function (items) {

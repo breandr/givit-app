@@ -1,14 +1,16 @@
 .donate-item.container
-  form#donate-item-form(name='donateItemForm', role='form', ng-controller='DonateItemCtrl')
+  form#donate-item-form(name='donateItemForm', role='form', ng-controller='DonateItemCtrl', ng-submit="donateItem()" novalidate)
     .row
-      .form-group.col-xs-3.col-sm-2
-        label(for='donate-item-field-qty') Qty.
-        input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', pattern='[0-9]*', required, ng-model='item.QuantityOffered', min='1')
-      .form-group.col-xs-9.col-sm-5
-        label(for='donate-item-field-short-description') Short Description
-        input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName')
+      .form-group.col-xs-3.col-sm-2(ng-class='{"has-error": donateItemForm.QuantityOffered.$invalid && !donateItemForm.QuantityOffered.$pristine}')
+        label.control-label(for='donate-item-field-qty') Qty.
+        input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', required, ng-model='item.QuantityOffered', min='1')
+        .help-block(ng-show='donateItemForm.QuantityOffered.$error.required && donateItemForm.submitted') Required
+      .form-group.col-xs-9.col-sm-5(ng-class='{"has-error": donateItemForm.ItemName.$invalid && donateItemForm.submitted}')
+        label.control-label(for='donate-item-field-short-description') Short Description
+        input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName' autofocus)
+        .help-block(ng-show='donateItemForm.ItemName.$error.required && donateItemForm.submitted') Required
       .form-group.col-xs-12.col-sm-5
-          label.optional Photo
+          label.control-label.optional Photo
           .photo-selector
             button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
               i.fa.fa-camera
@@ -17,36 +19,38 @@
               //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
           img.preview
     .row
-      .form-group.col-sm-6
-        label(for='donate-item-field-condition') Condition
+      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.ItemCondition.$invalid && donateItemForm.submitted}')
+        label.control-label(for='donate-item-field-condition') Condition
         select#donate-item-field-condition.form-control(name='ItemCondition', required, ng-model='item.ItemCondition')
           option(value='') Please select a condition
           option(value='New') New/As new
           option(value='Used') Gently used
           option(value='Older') Older, but excellent
-      .form-group.col-sm-6
-        label(for='donate-item-field-hold-duration') I will hold this item for
+        .help-block(ng-show='donateItemForm.ItemCondition.$error.required && donateItemForm.submitted') Required
+      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.HoldItemDays.$invalid && donateItemForm.submitted}')
+        label.control-label(for='donate-item-field-hold-duration') I will hold this item for
         select#donate-item-field-hold-duration.form-control(name='HoldItemDays', required, ng-model='item.HoldItemDays')
           option(value='') Please select a duration
           option(value='30') One month
           option(value='60') Two months
           option(value='90') Three months
+        .help-block(ng-show='donateItemForm.HoldItemDays.$error.required && donateItemForm.submitted') Required
     .row
       .form-group.col-xs-12
-        label.optional(for='donate-item-field-comment') Comments
+        label.control-label.optional(for='donate-item-field-comment') Comments
         textarea#donate-item-field-comment.form-control(rows='3', name='ItemDescription', placeholder='', ng-model='item.ItemDescription')
     .row
       .form-group.col-xs-12
         toggle-switch#donate-item-field-can-drop-off(model='item.DonorCanDropOff', on-label='Yes, I can', off-label='No, I can\'t')
-        label drop this item off to a charity in my area
+        label.control-label drop this item off to a charity in my area
     .row
       .form-group.col-xs-12
         toggle-switch#donate-item-field-can-post-aus-wide(model='item.DonorCanPost', on-label='Yes, I can', off-label='No, I can\'t')
-        label post this item Australia-wide
+        label.control-label post this item Australia-wide
     .row
       .form-group.col-xs-12
         toggle-switch#donate-item-field-prefer-charity-collection(model='item.CharityCanPickUp', on-label='Yes, I would', off-label='No, I wouldn\'t')
-        label prefer the charity to collect this item
+        label.control-label prefer the charity to collect this item
     .row
       .col-xs-12
-        button.btn.btn-primary.pull-right(type='submit', ng-click="donateItem()") Donate
+        button.btn.btn-primary.pull-right(type='submit') Donate

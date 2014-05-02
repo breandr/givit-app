@@ -28,12 +28,18 @@
 }
 
 .nav-drawer {
+  &.fadeInLeft {
+    animation-duration: 0.4s;
+  }
+  &.fadeOutLeft {
+    animation-duration: 0.2s;
+  }
+  display: none;
   @media (max-width: $nav-drawer-breakpoint - 1) {
     white-space: nowrap;
     position: absolute;
     max-height: none;
     height: auto;
-    transition: width 0.35s ease;
     overflow-x: hidden;
     height: 1000px;
     //need to find out how to set this to the screen height
@@ -126,9 +132,13 @@
 }
 
 .nav-drawer-overlay {
-  position: fixed;
-  width: 100%;
-  background: #000;
-  opacity: 0.2;
+  &.fadeIn {
+    animation-duration: 0.4s;
+  }
+  &.fadeOut {
+    animation-duration: 0.2s;
+  }
+  background-color: rgba(0, 0, 0, 0.2);
   display: none;
+  z-index: 0;
 }

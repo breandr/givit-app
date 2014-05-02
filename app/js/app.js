@@ -48,15 +48,15 @@ angular.module('givitApp', [
       $locationProvider.html5Mode(false);
     }
   ])
-  .run(function () {
+  .run(function ($rootScope) {
     FastClick.attach(document.body);
-    
+
     document.addEventListener('backbutton', function (e) {
       var navDrawer = angular.element('.nav-drawer');
 
-      if (navDrawer.hasClass('in')) {
+      if (navDrawer.hasClass('fadeInLeft')) {
         e.preventDefault();
-        navDrawer.collapse('hide');
+        $rootScope.broadcast('navDrawer.hide');
       }else if(angular.element('body.modal-open').length > 0){
         angular.element('.modal.in').modal('hide');
       } else {

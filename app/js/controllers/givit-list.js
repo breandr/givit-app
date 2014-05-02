@@ -1,17 +1,20 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GivitListCtrl', function ($rootScope, $scope, $location, User, Items) {
-    $scope.filter = User.$storage.givitListSearch;
-    $scope.items = Items.$storage.cachedItems;
-    $scope.isLoadingItems = false;
-    $scope.pageNumber = 1;
+  .controller('GivitListCtrl', function ($rootScope, $scope, $location, User, Items, Feedback) {
+    $scope.items = {}; //Items.$storage.cachedItems;
+    $scope.isLoadingItems = Items.isLoading;
+
+    $scope.$on('$locationChangeStart', function onLocationChangeStart() {
+      Feedback.hide();
+    });
 
     $scope.$watch(function () {
-      return User.$storage.givitListSearch;
-    }, function (givitListSearch) {
-      $scope.filter = givitListSearch;
+      return Items.isLoading;
+    }, function (isLoading) {
+      $scope.isLoadingItems = isLoading;
     });
+
     $scope.$watch(function () {
       return Items.$storage.cachedItems;
     }, function (cachedItems) {
@@ -19,16 +22,7 @@ angular.module('givitApp')
     });
 
     $scope.loadItems = function (loadMode) {
-      loadMode = loadMode || 'set';
-      $scope.isLoadingItems = true;
-
-      Items.getItems({
-        pageNumber: $scope.pageNumber++,
-        fPostcode: $scope.filter.postcode,
-        fWithinKm: $scope.filter.km
-      }, loadMode).then(function () {
-        $scope.isLoadingItems = false;
-      });
+      Items.getItems(loadMode);
     };
 
     $scope.hideItem = function (itemGuid, $event) {
@@ -55,7 +49,7 @@ angular.module('givitApp')
 
     // Ideally, this would poll the server for new and removed items to update the local cache.
     // For simplicity we are just going to get new items
-    if (_.isEmpty($scope.items)) {
-      $scope.loadItems();
-    }
+    // if (_.isEmpty($scope.items)) {
+    $scope.loadItems();
+    // }
   });

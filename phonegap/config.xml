@@ -67,7 +67,7 @@
         
     <preference name="phonegap-version" value="3.3.0" />
     <preference name="orientation" value="default" />
-    <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
+    <preference name="fullscreen" value="false" /> <!-- remove the upper bar on iOS and Android -->
         
     <!-- iOS PREFERENCES -->
     <gap:config-file platform="ios" parent="UIStatusBarHidden">

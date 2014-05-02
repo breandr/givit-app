@@ -1,48 +1,55 @@
 'use strict';
 
 angular.module('givitApp')
-  .controller('GivitListSearchCtrl', function ($scope, $rootScope, $route, User, App) {
-    // $scope.$on('navDrawer.show', function hide() {
-    //   $scope.hide();
+  .controller('GivitListSearchCtrl', function ($scope, $rootScope, $route, User, App, Items) {
+    $scope.filter = _.clone(User.$storage.givitListSearch);
+
+    // $scope.$watch(function () {
+    //   return User.$storage.givitListSearch;
+    // }, function (givitListSearch) {
+    //   $scope.filter = givitListSearch;
     // });
 
+    $scope.$on('navDrawer.show', function hide() {
+      $scope.hide();
+    });
+
     $scope.show = function () {
-      angular.element('#givit-list-search-form-container').collapse('show');
+      $rootScope.$broadcast('givitListSearch.show');
     };
 
     $scope.hide = function () {
-      angular.element('#givit-list-search-form-container').collapse('hide');
+      $rootScope.$broadcast('givitListSearch.hide');
     };
 
     $scope.currentRouteIs = function (routes) {
       return App.currentRouteIs(routes);
     };
 
-    function onShow() {
-      window.alert(1);
-      $rootScope.$broadcast('givitListSearch.show');
-    }
-
-    function onHide() {
-      window.alert(2);
-    }
-
     $scope.clearSearch = function () {
-      $scope.filter = User.$storage.givitListSearch = {};
-      $scope.hide();
+      $scope.givitListSearchForm.submitted = false;
       window.scrollTo(0, 0);
-      $scope.loadItems('set');
+      $scope.hide();
+
+      if (_.isEmpty(User.$storage.givitListSearch)) {
+        return;
+      }
+
+      $scope.filter = User.$storage.givitListSearch = {};
+      Items.getItems('set');
     };
 
     $scope.search = function () {
-      $scope.pageNumber = 1;
-      $scope.hide();
-      $scope.loadItems('set');
-    };
+      $scope.givitListSearchForm.submitted = true;
 
-    console.log(angular.element('#givit-list-search-form-container'));
-    angular.element('#givit-list-search-form-container')
-      .on('show.bs.collapse', onShow)
-      .on('hide.bs.collapse', onHide);
-    // $scope.show();
+      if (!$scope.givitListSearchForm.$valid) {
+        return false;
+      }
+
+      window.scrollTo(0, 0);
+      $scope.filter.pageNumber = 1;
+      $scope.hide();
+      User.$storage.givitListSearch = $scope.filter;
+      Items.getItems('set');
+    };
   });

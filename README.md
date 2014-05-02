@@ -3,10 +3,7 @@ givit-app
 
 TODO
 ====
-Split givit search list into it's own controller
 Add feedback when sending data to server for donating, responding, and searching
-On Nav Drawer open: Close Givit List Search
-On Givit List Search open: Close Nav Drawer
 Create remaining splash screen sizes for ios
 Givit List Search
   Add "Use current location" feature

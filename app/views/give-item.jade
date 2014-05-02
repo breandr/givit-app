@@ -14,13 +14,14 @@
             | Listed 
             span(am-time-ago="item.DateListed")
         p {{item.Recipient}}
-        form(ng-submit="giveItem($event)")
+        form(name='giveItemForm', ng-submit="giveItem()" novalidate)
           .row
-            .form-group.col-xs-3
-              label(for='donate-item-field-qty') Qty.
-              input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', pattern='\d*', required, ng-model='item.QuantityOffered', min='1')
+            .form-group.col-xs-3(ng-class='{"has-error": giveItemForm.QuantityOffered.$invalid && giveItemForm.submitted}')
+              label.control-label(for='donate-item-field-qty') Qty.
+              input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', required, ng-model='item.QuantityOffered', min='1')
+              .help-block(ng-show='giveItemForm.QuantityOffered.$error.required && giveItemForm.submitted') Required
             .form-group.col-xs-9
-              label.optional Photo
+              label.control-label.optional Photo
               .photo-selector
                 button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
                   i.fa.fa-camera
@@ -30,4 +31,4 @@
               img.preview
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-        button.btn.btn-primary(type='button', ng-click='giveItem()') Give
+        button.btn.btn-primary(type='submit', ng-click='giveItem()') Give

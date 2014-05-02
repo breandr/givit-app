@@ -16,7 +16,7 @@ angular.module('givitApp')
 
     this.$storage = $localStorage;
     this.$storage.$default({
-      userDetails: angular.copy(defaultUserDetails),
+      userDetails: _.clone(defaultUserDetails),
       givitListSearch: {
         postcode: '',
         km: ''

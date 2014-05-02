@@ -13,7 +13,7 @@ angular.module('givitApp')
       CharityCanPickUp: false
     };
 
-    $scope.item = angular.copy(pristine);
+    $scope.item = _.clone(pristine);
 
     function onPhotoSuccess(imageData) {
       var image = angular.element('img.preview');
@@ -45,11 +45,10 @@ angular.module('givitApp')
         User.setDonorId(responseBody.DonorID);
       }
 
-      $scope.item = angular.copy(pristine);
+      $scope.item = _.clone(pristine);
       angular.element('img.preview').hide();
       $scope.donateItemForm.$setPristine();
       window.scrollTo(0, 0);
-      console.log(Feedback);
       Feedback.setStyle('success').setMessage('Thank you for pledgeing to give to someone in need. <i class="fa fa-heart-o"></i>').show(4000);
     }
 
@@ -58,16 +57,20 @@ angular.module('givitApp')
     }
 
     function onDonate() {
+      $scope.donateItemForm.submitted = false;
       $rootScope.$broadcast('overlay.hide');
     }
 
     $scope.donateItem = function () {
-      if (!$scope.donateItemForm.$valid) {
+      $scope.donateItemForm.submitted = true;
+      
+      if ($scope.donateItemForm.$invalid) {
         return false;
       }
 
-      var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
-      requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
+      var requestData = _.assign({
+        HasImage: $scope.item.ImageData && $scope.item.ImageData.length > 0
+      }, User.$storage.userDetails, $scope.item);
 
       $rootScope.$broadcast('overlay.show');
 

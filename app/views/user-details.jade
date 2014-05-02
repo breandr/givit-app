@@ -1,21 +1,25 @@
 .user-details.container
-  form#user-details-form(role='form', ng-controller='UserDetailsCtrl')
+  form#user-details-form(role='form', name='userDetailsForm', ng-controller='UserDetailsCtrl')
     .row
-      .form-group.col-sm-6
-        label(for='user-details-field-given-names') Given Name(s)
+      .form-group.col-sm-6(ng-class='{"has-error": userDetailsForm.Firstname.$invalid && userDetailsForm.Firstname.$dirty}')
+        label.control-label(for='user-details-field-given-names') Given Name(s)
         input#user-details-field-given-names.form-control(type='text', name='Firstname', placeholder='Joe', required, ng-model='user.Firstname')
-      .form-group.col-sm-6
-        label(for='user-details-field-family-name') Family Name
+        .help-block(ng-show='userDetailsForm.Firstname.$error.required && userDetailsForm.Firstname.$dirty') Required
+      .form-group.col-sm-6(ng-class='{"has-error": userDetailsForm.Surname.$invalid && userDetailsForm.Surname.$dirty}')
+        label.control-label(for='user-details-field-family-name') Family Name
         input#user-details-field-family-name.form-control(type='text', name='Surname', placeholder='Bloggs', required, ng-model='user.Surname')
+        .help-block(ng-show='userDetailsForm.Surname.$error.required && userDetailsForm.Surname.$dirty') Required
     .row
       .form-group.col-sm-4
-        label.optional(for='user-details-field-phone') Phone (Landline or Mobile)
+        label.control-label.optional(for='user-details-field-phone') Phone (Landline or Mobile)
         input#user-details-field-phone.form-control(type='tel', name='ContactNumber', placeholder='(+61) 0400 420 007 or 37 236 198', required, ng-model='user.ContactNumber')
-      .form-group.col-sm-4
-        label(for='user-details-field-email') Email address
+      .form-group.col-sm-4(ng-class='{"has-error": userDetailsForm.EmailAddress.$invalid && userDetailsForm.EmailAddress.$dirty}')
+        label.control-label(for='user-details-field-email') Email address
         input#user-details-field-email.form-control(type='email', name='EmailAddress', placeholder='joe.bloggs@gmail.com', required, ng-model='user.EmailAddress')
+        .help-block(ng-show='userDetailsForm.EmailAddress.$error.required && userDetailsForm.EmailAddress.$dirty') Required
+        .help-block(ng-show='userDetailsForm.EmailAddress.$error.email && userDetailsForm.EmailAddress.$dirty') Invalid email
       .form-group.col-sm-4
-        label.optional(for='user-details-preferred-contact-method') Preferred contact method
+        label.control-label.optional(for='user-details-preferred-contact-method') Preferred contact method
         select#user-details-preferred-contact-method.form-control(name='PreferredContactMethod', required, ng-model='user.PreferredContactMethod')
           option(value='') Please select a preferred contact method
           option(value='Email') Email
@@ -23,7 +27,7 @@
           option(value='Phone or email') Phone or email
     .row
       .form-group.col-sm-4
-        label.optional(for='user-details-field-state') State
+        label.control-label.optional(for='user-details-field-state') State
         select#user-details-field-state.form-control(name='State', required, ng-model='user.State')
           option(value='') Please select the state in which you reside
           option(value='QLD') QLD
@@ -35,13 +39,14 @@
           option(value='SA') SA
           option(value='NT') NT
       .form-group.col-sm-4
-        label.optional(for='user-details-field-postcode') Postcode
+        label.control-label.optional(for='user-details-field-postcode') Postcode
         input#user-details-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', required, ng-model='user.Postcode')
       .form-group.col-sm-4
-        label.optional(for='user-details-field-suburb') Suburb
+        label.control-label.optional(for='user-details-field-suburb') Suburb
         input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', required ng-model='user.Suburb')
     .row
-      .form-group.col-xs-12
-        toggle-switch#user-details-field-terms-of-participation(model='user.TermsOfParticipation', on-label='Yes, I agree', off-label='No, I don\'t agree', required)
-        label to all 
+      .form-group.col-xs-12(ng-class='{"has-error": userDetailsForm.TermsOfParticipation.$invalid && userDetailsForm.TermsOfParticipation.$dirty}')
+        toggle-switch#user-details-field-terms-of-participation(model='user.TermsOfParticipation', on-label='Yes, I agree', off-label='No, I don\'t agree', ng-required="!user.TermsOfParticipation")
+        label.control-label to all 
           a(data-toggle='modal', data-target='#termsOfParticipationModal', href='') Terms of Participation*
+        .help-block(ng-show='userDetailsForm.TermsOfParticipation.$error.required && userDetailsForm.TermsOfParticipation.$dirty') Required

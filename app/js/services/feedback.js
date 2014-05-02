@@ -11,13 +11,18 @@ angular.module('givitApp')
 
     this.setStyle = function (style) {
       style = 'alert-' + style;
-      this.feedbackEl.removeClass('alert-primary alert-success alert-info alert-warning alert-danger').addClass(style);
+      this.feedbackEl
+        .removeClass('alert-primary alert-success alert-info alert-warning alert-danger')
+        .addClass(style);
 
       return this;
     };
 
     this.show = function (millisecondsToShowFor) {
-      this.feedbackEl.addClass('fadeInUp').removeClass('fadeOutDown');
+      this.feedbackEl
+        .show()
+        .addClass('fadeInUp')
+        .removeClass('fadeOutDown');
 
       if (millisecondsToShowFor) {
         setTimeout(this.hide.bind(this), millisecondsToShowFor); // <-- time in milliseconds
@@ -28,7 +33,12 @@ angular.module('givitApp')
     };
 
     this.hide = function () {
-      this.feedbackEl.addClass('fadeOutDown').removeClass('fadeInUp');
+      this.feedbackEl
+        .addClass('fadeOutDown')
+        .removeClass('fadeInUp')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+          angular.element(this).hide();
+        });
 
       return this;
     };

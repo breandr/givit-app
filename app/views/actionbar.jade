@@ -1,11 +1,12 @@
 nav.navbar.navbar-default.navbar-fixed-top.action-bar(role='navigation', ng-controller='ActionBarCtrl')
   .navbar-header
-    button.btn.navbar-toggle.pull-left(type='button', data-toggle='collapse', data-target='.nav-drawer')
+    button.btn.navbar-toggle.pull-left(type='button', ng-click='toggleNavDrawer()')
       span.sr-only Navigation Drawer
       i.fa.fa-bars.fa-2x.pull-left
       span.logo.pull-left
       span.navbar-brand GIVIT
-    button#action-bar-givit-list-search-button.btn.pull-right(type='button', data-toggle='collapse', data-target='#givit-list-search-form-container', ng-show='currentRouteIs(\'views/givit-list.html\')')
+    button#action-bar-givit-list-search-button.btn.pull-right(type='button', ng-show='currentRouteIs(\'views/givit-list.html\')', ng-click='toggleGivitListSearch()')
       i.fa.fa-search
   nav-drawer
-  div(ng-include='\'views/givit-list-search.html\'')
+  //- div(ng-include='\'views/givit-list-search.html\'')
+  givit-list-search

@@ -1,4 +1,4 @@
-.navbar-collapse.collapse.nav-drawer.width(ng-controller='NavDrawerCtrl')
+#navigation-drawer.nav-drawer.animated.fadeOutLeft(ng-controller='NavDrawerCtrl')
   ul.nav.navbar-nav
     //-
        <li ng-class="{ active: isActive('/user-details')}" class="banner user-details">
@@ -11,10 +11,10 @@
           </a>
         </li> 
     li(ng-class='{ active: isActive(\'/\') || isActive(\'/givit-list\')}')
-      a(href='#/givit-list', ng-click='hide()') Givit List
+      a(href='#/givit-list', ng-click='hideNavDrawer()') Givit List
     li(ng-class='{ active: isActive(\'/donate-item\')}')
-      a(href='#/donate-item', ng-click='hide(); redirectIfNoUserMinimalDetails($event)') Donate Item
+      a(href='#/donate-item', ng-click='hideNavDrawer(); redirectIfNoUserMinimalDetails($event)') Donate Item
     li(ng-class='{ active: isActive(\'/user-details\')}')
-      a(href='#/user-details', ng-click='hide()') My Details
+      a(href='#/user-details', ng-click='hideNavDrawer()') My Details
     li(ng-class='{ active: isActive(\'/about\')}')
-      a(href='#/about', ng-click='hide()') About
+      a(href='#/about', ng-click='hideNavDrawer()') About

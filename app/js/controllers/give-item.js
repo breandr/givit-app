@@ -61,14 +61,21 @@ angular.module('givitApp')
     }
 
     function onRespond() {
+      $scope.giveItemForm.submitted = false;
       $rootScope.$broadcast('overlay.hide');
     }
 
     $scope.giveItem = function () {
-      var requestData = _.assign({}, User.$storage.userDetails, $scope.item);
+      $scope.giveItemForm.submitted = true;
+      
+      if ($scope.giveItemForm.$invalid) {
+        return false;
+      }
 
-      requestData.HasImage = $scope.item.ImageData && $scope.item.ImageData.length > 0;
-      requestData.ItemGuid = $scope.item.GUID;
+      var requestData = _.assign({
+        HasImage: $scope.item.ImageData && $scope.item.ImageData.length > 0,
+        ItemGuid: $scope.item.GUID
+      }, User.$storage.userDetails, $scope.item);
 
       $rootScope.$broadcast('overlay.show');
 
