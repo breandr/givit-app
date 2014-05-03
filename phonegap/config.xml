@@ -97,7 +97,7 @@
     <!-- <preference name="android-maxSdkVersion" value="19" /> maximum Android 4.4 -->
     <preference name="android-targetSdkVersion" value="19" /> <!-- targeting Android 4.4 -->
     <preference name="android-installLocation" value="auto" />
-    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
+    <preference name="android-windowSoftInputMode" value="adjustResize" />
     <preference name="splash-screen-duration" value="5000" />
 
     <preference name="load-url-timeout" value="20000" />

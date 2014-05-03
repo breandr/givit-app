@@ -27,7 +27,6 @@ angular.module('givitApp')
     };
 
     $scope.clearSearch = function () {
-      $scope.givitListSearchForm.submitted = false;
       window.scrollTo(0, 0);
       $scope.hide();
 
@@ -41,8 +40,9 @@ angular.module('givitApp')
 
     $scope.search = function () {
       $scope.givitListSearchForm.submitted = true;
-
-      if (!$scope.givitListSearchForm.$valid) {
+      
+      if ($scope.givitListSearchForm.$invalid) {
+        angular.element('#givit-list-search-form .ng-invalid:first').focus();
         return false;
       }
 
@@ -50,6 +50,8 @@ angular.module('givitApp')
       $scope.filter.pageNumber = 1;
       $scope.hide();
       User.$storage.givitListSearch = $scope.filter;
-      Items.getItems('set');
+      Items.getItems('set').then(function () {
+        $scope.givitListSearchForm.submitted = false;
+      });
     };
   });

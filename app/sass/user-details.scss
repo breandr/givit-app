@@ -1,11 +1,12 @@
-@import '_variables.scss';
+@import "_variables.scss";
 
-.user-details{
-  	button[type="submit"]{
-  		width: 100%;
-  	}
+.user-details {
+  padding-bottom: 2.5em;
+  button[type="submit"] {
+    width: 100%;
+  }
 }
 
-#user-details-field-terms-of-participation{
-	width: 240px;
-} 
+#user-details-field-terms-of-participation {
+  width: 240px;
+}

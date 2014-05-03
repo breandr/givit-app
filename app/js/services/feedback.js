@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .service('Feedback', function () {
+  .service('Feedback', function ($timeout) {
     this.feedbackEl = angular.element('.feedback');
     // this.feedbackEl.collapse();
 
@@ -25,7 +25,7 @@ angular.module('givitApp')
         .removeClass('fadeOutDown');
 
       if (millisecondsToShowFor) {
-        setTimeout(this.hide.bind(this), millisecondsToShowFor); // <-- time in milliseconds
+        $timeout(this.hide.bind(this), millisecondsToShowFor);
       }
 
 

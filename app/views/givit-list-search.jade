@@ -1,16 +1,16 @@
 #givit-list-search-form-container.animated.fadeOutUp(ng-controller='GivitListSearchCtrl', ng-show='currentRouteIs(\'views/givit-list.html\')')
   form#givit-list-search-form.form-inline-always.pull-right(role='form', name='givitListSearchForm', ng-submit='search()', novalidate)
-    #givit-list-search-field-container-km.form-group(ng-class='{"has-error": givitListSearchForm.Km.$invalid && givitListSearchForm.submitted}')
+    #givit-list-search-field-container-km.form-group(ng-class='{"has-error": givitListSearchForm.Km.$invalid && (givitListSearchForm.Km.$dirty || givitListSearchForm.submitted)}')
       label.control-label(for='givit-list-search-field-km') Within {{filter.km | number}}
       input#givit-list-search-field-km.form-control(type='tel', minlength='1', maxlength='4', name='Km', placeholder='50', required, ng-model='filter.fWithinKm')
-      .help-block(ng-show='givitListSearchForm.Km.$error.required && givitListSearchForm.submitted') Required
-    #givit-list-search-field-container-postcode.form-group(ng-class='{"has-error": givitListSearchForm.Postcode.$invalid && givitListSearchForm.submitted}')
+      //- .help-block(ng-show='givitListSearchForm.Km.$error.required && (givitListSearchForm.Km.$dirty || givitListSearchForm.submitted)') Required
+    #givit-list-search-field-container-postcode.form-group(ng-class='{"has-error": givitListSearchForm.Postcode.$invalid && (givitListSearchForm.Postcode.$dirty || givitListSearchForm.submitted)}')
       label.control-label(for='givit-list-search-field-postcode') Km of postcode: {{filter.postcode}}
       input#givit-list-search-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', required, ng-model='filter.fPostcode')
-      .help-block(ng-show='givitListSearchForm.Postcode.$error.required && givitListSearchForm.submitted') Required
+      //- .help-block(ng-show='givitListSearchForm.Postcode.$error.required && (givitListSearchForm.Postcode.$dirty || givitListSearchForm.submitted)') Required
     .form-group.search-btn-container
       button.search-btn.btn.btn-primary(type='submit')
         i.fa.fa-search
         span.btn-text Search
-      button.btn.btn-warning(type='reset', ng-click='clearSearch($event)')
+      button.clear-search-btn.btn.btn-warning(type='reset', ng-click='clearSearch($event)')
         i.fa.fa-times

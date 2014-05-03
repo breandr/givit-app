@@ -14,20 +14,20 @@
             | Listed 
             span(am-time-ago="item.DateListed")
         p {{item.Recipient}}
-        form(name='giveItemForm', ng-submit="giveItem()" novalidate)
+        form#give-item-form(name='giveItemForm', ng-submit="giveItem()" novalidate)
           .row
-            .form-group.col-xs-3(ng-class='{"has-error": giveItemForm.QuantityOffered.$invalid && giveItemForm.submitted}')
+            .form-group.col-xs-3(ng-class='{"has-error": giveItemForm.QuantityOffered.$invalid && (giveItemForm.QuantityOffered.$dirty || giveItemForm.submitted)}')
               label.control-label(for='donate-item-field-qty') Qty.
               input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', required, ng-model='item.QuantityOffered', min='1')
-              .help-block(ng-show='giveItemForm.QuantityOffered.$error.required && giveItemForm.submitted') Required
+              //- .help-block(ng-show='giveItemForm.QuantityOffered.$error.required && (giveItemForm.QuantityOffered.$dirty || giveItemForm.submitted)') Required
             .form-group.col-xs-9
               label.control-label.optional Photo
               .photo-selector
                 button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
                   i.fa.fa-camera
-                  //- input(type='file', accept="image/*", capture="camera", name='Photo', required, ng-model='item.photo')
+                  //- input(type='file', accept="image/*", capture="camera", name='Photo', ng-model='item.photo')
                 button.photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
-                  //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required, ng-model='item.photo')
+                  //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', ng-model='item.photo')
               img.preview
       .modal-footer
         button.btn.btn-default(type='button', data-dismiss='modal') Cancel

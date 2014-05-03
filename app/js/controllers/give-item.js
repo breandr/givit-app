@@ -69,6 +69,7 @@ angular.module('givitApp')
       $scope.giveItemForm.submitted = true;
       
       if ($scope.giveItemForm.$invalid) {
+        angular.element('#give-item-form .ng-invalid:first').focus();
         return false;
       }
 

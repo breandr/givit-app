@@ -65,6 +65,7 @@ angular.module('givitApp')
       $scope.donateItemForm.submitted = true;
       
       if ($scope.donateItemForm.$invalid) {
+        angular.element('#donate-item-form .ng-invalid:first').focus();
         return false;
       }
 

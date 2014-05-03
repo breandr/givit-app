@@ -1,40 +1,40 @@
 .donate-item.container
   form#donate-item-form(name='donateItemForm', role='form', ng-controller='DonateItemCtrl', ng-submit="donateItem()" novalidate)
     .row
-      .form-group.col-xs-3.col-sm-2(ng-class='{"has-error": donateItemForm.QuantityOffered.$invalid && !donateItemForm.QuantityOffered.$pristine}')
+      .form-group.col-xs-3.col-sm-2(ng-class='{"has-error": donateItemForm.QuantityOffered.$invalid && (donateItemForm.QuantityOffered.$dirty || donateItemForm.submitted)}')
         label.control-label(for='donate-item-field-qty') Qty.
         input#donate-item-field-qty.form-control(type='tel', name='QuantityOffered', placeholder='2', required, ng-model='item.QuantityOffered', min='1')
-        .help-block(ng-show='donateItemForm.QuantityOffered.$error.required && donateItemForm.submitted') Required
-      .form-group.col-xs-9.col-sm-5(ng-class='{"has-error": donateItemForm.ItemName.$invalid && donateItemForm.submitted}')
+        //- .help-block(ng-show='donateItemForm.QuantityOffered.$error.required && (donateItemForm.QuantityOffered.$dirty || donateItemForm.submitted)') Required
+      .form-group.col-xs-9.col-sm-5(ng-class='{"has-error": donateItemForm.ItemName.$invalid && (donateItemForm.ItemName.$dirty || donateItemForm.submitted)}')
         label.control-label(for='donate-item-field-short-description') Short Description
         input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName' autofocus)
-        .help-block(ng-show='donateItemForm.ItemName.$error.required && donateItemForm.submitted') Required
+        //- .help-block(ng-show='donateItemForm.ItemName.$error.required && (donateItemForm.ItemName.$dirty || donateItemForm.submitted)') Required
       .form-group.col-xs-12.col-sm-5
           label.control-label.optional Photo
           .photo-selector
             button.photo-selector-camera.btn.btn-primary(type="button", ng-click='takePhoto($event)')
               i.fa.fa-camera
-              //- input(type='file', accept="image/*", capture="camera", name='Photo', required='required', ng-model='item.photo')
+              //- input(type='file', accept="image/*", capture="camera", name='Photo', ng-model='item.photo')
             button.photo-selector-gallery.btn.btn-primary(type="button", ng-click='selectPhoto($event)') Select from gallery
-              //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', required='required', ng-model='item.photo')
+              //- input#donate-item-field-photo(type='file', accept="image/*", name='Photo', ng-model='item.photo')
           img.preview
     .row
-      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.ItemCondition.$invalid && donateItemForm.submitted}')
+      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.ItemCondition.$invalid && (donateItemForm.ItemCondition.$dirty || donateItemForm.submitted)}')
         label.control-label(for='donate-item-field-condition') Condition
         select#donate-item-field-condition.form-control(name='ItemCondition', required, ng-model='item.ItemCondition')
           option(value='') Please select a condition
           option(value='New') New/As new
           option(value='Used') Gently used
           option(value='Older') Older, but excellent
-        .help-block(ng-show='donateItemForm.ItemCondition.$error.required && donateItemForm.submitted') Required
-      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.HoldItemDays.$invalid && donateItemForm.submitted}')
+        //- .help-block(ng-show='donateItemForm.ItemCondition.$error.required && (donateItemForm.ItemCondition.$dirty || donateItemForm.submitted)') Required
+      .form-group.col-sm-6(ng-class='{"has-error": donateItemForm.HoldItemDays.$invalid && (donateItemForm.HoldItemDays.$dirty || donateItemForm.submitted)}')
         label.control-label(for='donate-item-field-hold-duration') I will hold this item for
         select#donate-item-field-hold-duration.form-control(name='HoldItemDays', required, ng-model='item.HoldItemDays')
           option(value='') Please select a duration
           option(value='30') One month
           option(value='60') Two months
           option(value='90') Three months
-        .help-block(ng-show='donateItemForm.HoldItemDays.$error.required && donateItemForm.submitted') Required
+        //- .help-block(ng-show='donateItemForm.HoldItemDays.$error.required && (donateItemForm.HoldItemDays.$dirty || donateItemForm.submitted)') Required
     .row
       .form-group.col-xs-12
         label.control-label.optional(for='donate-item-field-comment') Comments
