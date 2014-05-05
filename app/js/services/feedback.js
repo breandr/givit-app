@@ -3,10 +3,17 @@
 angular.module('givitApp')
   .service('Feedback', function ($timeout) {
     this.feedbackEl = angular.element('.feedback');
-    // this.feedbackEl.collapse();
 
     this.toggle = function () {
-      return this;
+      return this.shown() ? this.hide() : this.show();
+    };
+
+    this.hidden = function () {
+      return this.feedbackEl.hasClass('fadeOutDown');
+    };
+
+    this.shown = function () {
+      return this.feedbackEl.hasClass('fadeInUp');
     };
 
     this.setStyle = function (style) {
@@ -19,63 +26,27 @@ angular.module('givitApp')
     };
 
     this.show = function (millisecondsToShowFor) {
-      this.feedbackEl
-        .show()
-        .addClass('fadeInUp')
-        .removeClass('fadeOutDown');
-
-      if (millisecondsToShowFor) {
-        $timeout(this.hide.bind(this), millisecondsToShowFor);
+      if (this.shown()) {
+        return this;
       }
 
+      this.feedbackEl
+        .addClass('fadeInUp')
+        .removeClass('fadeOutDown')
+        .show();
+
+      if (millisecondsToShowFor) {
+        $timeout(this.hide, millisecondsToShowFor);
+      }
 
       return this;
     };
-
-    this.show1 = function (millisecondsToShowFor) {
-      this.feedbackEl
-        .show()
-        .addClass('fadeInUp')
-        .removeClass('fadeOutDown');
-
-      if (millisecondsToShowFor) {
-        var callback = this.hide;
-        $timeout(callback, millisecondsToShowFor);
-      }
-
-
-      return this;
-    };
-
-    this.show2 = function (millisecondsToShowFor) {
-      this.feedbackEl
-        .show()
-        .addClass('fadeInUp')
-        .removeClass('fadeOutDown');
-
-      if (millisecondsToShowFor) {
-        var callback = this.hide;
-        $timeout(function () {
-          callback();
-        }, millisecondsToShowFor);
-      }
-
-
-      return this;
-    };
-    window.show = function (ms) {
-      this.show(ms);
-    }.bind(this);
-    
-    window.show1 = function (ms) {
-      this.show1(ms);
-    }.bind(this);
-    
-    window.show2 = function (ms) {
-      this.show2(ms);
-    }.bind(this);
 
     this.hide = function () {
+      if (this.hidden()) {
+        return this;
+      }
+
       this.feedbackEl
         .addClass('fadeOutDown')
         .removeClass('fadeInUp')
@@ -85,7 +56,7 @@ angular.module('givitApp')
 
       return this;
     }.bind(this);
-
+    
     this.setMessage = function (msg) {
       this.feedbackEl.html(msg);
 
