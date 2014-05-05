@@ -97,89 +97,83 @@ gulp.task('phonegap-serve', function () {
     });
 });
 
-gulp.task('html-useref', ['styles'], function () {
+gulp.task('html-useref', ['styles', 'scripts'], function () {
   var jsFilter = filter(debugDest.js + '**/*.js'),
     cssFilter = filter(debugDest.css + '*.css');
 
   watch({
-      glob: src.html + '**/*.jade'
-    },
-    function (files) {
-      return files
-        .pipe(plumber())
-        .pipe(jade({
-          data: pkg,
-          pretty: true
-        })).pipe(gulp.dest(debugDest.root))
-        .pipe(useref.assets({
-          searchPath: [src.root, debugDest.root]
-        }))
-        .pipe(jsFilter)
-      // .pipe(ngmin())
-      // .pipe(rev())
-      .pipe(uglify({
-        output: {
-          comments: false,
-          ie_proof: false
-        }
-      }))
-        .pipe(jsFilter.restore())
-        .pipe(cssFilter)
-        .pipe(minifyCss())
-        .pipe(rev())
-        .pipe(cssFilter.restore())
-        .pipe(useref.restore())
-        .pipe(useref())
-        .pipe(minifyHtml({
-          empty: true
-        }))
-        .pipe(gulp.dest(releaseDest.root))
-        .pipe(connect.reload());
-    });
+    glob: src.html + '**/*.jade'
+  })
+    .pipe(plumber())
+    .pipe(jade({
+      data: pkg,
+      pretty: true
+    }))
+    .pipe(gulp.dest(debugDest.root))
+    .pipe(useref.assets({
+      searchPath: [src.root, debugDest.root]
+    }))
+    .pipe(jsFilter)
+  .pipe(ngmin())
+  // .pipe(rev())
+  // .pipe(uglify({
+  //   output: {
+  //     comments: false,
+  //     ie_proof: false
+  //   }
+  // }))
+    .pipe(jsFilter.restore())
+    .pipe(cssFilter)
+    .pipe(minifyCss())
+    .pipe(rev())
+    .pipe(cssFilter.restore())
+    .pipe(useref.restore())
+    .pipe(useref())
+    .pipe(minifyHtml({
+      empty: true
+    }))
+    .pipe(gulp.dest(releaseDest.root))
+    .pipe(connect.reload());
 });
 
 // Styles
 gulp.task('styles', function () {
-  watch({
+  return watch({
     glob: [src.sass + '*.scss', '!' + src.sass + '_*.scss']
-  }, function (files) {
-    return files
+  })
     .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
     }))
-      .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-      .pipe(gulp.dest(debugDest.css))
-      .pipe(gulp.dest(releaseDest.css))
-      .pipe(connect.reload());
-  });
+    .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest(debugDest.css))
+    // .pipe(gulp.dest(releaseDest.css))
+    .pipe(connect.reload());
 });
 
 // Scripts
 gulp.task('scripts', function () {
   var appFilter = filter('app.js');
 
-  return gulp.src(src.js + '/**/*.js', {
+  return watch({
+    glob: src.js + '/**/*.js',
     base: src.js
   })
-    .pipe(watch(function (files) {
-      return files
-        .pipe(plumber())
-      // .pipe(jscs())
-      .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('jshint-stylish'))
-      // .pipe(plumber())
-      // .pipe(appFilter)
-      // .pipe(browserify({
-      //   insertGlobals: true,
-      //   debug: !IS_RELEASE_BUILD
-      // }))
-      // .pipe(appFilter.restore())
-      .pipe(gulp.dest(debugDest.js))
-      // .pipe(gulp.dest(releaseDest.js))
-      .pipe(connect.reload());
-    }));
+    .pipe(plumber())
+  // .pipe(jscs())
+  .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'))
+  // .pipe(plumber())
+  // .pipe(appFilter)
+  // .pipe(browserify({
+  //   insertGlobals: true,
+  //   debug: !IS_RELEASE_BUILD
+  // }))
+  // .pipe(appFilter.restore())
+  .pipe(gulp.dest(debugDest.js))
+  // .pipe(gulp.dest(releaseDest.js))
+  .pipe(connect.reload());
 });
 
 // Images
