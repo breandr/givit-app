@@ -47,17 +47,19 @@ var _ = require('lodash'),
   IS_RELEASE_BUILD = !! argv.release,
   IS_PHONEGAP_BUILD = !! argv.phonegap,
   LAUNCH = !! argv.launch,
-  BUILD_TYPE = (function(){
+  BUILD_TYPE = (function () {
     var buildType = IS_RELEASE_BUILD ? 'release' : 'debug';
 
-    if(IS_PHONEGAP_BUILD){
+    if (IS_PHONEGAP_BUILD) {
       return 'phonegap' + buildType.charAt(0).toUpperCase() + buildType.slice(1);
     }
 
     return buildType;
   })(),
   src = buildConfig.paths.src,
-  dest = buildConfig.paths[BUILD_TYPE],
+  // dest = buildConfig.paths[BUILD_TYPE],
+  debugDest = buildConfig.paths.debug,
+  releaseDest = buildConfig.paths.release,
   banner = _.template(buildConfig.banner, {
     pkg: pkg
   });
@@ -83,114 +85,101 @@ gulp.task('phonegap-run-android', function () {
 
 gulp.task('phonegap-serve', function () {
   var serve = exec('phonegap serve', {
-    cwd: dest.root
-  },
-  function (error, stdout, stderr) {
-    gutil.log('stdout: ' + stdout);
-    gutil.log('stderr: ' + stderr);
-    
-    if (error !== null) {
-      gutil.log('exec error: ' + error);
-    }
-});
-});
+      cwd: debugDest.root
+    },
+    function (error, stdout, stderr) {
+      gutil.log('stdout: ' + stdout);
+      gutil.log('stderr: ' + stderr);
 
-gulp.task('html-useref', ['styles', 'scripts'], function () {
-  var jsFilter = filter(src.js + '**/*.js');
-  var scssFilter = filter([src.sass + '*.scss', '!' + src.sass + '_*.scss']);
-
-  var html = gulp.src(src.html + '**/*.jade')
-    .pipe(watch())
-    .pipe(plumber())
-    .pipe(jade({
-      data: pkg,
-      pretty: true
-    }));
-
-  if (IS_RELEASE_BUILD) {
-    html = html.pipe(useref.assets())
-      .pipe(jsFilter)
-      .pipe(ngmin())
-      .pipe(rev())
-      .pipe(uglify())
-      .pipe(jsFilter.restore())
-      .pipe(scssFilter)
-      .pipe(minifyCss())
-      .pipe(rev())
-      .pipe(scssFilter.restore())
-      .pipe(useref.restore())
-      .pipe(useref())
-      .pipe(minifyHtml({
-        empty: true
-      }));
-  }
-
-  html.pipe(gulp.dest(dest.root))
-    .pipe(connect.reload());
+      if (error !== null) {
+        gutil.log('exec error: ' + error);
+      }
+    });
 });
 
-// Html
-gulp.task('html', ['styles', 'scripts'], function () {
-  var html = gulp.src(src.html + '**/*.jade')
-    .pipe(watch())
-    .pipe(plumber())
-    .pipe(jade({
-      data: pkg,
-      pretty: true
-    }));
+gulp.task('html-useref', ['styles'], function () {
+  var jsFilter = filter(debugDest.js + '**/*.js'),
+    cssFilter = filter(debugDest.css + '*.css');
 
-  if (IS_RELEASE_BUILD) {
-    html = html.pipe(usemin({
-      vendorCss: [minifyCss(), 'concat', rev()],
-      appCss: [minifyCss(), 'concat', rev()],
-      vendorJs: [ngmin(), uglify(), rev()],
-      appJs: [ /*ngmin(), */ uglify(), rev()],
-      html: [minifyHtml({
-        empty: true
-      })]
-    }));
-  }
-
-  html
-    .pipe(gulp.dest(dest.root))
-    .pipe(connect.reload());
+  watch({
+      glob: src.html + '**/*.jade'
+    },
+    function (files) {
+      return files
+        .pipe(plumber())
+        .pipe(jade({
+          data: pkg,
+          pretty: true
+        })).pipe(gulp.dest(debugDest.root))
+        .pipe(useref.assets({
+          searchPath: [src.root, debugDest.root]
+        }))
+        .pipe(jsFilter)
+      // .pipe(ngmin())
+      // .pipe(rev())
+      .pipe(uglify({
+        output: {
+          comments: false,
+          ie_proof: false
+        }
+      }))
+        .pipe(jsFilter.restore())
+        .pipe(cssFilter)
+        .pipe(minifyCss())
+        .pipe(rev())
+        .pipe(cssFilter.restore())
+        .pipe(useref.restore())
+        .pipe(useref())
+        .pipe(minifyHtml({
+          empty: true
+        }))
+        .pipe(gulp.dest(releaseDest.root))
+        .pipe(connect.reload());
+    });
 });
 
 // Styles
 gulp.task('styles', function () {
-  gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
-    .pipe(watch())
+  watch({
+    glob: [src.sass + '*.scss', '!' + src.sass + '_*.scss']
+  }, function (files) {
+    return files
     .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'
     }))
-    .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest(dest.css))
-    .pipe(connect.reload());
+      .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+      .pipe(gulp.dest(debugDest.css))
+      .pipe(gulp.dest(releaseDest.css))
+      .pipe(connect.reload());
+  });
 });
 
 // Scripts
 gulp.task('scripts', function () {
   var appFilter = filter('app.js');
 
-  gulp.src(src.js + '/**/*.js', {
+  return gulp.src(src.js + '/**/*.js', {
     base: src.js
   })
-    .pipe(watch())
-    .pipe(plumber())
-  // .pipe(jscs())
-  .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-  // .pipe(plumber())
-  // .pipe(appFilter)
-  // .pipe(browserify({
-  //   insertGlobals: true,
-  //   debug: !IS_RELEASE_BUILD
-  // }))
-  // .pipe(appFilter.restore())
-  .pipe(gulp.dest(dest.js))
-    .pipe(connect.reload())
+    .pipe(watch(function (files) {
+      return files
+        .pipe(plumber())
+      // .pipe(jscs())
+      .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('jshint-stylish'))
+      // .pipe(plumber())
+      // .pipe(appFilter)
+      // .pipe(browserify({
+      //   insertGlobals: true,
+      //   debug: !IS_RELEASE_BUILD
+      // }))
+      // .pipe(appFilter.restore())
+      .pipe(gulp.dest(debugDest.js))
+      // .pipe(gulp.dest(releaseDest.js))
+      .pipe(connect.reload());
+    }));
 });
 
 // Images
@@ -202,12 +191,13 @@ gulp.task('images', function () {
       interlaced: true
     })))
     .pipe(connect.reload())
-    .pipe(gulp.dest(dest.img))
+    .pipe(gulp.dest(debugDest.img))
+    .pipe(gulp.dest(releaseDest.img))
 });
 
 // Clean
 gulp.task('clean', function () {
-  return gulp.src(dest.root, {
+  return gulp.src([debugDest.root, releaseDest.root], {
     read: false
   })
     .pipe(clean());
@@ -223,22 +213,37 @@ gulp.task('copy', function () {
     src.root + '**/.pgbomit'
   ];
 
-  if (!IS_RELEASE_BUILD) {
-    filesToCopy.push(src.root + 'bower_components/**');
-  }
+  // if (!IS_RELEASE_BUILD) {
+  //   filesToCopy.push(src.root + 'bower_components/**');
+  // }
 
   gulp.src(filesToCopy, {
     base: src.root
   })
-    .pipe(gulp.dest(dest.root));
+    .pipe(gulp.dest(debugDest.root))
+    .pipe(gulp.dest(releaseDest.root));
+
+  gulp.src(src.root + 'bower_components/**', {
+    base: src.root
+  })
+    .pipe(gulp.dest(debugDest.root))
 });
 
-gulp.task('connect', connect.server({
-  root: [dest.root],
-  port: 9000,
-  livereload: true,
-  open: LAUNCH
-}));
+gulp.task('connect', function () {
+  connect.server({
+    root: [debugDest.root],
+    port: 9000,
+    livereload: true,
+    open: LAUNCH
+  })();
+
+  connect.server({
+    root: [releaseDest.root],
+    port: 9001,
+    livereload: true,
+    open: false
+  })();
+});
 
 gulp.task('serve', ['build', 'connect']);
 

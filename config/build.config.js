@@ -1,8 +1,8 @@
-var srcRoot = './app/',
-  debugRoot = './builds/debug/',
-  releaseRoot = './builds/dist/',
-  phonegapDebugRoot = './builds/phonegap-debug/',
-  phonegapReleaseRoot = './builds/phonegap-release/';
+var srcRoot = 'app/',
+  debugRoot = 'builds/debug/',
+  releaseRoot = 'builds/release/',
+  phonegapDebugRoot = 'builds/phonegap-debug/',
+  phonegapReleaseRoot = 'builds/phonegap-release/';
 
 module.exports = {
   paths: {
