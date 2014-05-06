@@ -19,7 +19,7 @@ angular.module('givitApp')
           angular
             .element('.content-area')
             .first()
-            .after($('<div class="nav-drawer-overlay modal-backdrop animated fadeIn" />'))
+            .after($('<div class="nav-drawer-overlay modal-backdrop animated fadeIn"></div>'))
             .siblings('.nav-drawer-overlay')
             .on('click', function () {
               hide();

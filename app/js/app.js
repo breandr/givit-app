@@ -1,10 +1,10 @@
 'use strict';
 
-// require('angular/angular');
-// require('angular-route/angular-route');
-// require('./controllers');
-// require('./directives');
-// require('./services');
+/* require('angular/angular');
+require('angular-route/angular-route');
+require('./controllers');
+require('./directives');
+require('./services');*/
 
 angular.module('givitApp', [
   'ngCookies',

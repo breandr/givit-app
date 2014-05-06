@@ -32,8 +32,10 @@ var _ = require('lodash'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   ngmin = require('gulp-ngmin'),
+  templateCache = require('gulp-angular-templatecache'),
+  ngHtml2Js = require('gulp-ng-html2js'),
   imagemin = require('gulp-imagemin'),
-  rename = require('gulp-rename'),
+  replace = require('gulp-replace'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
   cache = require('gulp-cache'),
@@ -97,13 +99,16 @@ gulp.task('phonegap-serve', function () {
     });
 });
 
-gulp.task('html-useref', ['styles', 'scripts'], function () {
-  var jsFilter = filter(debugDest.js + '**/*.js'),
-    cssFilter = filter(debugDest.css + '*.css');
+gulp.task('html', ['styles', 'scripts', 'ng-templace-cache'], function () {
+  var indexHtmlFilter = filter('index.html'),
+    ngViewsFilter = filter('views/*.html'),
+    appJsFilter = filter('js/app.js'),
+    vendorJsFilter = filter('js/vendor.js'),
+    appCssFilter = filter('css/app.css'),
+    vendorCssFilter = filter('css/vendor.css'),
+    revvedVendorCss = revvedAppCss = revvedVendorJs = revvedAppJs = 'test';
 
-  watch({
-    glob: src.html + '**/*.jade'
-  })
+  return gulp.src(src.jade + 'index.jade')
     .pipe(plumber())
     .pipe(jade({
       data: pkg,
@@ -111,36 +116,101 @@ gulp.task('html-useref', ['styles', 'scripts'], function () {
     }))
     .pipe(gulp.dest(debugDest.root))
     .pipe(useref.assets({
-      searchPath: [src.root, debugDest.root]
+      searchPath: debugDest.root
     }))
-    .pipe(jsFilter)
-  .pipe(ngmin())
-  // .pipe(rev())
+    .pipe(vendorJsFilter)
+    .pipe(ngmin())
   // .pipe(uglify({
-  //   output: {
-  //     comments: false,
-  //     ie_proof: false
-  //   }
+  //   mangle: false
   // }))
-    .pipe(jsFilter.restore())
-    .pipe(cssFilter)
+  // .pipe(rev()).on('data', function (file) {
+  //   revvedVendorJs = file.relative;
+  // })
+  .pipe(vendorJsFilter.restore())
+    .pipe(appJsFilter)
+    .pipe(ngmin())
+  // .pipe(uglify({
+  //   mangle: false
+  // }))
+  // .pipe(rev()).on('data', function (file) {
+  //   revvedAppJs = file.relative;
+  // })
+  .pipe(appJsFilter.restore())
+    .pipe(vendorCssFilter)
     .pipe(minifyCss())
-    .pipe(rev())
-    .pipe(cssFilter.restore())
+  // .pipe(rev()).on('data', function (file) {
+  //   revvedVendorCss = file.relative;
+  // })
+  .pipe(gulp.dest(releaseDest.root))
+    .pipe(vendorCssFilter.restore())
+    .pipe(appCssFilter)
+    .pipe(minifyCss())
+  // .pipe(rev()).on('data', function (file) {
+  //   revvedAppCss = file.relative;
+  // })
+  .pipe(appCssFilter.restore())
+    .pipe(rev()).on('data', function (file) {
+      console.log(file.base, file.stat, file.revOrigPath, file.path);
+      Object.keys(file).forEach(function (path, orig) {
+        console.log(path, orig);
+      });
+    })
+    .pipe(rev.manifest()).on('data', function (manifest) {
+      // console.log(manifest.base, manifest.stat, manifest.revOrigPath, manifest.path);
+      Object.keys(manifest).forEach(function (path, orig) {
+        console.log(path, orig);
+      });
+    })
     .pipe(useref.restore())
     .pipe(useref())
-    .pipe(minifyHtml({
-      empty: true
+    .pipe(indexHtmlFilter)
+    .pipe(replace('css/vendor.css', function () {
+      return revvedVendorCss;
     }))
+    .pipe(replace('css/app.css', function () {
+      return revvedAppCss;
+    }))
+    .pipe(replace('js/vendor.js', function () {
+      return revvedVendorJs;
+    }))
+    .pipe(replace('js/app.js', function () {
+      return revvedAppJs;
+    }))
+    .pipe(minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe(indexHtmlFilter.restore())
     .pipe(gulp.dest(releaseDest.root))
+    .pipe(rev.manifest())
     .pipe(connect.reload());
+});
+
+//AngularJs Template Cache
+gulp.task('ng-templace-cache', function () {
+  gulp.src(src.jade + 'views/**/*.jade')
+    .pipe(plumber())
+    .pipe(jade({
+      data: pkg,
+      pretty: true
+    }))
+    .pipe(minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe(templateCache({
+      module: 'givitApp',
+      root: 'views/'
+    }))
+    .pipe(concat('views.js'))
+    .pipe(gulp.dest(debugDest.js));
 });
 
 // Styles
 gulp.task('styles', function () {
-  return watch({
-    glob: [src.sass + '*.scss', '!' + src.sass + '_*.scss']
-  })
+  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
     .pipe(plumber())
     .pipe(sass({
       style: 'expanded',
@@ -148,7 +218,6 @@ gulp.task('styles', function () {
     }))
     .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(debugDest.css))
-    // .pipe(gulp.dest(releaseDest.css))
     .pipe(connect.reload());
 });
 
@@ -156,15 +225,11 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
   var appFilter = filter('app.js');
 
-  return watch({
-    glob: src.js + '/**/*.js',
-    base: src.js
-  })
+  return gulp.src(src.js + '**/*.js')
     .pipe(plumber())
   // .pipe(jscs())
   .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
-  // .pipe(plumber())
   // .pipe(appFilter)
   // .pipe(browserify({
   //   insertGlobals: true,
@@ -172,8 +237,21 @@ gulp.task('scripts', function () {
   // }))
   // .pipe(appFilter.restore())
   .pipe(gulp.dest(debugDest.js))
-  // .pipe(gulp.dest(releaseDest.js))
-  .pipe(connect.reload());
+    .pipe(connect.reload());
+});
+
+gulp.task('watch', function () {
+  watch({
+    glob: src.js + '**/*.js'
+  }, ['scripts']);
+
+  watch({
+    glob: [src.sass + '/**/*.scss']
+  }, ['styles']);
+
+  watch({
+    glob: [src.jade + '/**/*.jade']
+  }, ['html']);
 });
 
 // Images
@@ -207,10 +285,6 @@ gulp.task('copy', function () {
     src.root + '**/.pgbomit'
   ];
 
-  // if (!IS_RELEASE_BUILD) {
-  //   filesToCopy.push(src.root + 'bower_components/**');
-  // }
-
   gulp.src(filesToCopy, {
     base: src.root
   })
@@ -223,20 +297,20 @@ gulp.task('copy', function () {
     .pipe(gulp.dest(debugDest.root))
 });
 
-gulp.task('connect', function () {
+gulp.task('connect', ['watch'], function () {
   connect.server({
     root: [debugDest.root],
     port: 9000,
     livereload: true,
     open: LAUNCH
-  })();
+  });
 
   connect.server({
     root: [releaseDest.root],
     port: 9001,
-    livereload: true,
-    open: false
-  })();
+    livereload: false,
+    open: LAUNCH
+  });
 });
 
 gulp.task('serve', ['build', 'connect']);
@@ -258,5 +332,5 @@ gulp.task('bower', function () {
 });
 
 gulp.task('build', ['clean'], function () {
-  gulp.start('images', 'bower', 'copy', 'html-useref');
+  gulp.start('images', 'bower', 'copy', 'html');
 });
