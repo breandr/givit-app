@@ -5,8 +5,8 @@ module.exports = function (grunt) {
     IS_RELEASE_BUILD = !! grunt.option('release'),
     BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
     src = buildConfig.paths[BUILD_TYPE],
-    dest = buildConfig.paths[('phonegap' + BUILD_TYPE.charAt(0).toUpperCase() + BUILD_TYPE.slice(1))];
-    
+    dest = buildConfig.paths[('phonegap-' + BUILD_TYPE)];
+  console.log(BUILD_TYPE);
   grunt.initConfig({
     phonegap: {
       config: {

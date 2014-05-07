@@ -29,6 +29,7 @@ angular.module('givitApp')
     $scope.clearSearch = function () {
       window.scrollTo(0, 0);
       $scope.hide();
+      $scope.givitListSearchForm.submitted = false;
 
       if (_.isEmpty(User.$storage.givitListSearch)) {
         return;

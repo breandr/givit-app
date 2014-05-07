@@ -51,7 +51,7 @@ gulp.task('rebuild', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('build', /*['clean'], */ function () {
+gulp.task('build', function () {
   runSequence([
     'html',
     'copy',

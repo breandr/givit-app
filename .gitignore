@@ -4,6 +4,7 @@ builds
 app/bower_components
 docs
 node_modules
+npm-debug.log
 phonegap/www/**
 phonegap\ -\ Copy
 *.sublime-project

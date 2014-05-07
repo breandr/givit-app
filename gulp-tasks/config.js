@@ -35,7 +35,7 @@ module.exports = {
       js: releaseRoot + 'js/',
       fonts: releaseRoot + 'fonts/'
     },
-    phonegapDebug: {
+    'phonegap-debug': {
       root: phonegapDebugRoot,
       html: phonegapDebugRoot,
       views: phonegapDebugRoot + 'views/',
@@ -45,7 +45,7 @@ module.exports = {
       js: phonegapDebugRoot + 'js/',
       fonts: phonegapDebugRoot + 'fonts/'
     },
-    phonegapReleaseRoot: {
+    'phonegap-release': {
       root: phonegapReleaseRoot,
       html: phonegapReleaseRoot,
       views: phonegapReleaseRoot + 'views/',

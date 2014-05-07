@@ -20,15 +20,15 @@
         .help-block(ng-show='userDetailsForm.EmailAddress.$error.email && (userDetailsForm.EmailAddress.$dirty || userDetailsForm.submitted)') Please enter a valid email address
       .form-group.col-sm-4
         label.control-label.optional(for='user-details-preferred-contact-method') Preferred contact method
-        select#user-details-preferred-contact-method.form-control(name='PreferredContactMethod', ng-model='user.PreferredContactMethod')
+        select#user-details-preferred-contact-method.form-control(name='PreferredContactMethod', required, ng-model='user.PreferredContactMethod')
           option(value='') Please select a preferred contact method
           option(value='Email') Email
           option(value='Phone') Phone
           option(value='Phone or email') Phone or email
     .row
-      .form-group.col-sm-4
-        label.control-label.optional(for='user-details-field-state') State
-        select#user-details-field-state.form-control(name='State', ng-model='user.State')
+      .form-group.col-sm-4(ng-class='{"has-error": userDetailsForm.State.$invalid && (userDetailsForm.State.$dirty || userDetailsForm.submitted)}')
+        label.control-label(for='user-details-field-state') State
+        select#user-details-field-state.form-control(name='State', required, ng-model='user.State')
           option(value='') Please select the state in which you reside
           option(value='QLD') QLD
           option(value='ACT') ACT
@@ -38,9 +38,9 @@
           option(value='WA') WA
           option(value='SA') SA
           option(value='NT') NT
-      .form-group.col-sm-4
-        label.control-label.optional(for='user-details-field-postcode') Postcode
-        input#user-details-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', ng-model='user.Postcode')
+      .form-group.col-sm-4(ng-class='{"has-error": userDetailsForm.Postcode.$invalid && (userDetailsForm.Postcode.$dirty || userDetailsForm.submitted)}')
+        label.control-label(for='user-details-field-postcode') Postcode
+        input#user-details-field-postcode.form-control(type='tel', name='Postcode', placeholder='4718', minlength='4', maxlength='4', required, ng-model='user.Postcode')
       .form-group.col-sm-4
         label.control-label.optional(for='user-details-field-suburb') Suburb
         input#user-details-field-suburb.form-control(type='text', name='Suburb', placeholder='Yelpsville', ng-model='user.Suburb')

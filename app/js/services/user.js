@@ -54,6 +54,6 @@ angular.module('givitApp')
     this.hasMinimalDetails = function () {
       var details = this.$storage.userDetails;
 
-      return _.every(['Firstname', 'Surname', 'EmailAddress', 'TermsOfParticipation'], this.detailExists.bind(this)) && details.TermsOfParticipation;
+      return _.every(['Firstname', 'Surname', 'EmailAddress', 'State', 'Postcode', 'TermsOfParticipation'], this.detailExists.bind(this)) && details.TermsOfParticipation;
     };
   });
