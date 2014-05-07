@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var buildConfig = require('./config/build.config.js'),
+  var buildConfig = require('./gulp-tasks/config.js'),
     IS_RELEASE_BUILD = !! grunt.option('release'),
     BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
     src = buildConfig.paths[BUILD_TYPE],
