@@ -7,7 +7,8 @@ var pkg = require('../package.json'),
   plumber = require('gulp-plumber'),
   changed = require('gulp-changed'),
   jshint = require('gulp-jshint'),
-  connect = require('gulp-connect');
+  connect = require('gulp-connect'),
+  jsdoc = require('gulp-jsdoc');
 
 // 1. Lint changed JS files
 // 2. Write changed JS files to debug js directory
@@ -27,5 +28,6 @@ gulp.task('scripts', function () {
   // }))
   // .pipe(appFilter.restore())
   .pipe(gulp.dest(debugDest.js))
+    .pipe(jsdoc('./docs'))
     .pipe(connect.reload());
 });

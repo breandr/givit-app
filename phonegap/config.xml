@@ -114,5 +114,6 @@
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.geolocation" />
 
-    <access origin="*" subdomains="true" />
+    <access origin="http://givit.org.au" subdomains="true" />
+    <access origin="http://10.1.1.123*" subdomains="true" />
 </widget>
