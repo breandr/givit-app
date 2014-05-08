@@ -1,8 +1,4 @@
-var pkg = require('../package.json'),
-  buildConfig = require('./config.js'),
-  src = buildConfig.paths.src,
-  debugDest = buildConfig.paths.debug,
-  releaseDest = buildConfig.paths.release,
+var paths = require('./config.js').paths,
   gulp = require('gulp'),
   filter = require('gulp-filter'),
   plumber = require('gulp-plumber'),
@@ -21,7 +17,7 @@ var pkg = require('../package.json'),
 gulp.task('useref', function () {
   var manifest;
 
-  gulp.src(debugDest.root + 'index.html')
+  gulp.src(paths.debug.root + 'index.html')
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(rev())
@@ -35,8 +31,8 @@ gulp.task('useref', function () {
       spare: true,
       quotes: true
     }))
-    .pipe(gulp.dest(releaseDest.root))
-    .pipe(gulp.src(releaseDest.root + 'index.html'))
+    .pipe(gulp.dest(paths.release.root))
+    .pipe(gulp.src(paths.release.root + 'index.html'))
   // .pipe(replace('css/vendor.css', function () {
   //   console.log(manifest['css\\vendor.css']);
   //   return manifest['css\\vendor.css'];
@@ -53,7 +49,7 @@ gulp.task('useref', function () {
   //   console.log(manifest['js\\app.js']);
   //   return manifest['js\\app.js'];
   // }))
-  .pipe(gulp.dest(releaseDest.root))
+  .pipe(gulp.dest(paths.release.root))
     .pipe(connect.reload());
 });
 
@@ -62,15 +58,15 @@ gulp.task('useref-vendor-css', function () {
     vendorCssFilter = filter('css/vendor.css'),
     revvedVendorCss = '';
 
-  return gulp.src(debugDest.root + 'index.html')
+  return gulp.src(paths.debug.root + 'index.html')
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(vendorCssFilter)
     .pipe(minifyCss())
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(vendorCssFilter.restore())
     .pipe(indexHtmlFilter)
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(connect.reload());
 });
 
@@ -79,15 +75,15 @@ gulp.task('useref-app-css', function () {
     appCssFilter = filter('css/app.css'),
     revvedAppCss = '';
 
-  return gulp.src(debugDest.root + 'index.html')
+  return gulp.src(paths.debug.root + 'index.html')
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(appCssFilter)
     .pipe(minifyCss())
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(appCssFilter.restore())
     .pipe(indexHtmlFilter)
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(connect.reload());
 });
 
@@ -96,20 +92,20 @@ gulp.task('useref-vendor-js', function () {
     vendorJsFilter = filter('js/vendor.js'),
     revvedVendorJs = '';
 
-  return gulp.src(debugDest.root + 'index.html')
+  return gulp.src(paths.debug.root + 'index.html')
     .pipe(plumber())
     .pipe(useref.assets({
-      // searchPath: debugDest.root
+      // searchPath: paths.debug.root
     }))
     .pipe(vendorJsFilter)
   // .pipe(ngmin())
   .pipe(uglify({
     mangle: false
   }))
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(vendorJsFilter.restore())
     .pipe(indexHtmlFilter)
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(connect.reload());
 });
 
@@ -118,7 +114,7 @@ gulp.task('useref-app-js', function () {
     appJsFilter = filter('js/app.js'),
     revvedAppJs = '';
 
-  return gulp.src(debugDest.root + 'index.html')
+  return gulp.src(paths.debug.root + 'index.html')
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(appJsFilter)
@@ -126,9 +122,9 @@ gulp.task('useref-app-js', function () {
   .pipe(uglify({
     mangle: false
   }))
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(appJsFilter.restore())
     .pipe(indexHtmlFilter)
-    .pipe(gulp.dest(releaseDest.root))
+    .pipe(gulp.dest(paths.release.root))
     .pipe(connect.reload());
 });

@@ -1,8 +1,4 @@
-var pkg = require('../package.json'),
-  buildConfig = require('./config.js'),
-  src = buildConfig.paths.src,
-  debugDest = buildConfig.paths.debug,
-  releaseDest = buildConfig.paths.release,
+var paths = require('./config.js').paths,
   gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   changed = require('gulp-changed'),
@@ -14,9 +10,9 @@ var pkg = require('../package.json'),
 // 2. Autoprefix CSS
 // 3. Write to debug CSS directory
 gulp.task('styles', function () {
-  return gulp.src([src.sass + '*.scss', '!' + src.sass + '_*.scss'])
+  return gulp.src([paths.src.sass + '*.scss', '!' + paths.src.sass + '_*.scss'])
     .pipe(plumber())
-    .pipe(changed(debugDest.css, {
+    .pipe(changed(paths.debug.css, {
       extension: '.css'
     }))
     .pipe(sass({
@@ -24,6 +20,6 @@ gulp.task('styles', function () {
       loadPath: 'app/bower_components'
     }))
     .pipe(autoprefixer('last 1 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest(debugDest.css))
+    .pipe(gulp.dest(paths.debug.css))
     .pipe(connect.reload());
 });

@@ -45,6 +45,7 @@ angular.module('givitApp', [
           redirectTo: '/'
         });
 
+      // SET THIS TO TRUE FOR WEB APP BUILD ONLY
       $locationProvider.html5Mode(false);
     }
   ])

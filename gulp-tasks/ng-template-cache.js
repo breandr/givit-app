@@ -1,20 +1,18 @@
 var pkg = require('../package.json'),
-  buildConfig = require('./config.js'),
-  src = buildConfig.paths.src,
-  debugDest = buildConfig.paths.debug,
-  releaseDest = buildConfig.paths.release,
+  paths = require('./config.js').paths,
   gulp = require('gulp'),
   jade = require('gulp-jade'),
   plumber = require('gulp-plumber'),
   minifyHtml = require('gulp-minify-html'),
   templateCache = require('gulp-angular-templatecache'),
-  concat = require('gulp-concat');
+  concat = require('gulp-concat'),
+  connect = require('gulp-connect');
 
 // 1. Compiles jade views to HTML and minifies
 // 2. Compiles minified HTML views to $templateCache
 // 3. Concats and writes to debug js directory
 gulp.task('ng-template-cache', function () {
-  gulp.src(src.jade + 'views/**/*.jade')
+  gulp.src(paths.src.jade + 'views/**/*.jade')
     .pipe(plumber())
     .pipe(jade({
       data: pkg,
@@ -30,5 +28,6 @@ gulp.task('ng-template-cache', function () {
       root: 'views/'
     }))
     .pipe(concat('views.js'))
-    .pipe(gulp.dest(debugDest.js));
+    .pipe(gulp.dest(paths.debug.js))
+    .pipe(connect.reload());
 });

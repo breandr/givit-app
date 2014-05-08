@@ -1,17 +1,14 @@
 var pkg = require('../package.json'),
-  buildConfig = require('./config.js'),
-  src = buildConfig.paths.src,
-  debugDest = buildConfig.paths.debug,
-  releaseDest = buildConfig.paths.release,
+  paths = require('./config.js').paths,
   gulp = require('gulp'),
-  filter = require('gulp-filter'),
   plumber = require('gulp-plumber'),
   jade = require('gulp-jade'),
+  /*filter = require('gulp-filter'),
   useref = require('gulp-useref'),
   ngmin = require('gulp-ngmin'),
   minifyCss = require('gulp-minify-css'),
   replace = require('gulp-replace'),
-  minifyHtml = require('gulp-minify-html'),
+  minifyHtml = require('gulp-minify-html'),*/
   connect = require('gulp-connect');
 
 
@@ -21,23 +18,23 @@ var pkg = require('../package.json'),
 // ?. Replace references to concatenated files with revved versions
 // ?. Minify HTML and write to release root directory
 gulp.task('html', ['styles', 'scripts', 'ng-template-cache'], function () {
-  var indexHtmlFilter = filter('index.html'),
+  /*var indexHtmlFilter = filter('index.html'),
     ngViewsFilter = filter('views/*.html'),
     appJsFilter = filter('js/app.js'),
     appCssFilter = filter('css/app.css'),
     vendorCssFilter = filter('css/vendor.css'),
     rev = require('gulp-rev'),
-    revvedVendorCss = revvedAppCss = revvedVendorJs = revvedAppJs = '';
+    revvedVendorCss = revvedAppCss = revvedVendorJs = revvedAppJs = '';*/
 
-  return gulp.src(src.root + 'index.jade')
+  return gulp.src(paths.src.root + 'index.jade')
     .pipe(plumber())
     .pipe(jade({
       data: pkg,
       pretty: true
     }))
-    .pipe(gulp.dest(debugDest.root))
+    .pipe(gulp.dest(paths.debug.root))
   // .pipe(useref.assets({
-  //   searchPath: debugDest.root
+  //   searchPath: paths.debug.root
   // }))
   //   .pipe(vendorJsFilter)
   //   .pipe(changed)
@@ -63,7 +60,7 @@ gulp.task('html', ['styles', 'scripts', 'ng-template-cache'], function () {
   // .pipe(rev()).on('data', function (file) {
   //   revvedVendorCss = file.relative;
   // })
-  // .pipe(gulp.dest(releaseDest.root))
+  // .pipe(gulp.dest(paths.release.root))
   //   .pipe(vendorCssFilter.restore())
   //   .pipe(appCssFilter)
   //   .pipe(minifyCss())
@@ -104,7 +101,7 @@ gulp.task('html', ['styles', 'scripts', 'ng-template-cache'], function () {
   //   quotes: true
   // }))
   // .pipe(indexHtmlFilter.restore())
-  // .pipe(gulp.dest(releaseDest.root))
+  // .pipe(gulp.dest(paths.release.root))
   // .pipe(rev.manifest())
   .pipe(connect.reload());
 });

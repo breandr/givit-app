@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var buildConfig = require('./gulp-tasks/config.js'),
+  var paths = require('./gulp-tasks/config.js').paths,
     IS_RELEASE_BUILD = !! grunt.option('release'),
     BUILD_TYPE = IS_RELEASE_BUILD ? 'release' : 'debug',
-    src = buildConfig.paths[BUILD_TYPE],
-    dest = buildConfig.paths[('phonegap-' + BUILD_TYPE)];
-  console.log(BUILD_TYPE);
+    src = paths[BUILD_TYPE],
+    dest = paths[('phonegap-' + BUILD_TYPE)];
+
   grunt.initConfig({
     phonegap: {
       config: {
@@ -17,29 +17,6 @@ module.exports = function (grunt) {
         platforms: ['android', 'ios'],
         maxBuffer: 200, // You may need to raise this for iOS.
         verbose: true,
-
-        // Android-only integer version to increase with each release.
-        // See http://developer.android.com/tools/publishing/versioning.html
-        versionCode: function () {
-          return (1);
-        },
-
-        // Android-only options that will override the defaults set by Phonegap in the
-        // generated AndroidManifest.xml
-        // See https://developer.android.com/guide/topics/manifest/uses-sdk-element.html
-        minSdkVersion: function () {
-          return (10);
-        },
-        targetSdkVersion: function () {
-          return (19);
-        },
-
-        // iOS7-only options that will make the status bar white and transparent
-        iosWhiteStatusBar: true,
-
-        // If you want to use the Phonegap Build service to build one or more
-        // of the platforms specified above, include these options.
-        // See https://build.phonegap.com/
         remote: {
           username: 'brett.j.andrews@gmail.com',
           password: 'password',

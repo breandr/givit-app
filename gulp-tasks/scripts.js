@@ -1,8 +1,4 @@
-var pkg = require('../package.json'),
-  buildConfig = require('./config.js'),
-  src = buildConfig.paths.src,
-  debugDest = buildConfig.paths.debug,
-  releaseDest = buildConfig.paths.release,
+var paths = require('./config.js').paths,
   gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   changed = require('gulp-changed'),
@@ -15,9 +11,9 @@ var pkg = require('../package.json'),
 gulp.task('scripts', function () {
   // var appFilter = filter('app.js');
 
-  return gulp.src(src.js + '**/*.js')
+  return gulp.src(paths.src.js + '**/*.js')
     .pipe(plumber())
-    .pipe(changed(debugDest.js))
+    .pipe(changed(paths.debug.js))
   // .pipe(jscs())
   .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
@@ -27,7 +23,7 @@ gulp.task('scripts', function () {
   //   debug: !IS_RELEASE_BUILD
   // }))
   // .pipe(appFilter.restore())
-  .pipe(gulp.dest(debugDest.js))
-    .pipe(jsdoc('./docs'))
-    .pipe(connect.reload());
+  .pipe(gulp.dest(paths.debug.js))
+    .pipe(connect.reload())
+    .pipe(jsdoc('./docs'));
 });
