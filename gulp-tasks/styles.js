@@ -12,9 +12,10 @@ var paths = require('./config.js').paths,
 gulp.task('styles', function () {
   return gulp.src([paths.src.sass + '*.scss', '!' + paths.src.sass + '_*.scss'])
     .pipe(plumber())
-    .pipe(changed(paths.debug.css, {
-      extension: '.css'
-    }))
+    // using changed() does not allow rebuilding when _*.scss files change
+    // .pipe(changed(paths.debug.css, {
+    //   extension: '.css'
+    // }))
     .pipe(sass({
       style: 'expanded',
       loadPath: 'app/bower_components'

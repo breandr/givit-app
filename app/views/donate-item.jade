@@ -7,7 +7,7 @@
         //- .help-block(ng-show='donateItemForm.QuantityOffered.$error.required && (donateItemForm.QuantityOffered.$dirty || donateItemForm.submitted)') Required
       .form-group.col-xs-9.col-sm-5(ng-class='{"has-error": donateItemForm.ItemName.$invalid && (donateItemForm.ItemName.$dirty || donateItemForm.submitted)}')
         label.control-label(for='donate-item-field-short-description') Short Description
-        input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName' autofocus)
+        input#donate-item-field-short-description.form-control(type='text', name='ItemName', placeholder='Queen sized blankets', required, ng-model='item.ItemName')
         //- .help-block(ng-show='donateItemForm.ItemName.$error.required && (donateItemForm.ItemName.$dirty || donateItemForm.submitted)') Required
       .form-group.col-xs-12.col-sm-5
           label.control-label.optional Photo

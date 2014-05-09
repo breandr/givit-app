@@ -7,36 +7,36 @@ gulp.task('watch', function () {
   watch({
     glob: [paths.src.bowerComponents + '/**/*.scss']
   }, function () {
-    runSequence('styles', 'useref-vendor-css')
+    runSequence('styles', 'useref-vendor-css');
   });
 
   watch({
-    glob: [paths.src.sass + '/**/*.scss']
+    glob: [paths.src.sass + '/**/_*.scss']
   }, function () {
-    runSequence('styles', 'useref-app-css')
+    runSequence('styles', 'useref-app-css');
   });
 
   watch({
     glob: [paths.src.bowerComponents + '**/*.js']
   }, function () {
-    runSequence('scripts', 'useref-vendor-js')
+    runSequence('scripts', 'useref-vendor-js');
   });
 
   watch({
     glob: paths.src.js + '**/*.js'
   }, function () {
-    runSequence('scripts', 'useref-app-js')
+    runSequence('scripts', 'useref-app-js');
   });
 
   watch({
     glob: [paths.src.root + 'index.jade']
   }, function () {
-    runSequence('html', 'useref')
+    runSequence('html', 'useref');
   });
 
   watch({
     glob: [paths.src.views + '/**/*.jade']
   }, function () {
-    runSequence('ng-template-cache', 'scripts', 'useref-app-js')
+    runSequence('ng-template-cache', 'scripts', 'useref-app-js');
   });
 });

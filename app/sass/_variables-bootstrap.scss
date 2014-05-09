@@ -1,14 +1,16 @@
 $border-radius-base: 0;
 $border-radius-large: 0;
 $border-radius-small: 0;
-$body-bg: #EEE;
+$body-bg: #eeeeee;
 $icon-font-path: "../fonts/glyph-icons/";
+$font-size-base: 16px;
 $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-base: $font-family-sans-serif;
-$brand-primary: #729BC7;
-$brand-warning: #F8971D;
-$navbar-default-bg: #29C53B;
-$navbar-default-color: #FFF;
-$navbar-default-brand-color: #FFF;
+$brand-primary: #729bc7;
+$brand-warning: #f8971d;
+$navbar-default-bg: #29c53b;
+$navbar-default-color: white;
+$navbar-default-brand-color: white;
+
 // $navbar-default-link-color: #FFF;
-$navbar-default-toggle-icon-bar-bg: #FFF;
+$navbar-default-toggle-icon-bar-bg: white;

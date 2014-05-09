@@ -78,7 +78,7 @@
     </gap:config-file>
 
     <preference name="target-device" value="universal" />
-    <preference name="prerendered-icon" value="true" />
+    <preference name="prerendered-icon" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
@@ -114,8 +114,7 @@
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.geolocation" />
 
-    <access origin="http://givit.org.au" subdomains="true" />
-    <access origin="https://givit.org.au" subdomains="true" />
     <access origin="http://10.1.1.123*" subdomains="true" />
     <access origin="http://api.givit.org.au" subdomains="true" />
+    <!-- <access origin="https://api.givit.org.au" subdomains="true" /> -->
 </widget>
