@@ -43,7 +43,13 @@ angular.module('givitApp', [
       $locationProvider.html5Mode(false);
     }
   ])
-  .run(function ($rootScope) {
+  .run(function ($rootScope, Walkthrough, User) {
+    $(function () {
+      if (User.$storage.showWalkthrough) {
+        Walkthrough.start();
+      }
+    });
+
     FastClick.attach(document.body);
 
     document.addEventListener('backbutton', function (e) {
