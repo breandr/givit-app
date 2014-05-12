@@ -1,0 +1,28 @@
+.tour.popover {
+  .popover-content {
+    padding-bottom: 0;
+  }
+  .popover-navigation {
+    padding-top: 0;
+  }
+}
+
+.tour-step-background {
+  // $darkenedBgColor: darken($navbar-default-bg, 10%);
+  background: rgba(255, 255, 255, 0.1);
+  // background: rgba(red($darkenedBgColor), green($darkenedBgColor), blue($darkenedBgColor), 0.3);
+}
+
+/* 
+.tour-backdrop {
+  z-index: 1030;
+}
+
+.tour-step-backdrop {
+  z-index: 1031;
+}
+
+
+.popover[class*="tour-"] {
+  z-index: 1030;
+} */

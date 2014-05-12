@@ -12,7 +12,7 @@ angular.module('givitApp')
       template: [
         '<div class="popover tour">',
         ' <div class="arrow"></div>',
-        ' <h3 class="popover-title"></h3>',
+        // ' <h3 class="popover-title"></h3>',
         ' <div class="popover-content"></div>',
         ' <div class="popover-navigation pull-right">',
         '   <button class="btn btn-default" data-role="prev">«</button>',
@@ -24,7 +24,7 @@ angular.module('givitApp')
       steps: [{
         element: '.navbar .navbar-toggle',
         title: 'Menu',
-        content: 'Tap here to open the navigation menu.',
+        content: 'Access the app\'s navigation menu here.',
         placement: 'right',
         reflex: true,
         onNext: function () {
@@ -43,8 +43,8 @@ angular.module('givitApp')
       }, {
         element: '#navigation-drawer a[href="#/user-details"]',
         title: 'My Details',
-        content: 'Enter your details so we can contact you when you regarding the pickup of items.',
-        placement: 'bottom',
+        content: 'Before you can <strong>Donate Item</strong>s or <strong>Give</strong> on the <strong>Givit List</strong>, you must enter your details so we can contact you regarding the pickup of items.',
+        placement: 'top',
         onNext: function () {
           tour.end();
         }

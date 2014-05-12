@@ -36,19 +36,3 @@
 .give-item-confirmation-modal .modal-dialog {
   max-width: 465px;
 }
-
-.tour-backdrop {
-  z-index: 1030;
-}
-
-.tour-step-backdrop {
-  z-index: 1031;
-}
-
-.tour-step-background {
-  z-index: 90;
-}
-
-.popover[class*="tour-"] {
-  z-index: 1030;
-}
