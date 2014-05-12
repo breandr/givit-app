@@ -10,6 +10,7 @@ gulp.task('bower', function () {
     src: paths.src.root + 'index.jade',
     ignorePath: 'app/',
     exclude: [
+      /app\\bower_components\\bootstrap\\dist\\css\\bootstrap\.css/, //we include this in our own bootstrap.css
       /app\\bower_components\\sass-bootstrap\\dist\\css\\bootstrap\.css/, //we include this in our own bootstrap.css
       /app\\bower_components\\font-awesome\\css\\font-awesome\.css/ //we include this in our own font-awesome.css
     ]

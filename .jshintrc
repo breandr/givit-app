@@ -25,6 +25,7 @@
     "moment": false,
     "_": false,
     "FastClick": false,
-    "Camera": false
+    "Camera": false,
+    "Tour": false
   }
 }

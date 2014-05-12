@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('givitApp')
-  .service('User', function ($localStorage) {
+  .service('User', function ($localStorage, Walkthrough) {
     var defaultUserDetails = {
       ContactNumber: '',
       EmailAddress: '',
@@ -22,13 +22,13 @@ angular.module('givitApp')
         km: ''
       },
       // nav: Navigate the app from here
-      // open nav to explain each page
+      // *open nav to explain each page*
       // givit list: See what items charities have requested for someone in need
       // donate items: Tell us of items you have that you would like to give to someone in need
       // my details: Enter your details so we can contact you when giving
       // about: Want to know more about Givit?
-      // set showIntro false
-      showIntro: true
+      // *set showWalkthrough false*
+      showWalkthrough: true
     });
 
     this.setDonorId = function (donorId) {
@@ -56,4 +56,9 @@ angular.module('givitApp')
 
       return _.every(['Firstname', 'Surname', 'EmailAddress', 'State', 'Postcode', 'TermsOfParticipation'], this.detailExists.bind(this)) && details.TermsOfParticipation;
     };
+
+    if (this.$storage.showWalkthrough) {
+      Walkthrough.start();
+      // this.$storage.showWalkthrough = false;
+    }
   });

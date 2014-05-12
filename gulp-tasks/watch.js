@@ -11,7 +11,7 @@ gulp.task('watch', function () {
   });
 
   watch({
-    glob: [paths.src.sass + '/**/_*.scss']
+    glob: [paths.src.sass + '/**/*.scss']
   }, function () {
     runSequence('styles', 'useref-app-css');
   });
