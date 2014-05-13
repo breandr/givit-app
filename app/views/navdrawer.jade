@@ -10,11 +10,11 @@
           </div>
           </a>
         </li> 
-    li(ng-class='{ active: isActive(\'/\') || isActive(\'/givit-list\')}')
-      a(href='#/givit-list', ng-click='hideNavDrawer()') Givit List
-    li(ng-class='{ active: isActive(\'/donate-item\')}')
-      a(href='#/donate-item', ng-click='hideNavDrawer(); redirectIfNoUserMinimalDetails($event)') Donate Item
-    li(ng-class='{ active: isActive(\'/user-details\')}')
-      a(href='#/user-details', ng-click='hideNavDrawer()') My Details
-    li(ng-class='{ active: isActive(\'/about\')}')
-      a(href='#/about', ng-click='hideNavDrawer()') About
+    li(class='nav-givit-list', ng-class='{ active: isActive(\'/\') || isActive(\'/givit-list\')}')
+      a(href='#/givit-list', ng-click='navClick($event)') Givit List
+    li(class='nav-donate-item', ng-class='{ active: isActive(\'/donate-item\')}')
+      a(href='#/donate-item', ng-click='navClick($event, true)') Donate Item
+    li(class='nav-user-details', ng-class='{ active: isActive(\'/user-details\')}')
+      a(href='#/user-details', ng-click='navClick($event)') My Details
+    li(class='nav-about', ng-class='{ active: isActive(\'/about\')}')
+      a(href='#/about', ng-click='navClick($event)') About

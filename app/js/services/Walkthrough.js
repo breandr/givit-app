@@ -8,29 +8,26 @@ angular.module('givitApp')
       showWalkthrough: true
     });
 
-    var tour = new Tour({
+    this.tour = new Tour({
       name: 'navigation-walkthrough',
       storage: false,
-      backdrop: true,
+      // backdrop: true,
       onEnd: function () {
-        $rootScope.$broadcast('navDrawer.hide');
+        console.log(this);
+        // $rootScope.$broadcast('navDrawer.hide');
         this.$storage.showWalkthrough = false;
       }.bind(this),
       template: [
         '<div class="popover tour">',
         ' <div class="arrow"></div>',
-        ' <h3 class="popover-title"></h3>',
+        ' <div class="popover-title clearfix"></div>',
         ' <div class="popover-content"></div>',
-        ' <div class="popover-navigation pull-right">',
-        '   <button class="btn btn-default" data-role="prev">«</button>',
-        '   <button class="btn btn-default" data-role="next">»</button>',
-        // '   <button class="btn btn-default" data-role="end">End tour</button>',
-        ' </div>',
         '</div>'
       ].join('\n'),
       steps: [{
+        backdrop: true,
         element: '.navbar .navbar-toggle',
-        title: 'Welcome to GIVIT',
+        title: '<h4 class="pull-left">Welcome to GIVIT!</h4> <button class="btn btn-default pull-right" data-role="next">»</button>',
         content: 'Let\'s take a quick look at the app\'s navigation, accessible here.',
         placement: 'right',
         reflex: true,
@@ -38,28 +35,37 @@ angular.module('givitApp')
           $rootScope.$broadcast('navDrawer.show');
         }
       }, {
-        element: '#navigation-drawer a[href="#/givit-list"]',
-        // title: 'Givit List',
+        element: '#navigation-drawer .nav-givit-list',
+        title: '<h4 class="pull-left">Givit List</h4> <button class="btn btn-default pull-right" data-role="next">»</button>',
         content: 'See what items charities have requested for people in need.',
-        placement: 'bottom'
+        placement: 'bottom',
+        reflex: true
       }, {
-        element: '#navigation-drawer a[href="#/donate-item"]',
-        // title: 'Donate Item',
-        content: 'Tell us of items you have that could help someone in need.',
-        placement: 'bottom'
+        element: '#navigation-drawer .nav-donate-item',
+        title: '<h4 class="pull-left">Donate Item</h4> <button class="btn btn-default pull-right" data-role="next">»</button>',
+        content: 'Tell us of items you have that could help someone through rough times.',
+        placement: 'bottom',
+        reflex: true
       }, {
-        element: '#navigation-drawer a[href="#/user-details"]',
-        // title: 'My Details',
+        element: '#navigation-drawer .nav-user-details',
+        title: '<h4 class="pull-left">My Details</h4> <button class="btn btn-default pull-right" data-role="next">»</button>',
         content: 'Before you can <strong>Donate Item</strong>s or <strong>Give</strong> on the <strong>Givit List</strong>, please enter your details so we can contact you regarding the pickup of items.',
         placement: 'top',
+        reflex: true,
         onNext: function () {
-          tour.end();
+          $rootScope.$broadcast('navDrawer.hide');
         }
+      }, {
+        element: 'body',
+        title: '<h4 class="pull-left">Thanks!</h4> <button class="btn btn-default pull-right" data-role="end">»</button>',
+        content: 'Thank you for choosing to GIVIT!',
+        placement: 'top',
+        reflex: true
       }, {}]
     });
 
     this.start = function () {
-      tour.init();
-      tour.start();
+      this.tour.init();
+      this.tour.start();
     };
   });
