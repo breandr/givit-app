@@ -28,7 +28,7 @@ angular.module('givitApp')
         element: '.navbar .navbar-toggle',
         title: '<h4 class="pull-left">Welcome to GIVIT!</h4> <button class="btn btn-default pull-right" data-role="next">»</button>',
         content: 'Let\'s take a quick look at the app\'s navigation, accessible here.',
-        placement: 'right',
+        placement: 'bottom',
         reflex: true,
         onNext: function () {
           $rootScope.$broadcast('navDrawer.show');
