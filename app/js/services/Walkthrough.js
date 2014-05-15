@@ -7,15 +7,14 @@ angular.module('givitApp')
     this.$storage.$default({
       showWalkthrough: true
     });
-
+    
     this.tour = new Tour({
       name: 'navigation-walkthrough',
       storage: false,
       // backdrop: true,
       onEnd: function () {
-        console.log(this);
-        // $rootScope.$broadcast('navDrawer.hide');
         this.$storage.showWalkthrough = false;
+        $rootScope.$apply();
       }.bind(this),
       template: [
         '<div class="popover tour">',
