@@ -5,10 +5,11 @@ var paths = require('./config.js').paths,
   jade = require('gulp-jade'),
   useref = require('gulp-useref'),
   changed = require('gulp-changed'),
-  ngmin = require('gulp-ngmin'),
+  ngAnnotate = require('gulp-ng-annotate'),
   minifyCss = require('gulp-minify-css'),
   uglify = require('gulp-uglify'),
   rev = require('gulp-rev'),
+  revReplace = require('gulp-rev-replace'),
   replace = require('gulp-replace'),
   minifyHtml = require('gulp-minify-html'),
   connect = require('gulp-connect'),
@@ -21,11 +22,12 @@ gulp.task('useref', function () {
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(rev())
-    .pipe(rev.manifest().on('data', function (file) {
-      manifest = JSON.parse(file.contents);
-    }))
+    // .pipe(rev.manifest().on('data', function (file) {
+    //   manifest = JSON.parse(file.contents);
+    // }))
     .pipe(useref.restore())
     .pipe(useref())
+    .pipe(revReplace())
     .pipe(minifyHtml({
       empty: true,
       spare: true,
@@ -98,10 +100,10 @@ gulp.task('useref-vendor-js', function () {
       // searchPath: paths.debug.root
     }))
     .pipe(vendorJsFilter)
-  // .pipe(ngmin())
-  .pipe(uglify({
+  .pipe(ngAnnotate())
+  .pipe(uglify(/*{
     mangle: false
-  }))
+  }*/))
     .pipe(gulp.dest(paths.release.root))
     .pipe(vendorJsFilter.restore())
     .pipe(indexHtmlFilter)
@@ -118,10 +120,10 @@ gulp.task('useref-app-js', function () {
     .pipe(plumber())
     .pipe(useref.assets())
     .pipe(appJsFilter)
-  // .pipe(ngmin())
-  .pipe(uglify({
+  .pipe(ngAnnotate())
+  .pipe(uglify(/*{
     mangle: false
-  }))
+  }*/))
     .pipe(gulp.dest(paths.release.root))
     .pipe(appJsFilter.restore())
     .pipe(indexHtmlFilter)
