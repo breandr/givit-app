@@ -43,9 +43,9 @@ angular.module('givitApp', [
       $locationProvider.html5Mode(false);
     }
   ])
-  .run(function ($rootScope, Walkthrough, User) {
+  .run(function ($rootScope, Walkthrough) {
     $(function () {
-      if (User.$storage.showWalkthrough) {
+      if (Walkthrough.$storage.showWalkthrough) {
         Walkthrough.start();
       }
     });
